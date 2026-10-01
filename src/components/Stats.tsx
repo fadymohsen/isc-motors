@@ -14,7 +14,7 @@ export default function Stats() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex flex-col items-start gap-2 bg-dark2 px-6 py-10"
+            className="flex min-w-0 flex-col items-start gap-2 bg-dark2 px-6 py-10"
           >
             <span className="font-display text-5xl leading-none text-red md:text-6xl">
               {stat.value}

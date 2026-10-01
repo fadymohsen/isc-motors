@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-2 gap-10 font-mono text-xs">
-            <div className="space-y-3">
+            <div className="min-w-0 space-y-3">
               <div className="text-white/40">Contact</div>
               <a
                 href="mailto:Info@isc-expo.net"
@@ -28,7 +28,7 @@ export default function Footer() {
                 www.isc-expo.net
               </a>
             </div>
-            <div className="space-y-3">
+            <div className="min-w-0 space-y-3">
               <div className="text-white/40">Location</div>
               <div className="text-white/80">Saudi Arabia · Jeddah</div>
               <div className="text-white/80">Alsalama</div>

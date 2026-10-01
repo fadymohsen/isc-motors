@@ -26,7 +26,7 @@ export default function RootLayout({
       lang="en"
       className={`${bebas.variable} ${GeistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-dark text-white font-mono uppercase">
+      <body className="min-h-full overflow-x-hidden bg-dark text-white font-mono uppercase">
         {children}
       </body>
     </html>

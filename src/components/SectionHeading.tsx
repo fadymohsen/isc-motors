@@ -26,20 +26,22 @@ export default function SectionHeading({
 
   if (action) {
     return (
-      <div className="flex flex-col items-start gap-6 md:flex-row md:items-end md:justify-between">
-        <div className="flex flex-col items-start gap-4">
+      <div className="min-w-0 md:flex md:items-end md:justify-between md:gap-6">
+        <div>
           <Tag>{tag}</Tag>
-          {heading}
+          <div className="mt-4">{heading}</div>
         </div>
-        <div className="shrink-0">{action}</div>
+        <div className="mt-6 md:mt-0 md:shrink-0">{action}</div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-start gap-4 md:flex-row md:items-start md:justify-between md:gap-20">
-      <Tag>{tag}</Tag>
-      {heading}
+    <div className="min-w-0 md:flex md:items-start md:justify-between md:gap-20">
+      <div className="md:shrink-0">
+        <Tag>{tag}</Tag>
+      </div>
+      <div className="mt-4 min-w-0 md:mt-0">{heading}</div>
     </div>
   );
 }

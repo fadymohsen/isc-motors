@@ -76,7 +76,7 @@ export default function Schedule() {
                 </p>
                 <div className="mt-6 grid grid-cols-2 gap-4 border-t border-stroke pt-6">
                   {event.stats.map((stat) => (
-                    <div key={stat.label}>
+                    <div key={stat.label} className="min-w-0">
                       <div className="font-display text-2xl leading-none">
                         {stat.value}
                       </div>
