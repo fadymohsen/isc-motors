@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SectionHeading from "./SectionHeading";
 
 const events = [
   {
@@ -45,12 +46,7 @@ export default function Schedule() {
   return (
     <section id="schedule" className="border-b border-stroke">
       <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-        <span className="font-mono text-xs font-medium tracking-wide text-red">
-          Programme
-        </span>
-        <h2 className="mt-4 font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
-          The JIMS Dashboard: Reach &amp; Impact
-        </h2>
+        <SectionHeading tag="Programme" title="The JIMS Dashboard: Reach & Impact" />
 
         <div className="mt-12 grid gap-px overflow-hidden border border-stroke bg-stroke md:grid-cols-3">
           {events.map((event, i) => (

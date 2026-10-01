@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SectionHeading from "./SectionHeading";
 
 const points = [
   {
@@ -20,14 +21,11 @@ export default function About() {
     <section id="about" className="border-b border-stroke">
       <div className="mx-auto max-w-container px-6 py-20 md:py-28">
         <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
-          <div>
-            <span className="font-mono text-xs font-medium tracking-wide text-red">
-              Exhibition Location &mdash; JCEE
-            </span>
-            <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
-              The oldest automotive stage in the Kingdom of Saudi Arabia
-            </h2>
-          </div>
+          <SectionHeading
+            tag="Exhibition Location — JCEE"
+            title="The oldest automotive stage in the Kingdom of Saudi Arabia"
+            titleMaxWidth="max-w-4xl"
+          />
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-stroke">
             <Image
               src="/images/pdf/page-02.png"

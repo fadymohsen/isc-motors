@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Button from "./Button";
+import SectionHeading from "./SectionHeading";
+import Tag from "./Tag";
 
 const packages = [
   {
@@ -51,12 +53,7 @@ export default function Packages() {
   return (
     <section id="packages" className="border-b border-stroke">
       <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-        <span className="font-mono text-xs font-medium tracking-wide text-red">
-          How Can You Participate?
-        </span>
-        <h2 className="mt-4 max-w-3xl font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
-          Exhibitor Packages
-        </h2>
+        <SectionHeading tag="How Can You Participate?" title="Exhibitor Packages" />
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {packages.map((pkg) => (
@@ -77,7 +74,7 @@ export default function Packages() {
               </div>
 
               <div className="flex flex-1 flex-col p-8">
-                <span className="font-mono text-xs text-red">{pkg.tag}</span>
+                <Tag>{pkg.tag}</Tag>
                 <h3 className="mt-3 font-display text-3xl tracking-tightest2">
                   {pkg.title}
                 </h3>

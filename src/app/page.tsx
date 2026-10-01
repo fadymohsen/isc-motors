@@ -4,6 +4,8 @@ import Stats from "@/components/Stats";
 import About from "@/components/About";
 import Schedule from "@/components/Schedule";
 import Packages from "@/components/Packages";
+import Faq from "@/components/Faq";
+import BlogTeaser from "@/components/BlogTeaser";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
@@ -17,6 +19,8 @@ export default function Home() {
         <About />
         <Schedule />
         <Packages />
+        <Faq />
+        <BlogTeaser />
         <CTA />
       </main>
       <Footer />
