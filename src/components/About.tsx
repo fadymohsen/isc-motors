@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const points = [
   {
     title: "Vision 2030 Alignment",
@@ -17,12 +19,24 @@ export default function About() {
   return (
     <section id="about" className="border-b border-stroke">
       <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-        <span className="font-mono text-xs font-medium tracking-wide text-red">
-          Exhibition Location &mdash; JCEE
-        </span>
-        <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
-          The oldest automotive stage in the Kingdom of Saudi Arabia
-        </h2>
+        <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] md:items-end">
+          <div>
+            <span className="font-mono text-xs font-medium tracking-wide text-red">
+              Exhibition Location &mdash; JCEE
+            </span>
+            <h2 className="mt-4 max-w-4xl font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
+              The oldest automotive stage in the Kingdom of Saudi Arabia
+            </h2>
+          </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-stroke">
+            <Image
+              src="/images/pdf/page-02.png"
+              alt="Jeddah Center for Exhibitions and Events"
+              fill
+              style={{ objectFit: "cover", objectPosition: "right center" }}
+            />
+          </div>
+        </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
           {points.map((point) => (

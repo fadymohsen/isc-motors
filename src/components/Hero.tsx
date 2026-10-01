@@ -1,9 +1,21 @@
+import Image from "next/image";
 import Button from "./Button";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-stroke">
-      <div className="absolute inset-0 bg-gradient-to-b from-dark2/60 via-dark to-dark" />
+      <div className="absolute inset-0">
+        <Image
+          src="/images/pdf/page-01.png"
+          alt="JIMS 2026 — Jeddah International Motor Show"
+          fill
+          priority
+          style={{ objectFit: "cover", objectPosition: "right center" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-dark/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent" />
+      </div>
+
       <div className="relative mx-auto flex max-w-container flex-col items-start px-6 pb-20 pt-24 md:pb-32 md:pt-32">
         <span className="mb-6 inline-block border border-red px-4 py-2 text-xs font-mono font-medium tracking-wide text-red">
           License Number 26/3054 &middot; Exhibitor Booklet 2026
@@ -19,7 +31,7 @@ export default function Hero() {
           Revealing the future of mobility in the Kingdom.
         </p>
 
-        <div className="mt-6 flex items-center gap-3 border border-stroke bg-dark2 px-5 py-3 font-mono text-sm text-white/80">
+        <div className="mt-6 flex items-center gap-3 border border-stroke bg-dark2/80 px-5 py-3 font-mono text-sm text-white/80 backdrop-blur">
           <span className="h-2 w-2 shrink-0 rounded-full bg-red" />
           JCEE &mdash; Jeddah Center for Exhibitions and Events
         </div>
