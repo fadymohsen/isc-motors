@@ -6,11 +6,11 @@ export default function Hero() {
     <section className="relative overflow-hidden border-b border-stroke">
       <div className="absolute inset-0">
         <Image
-          src="/images/pdf/page-01.png"
-          alt="JIMS 2026 — Jeddah International Motor Show"
+          src="/images/photos/hero-car.jpg"
+          alt="Concept car reveal at JIMS 2026"
           fill
           priority
-          style={{ objectFit: "cover", objectPosition: "right center" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-dark/10" />
         <div className="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent" />

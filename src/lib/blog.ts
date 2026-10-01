@@ -15,8 +15,7 @@ export const posts: BlogPost[] = [
     date: "August 26, 2026",
     excerpt:
       "A full morning in the spotlight in front of Arabian press — scheduled brand launches, pre-appointed interviews, and a dedicated media centre.",
-    image: "/images/pdf/page-06.png",
-    imagePosition: "20% 25%",
+    image: "/images/photos/press-day.jpg",
     body: [
       "A full morning, in the spotlight in front of Arabian press. Press Day brings together 100+ journalists from 10+ countries, with 20% international press, across 10+ press conferences.",
       "Scheduled brand launches happen throughout press day to ensure that the media have access to the big news of the show.",
@@ -31,8 +30,7 @@ export const posts: BlogPost[] = [
     date: "August 26, 2026",
     excerpt:
       "For those who want the privilege to be the first to see the show and connect with the industry — 1,000 pros & guests, 50+ key influencers.",
-    image: "/images/pdf/page-08.png",
-    imagePosition: "20% 25%",
+    image: "/images/photos/vip-night.jpg",
     body: [
       "For those who want the privilege to be the first to see the show and connect with the industry. VIP Night welcomes 1,000 pros & guests and 50+ key influencers across 10+ curated sessions and talks.",
       "Guests have an exclusive opportunity to experience all brand stands and zones before the experience opens to the public.",
@@ -47,8 +45,7 @@ export const posts: BlogPost[] = [
     date: "August 27 – 29, 2026",
     excerpt:
       "Three days for visitors to get closer to the exhibits and entertainment — 300,000 visitors, 60% Saudis, 40% from around the world.",
-    image: "/images/pdf/page-10.png",
-    imagePosition: "20% 25%",
+    image: "/images/photos/visitor-days.jpg",
     body: [
       "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
       "Visitors get an exclusive first look at global premieres, production-ready electric vehicles (EVs), and futuristic concept cars.",
@@ -63,8 +60,7 @@ export const posts: BlogPost[] = [
     date: "August 2026",
     excerpt:
       "Curated zones offering new high-profile opportunities for brands to participate and showcase vehicles or technologies — Tech & Gaming, Autonomous Tech Demo, Future Simulators.",
-    image: "/images/pdf/page-17.png",
-    imagePosition: "right center",
+    image: "/images/photos/thematic.jpg",
     body: [
       "This year, JIMS is doing things a little differently. Step inside the exhibition hall to enter a world of cutting-edge technology, sleek designs, and mind-boggling innovation.",
       "The curated zones offer new high-profile opportunities for brands to participate and showcase vehicles or technologies: Auto Display Lens, Audience Activation Spaces, and Conversation Spaces.",

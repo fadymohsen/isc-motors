@@ -19,8 +19,8 @@ export default function BlogPage() {
         <PageBanner
           eyebrow="News & Programme"
           title="JIMS Blog"
-          image="/images/pdf/page-11.png"
-          objectPosition="center 20%"
+          image="/images/photos/thematic.jpg"
+          objectPosition="center"
         />
 
         <section className="border-b border-stroke">

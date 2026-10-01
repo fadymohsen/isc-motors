@@ -25,8 +25,8 @@ export default function ContactPage() {
         <PageBanner
           eyebrow="Get In Touch"
           title="Contact JIMS"
-          image="/images/pdf/page-07.png"
-          objectPosition="center 30%"
+          image="/images/photos/press-day.jpg"
+          objectPosition="center"
         />
 
         <section className="border-b border-stroke">

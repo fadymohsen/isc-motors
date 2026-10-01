@@ -28,10 +28,10 @@ export default function About() {
           />
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-stroke">
             <Image
-              src="/images/pdf/page-02.png"
-              alt="Jeddah Center for Exhibitions and Events"
+              src="/images/photos/about-skyline.jpg"
+              alt="Jeddah skyline near JCEE"
               fill
-              style={{ objectFit: "cover", objectPosition: "right center" }}
+              style={{ objectFit: "cover", objectPosition: "center" }}
             />
           </div>
         </div>

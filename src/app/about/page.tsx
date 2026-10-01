@@ -33,8 +33,8 @@ export default function AboutPage() {
         <PageBanner
           eyebrow="Jeddah · The Oldest Automotive Stage in the Kingdom"
           title="About JIMS 2026"
-          image="/images/pdf/page-05.png"
-          objectPosition="right center"
+          image="/images/photos/about-banner.jpg"
+          objectPosition="center"
         />
 
         <section className="border-b border-stroke">
@@ -62,10 +62,10 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[4/5] w-full overflow-hidden border border-stroke">
                 <Image
-                  src="/images/pdf/page-03.png"
-                  alt="Integrated Solutions Co. for Events"
+                  src="/images/photos/visitor-days.jpg"
+                  alt="JIMS exhibition hall"
                   fill
-                  style={{ objectFit: "cover", objectPosition: "left center" }}
+                  style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
             </div>

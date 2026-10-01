@@ -10,7 +10,7 @@ const packages = [
     size: "Spaces starting from 48m²",
     price: "SAR 500 /m²",
     priceNote: "for surface",
-    image: "/images/pdf/page-15.png",
+    image: "/images/photos/custom-stand.jpg",
     bullets: [
       "Blank canvas space",
       "Maximum flexibility",
@@ -24,7 +24,7 @@ const packages = [
     size: "Spaces from 50m² – 400m²",
     price: "SAR 500 /m²",
     priceNote: "surface · SAR 2,500 /m² booth",
-    image: "/images/pdf/page-16.png",
+    image: "/images/photos/plug-play.jpg",
     bullets: [
       "1.65m walls with graphics, 3 open sides",
       "Raised flooring & tall ID totem",
@@ -39,7 +39,7 @@ const packages = [
     size: "Curated zones, bespoke sizing",
     price: "Bespoke",
     priceNote: "packages upon request",
-    image: "/images/pdf/page-17.png",
+    image: "/images/photos/thematic.jpg",
     bullets: [
       "Tech & Gaming Zone",
       "Autonomous Tech Demo",
@@ -68,7 +68,7 @@ export default function Packages() {
                   src={pkg.image}
                   alt={pkg.title}
                   fill
-                  style={{ objectFit: "cover", objectPosition: "right center" }}
+                  style={{ objectFit: "cover", objectPosition: "center" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark2 via-transparent to-transparent" />
               </div>

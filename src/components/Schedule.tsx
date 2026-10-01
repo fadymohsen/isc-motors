@@ -6,8 +6,8 @@ const events = [
     date: "August 26, 2026",
     title: "Press Day",
     desc: "A full morning, in the spotlight in front of Arabian press.",
-    image: "/images/pdf/page-06.png",
-    position: "20% 25%",
+    image: "/images/photos/press-day.jpg",
+    position: "center",
     stats: [
       { value: "100+", label: "Journalists" },
       { value: "10+", label: "Press Conferences" },
@@ -19,8 +19,8 @@ const events = [
     date: "August 26, 2026",
     title: "VIP Night",
     desc: "For those who want the privilege to be the first to see the show and connect with the industry.",
-    image: "/images/pdf/page-08.png",
-    position: "20% 25%",
+    image: "/images/photos/vip-night.jpg",
+    position: "center",
     stats: [
       { value: "1,000", label: "Pros & Guests" },
       { value: "50+", label: "Key Influencers" },
@@ -31,8 +31,8 @@ const events = [
     date: "August 27 – 29, 2026",
     title: "Visitors Days",
     desc: "Three days for visitors to get closer to the exhibits and entertainments.",
-    image: "/images/pdf/page-10.png",
-    position: "20% 25%",
+    image: "/images/photos/visitor-days.jpg",
+    position: "center",
     stats: [
       { value: "300K", label: "Visitors" },
       { value: "60%", label: "Saudis" },
@@ -57,7 +57,6 @@ export default function Schedule() {
                   alt={event.title}
                   fill
                   style={{ objectFit: "cover", objectPosition: event.position }}
-                  className="grayscale"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/10 to-transparent" />
                 <span className="absolute bottom-3 left-8 font-display text-xl text-red">

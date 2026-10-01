@@ -19,10 +19,10 @@ export default function Faq() {
             <div className="sticky top-24 flex flex-col gap-6">
               <div className="relative aspect-[4/5] w-full overflow-hidden border border-stroke">
                 <Image
-                  src="/images/pdf/page-07.png"
-                  alt="JIMS media centre"
+                  src="/images/photos/test-drive.jpg"
+                  alt="JIMS exhibitor enquiry"
                   fill
-                  style={{ objectFit: "cover", objectPosition: "center 30%" }}
+                  style={{ objectFit: "cover", objectPosition: "center" }}
                 />
               </div>
               <Button href="/contact">Ask a Question</Button>

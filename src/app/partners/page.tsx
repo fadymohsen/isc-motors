@@ -40,8 +40,8 @@ export default function PartnersPage() {
         <PageBanner
           eyebrow="Backed By The Kingdom's Automotive Community"
           title="Our Partners"
-          image="/images/pdf/page-03.png"
-          objectPosition="right 70%"
+          image="/images/photos/custom-stand.jpg"
+          objectPosition="center"
         />
 
         <section className="border-b border-stroke">
