@@ -51,50 +51,93 @@ const packages = [
 
 export default function Packages() {
   return (
-    <section id="packages" className="border-b border-stroke">
+    <section id="packages" className="overflow-hidden border-b border-stroke">
       <div className="mx-auto max-w-container px-6 py-20 md:py-28">
         <SectionHeading tag="How Can You Participate?" title="Exhibitor Packages" />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3 md:items-stretch">
           {packages.map((pkg) => (
             <div
               key={pkg.title}
-              className={`flex flex-col border bg-dark2 ${
-                pkg.featured ? "border-red" : "border-stroke"
+              className={`flex flex-col ${
+                pkg.featured
+                  ? "bg-red text-white md:-translate-y-6 md:shadow-[0_30px_60px_-20px_rgba(255,15,16,0.45)]"
+                  : "border border-stroke bg-dark2"
               }`}
             >
-              <div className="relative h-40 w-full overflow-hidden">
+              <div
+                className="relative h-40 w-full overflow-hidden"
+                style={{
+                  clipPath: "polygon(0 0, 100% 0, 100% 86%, 92% 100%, 0 100%)",
+                }}
+              >
                 <Image
                   src={pkg.image}
                   alt={pkg.title}
                   fill
                   style={{ objectFit: "cover", objectPosition: "center" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark2 via-transparent to-transparent" />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t ${
+                    pkg.featured
+                      ? "from-red via-transparent to-transparent"
+                      : "from-dark2 via-transparent to-transparent"
+                  }`}
+                />
               </div>
 
               <div className="flex flex-1 flex-col p-8">
-                <Tag>{pkg.tag}</Tag>
+                {pkg.featured ? (
+                  <span className="inline-flex w-fit items-center gap-1 font-mono text-xs font-medium tracking-wide text-white">
+                    <span className="text-white/50">[</span>
+                    {pkg.tag}
+                    <span className="text-white/50">]</span>
+                  </span>
+                ) : (
+                  <Tag>{pkg.tag}</Tag>
+                )}
                 <h3 className="mt-3 font-display text-3xl tracking-tightest2">
                   {pkg.title}
                 </h3>
-                <p className="mt-2 font-mono text-xs text-white/60">
+                <p
+                  className={`mt-2 font-mono text-xs ${
+                    pkg.featured ? "text-white/70" : "text-white/60"
+                  }`}
+                >
                   {pkg.size}
                 </p>
 
-                <div className="mt-6 border-t border-stroke pt-6">
-                  <div className="font-display text-3xl leading-none text-red">
+                <div
+                  className={`mt-6 border-t pt-6 ${
+                    pkg.featured ? "border-white/20" : "border-stroke"
+                  }`}
+                >
+                  <div
+                    className={`font-display text-3xl leading-none ${
+                      pkg.featured ? "text-white" : "text-red"
+                    }`}
+                  >
                     {pkg.price}
                   </div>
-                  <div className="mt-1 font-mono text-[10px] text-white/60">
+                  <div
+                    className={`mt-1 font-mono text-[10px] ${
+                      pkg.featured ? "text-white/60" : "text-white/60"
+                    }`}
+                  >
                     {pkg.priceNote}
                   </div>
                 </div>
 
-                <ul className="mt-6 flex-1 space-y-3 font-mono text-xs leading-relaxed text-white/80">
+                <ul
+                  className={`mt-6 flex-1 space-y-3 font-mono text-xs leading-relaxed ${
+                    pkg.featured ? "text-white/80" : "text-white/80"
+                  }`}
+                >
                   {pkg.bullets.map((bullet) => (
                     <li key={bullet} className="flex gap-2">
-                      <span className="text-red">—</span>
+                      <span className={pkg.featured ? "text-white" : "text-red"}>
+                        —
+                      </span>
                       {bullet}
                     </li>
                   ))}
@@ -102,7 +145,7 @@ export default function Packages() {
 
                 <Button
                   href="#register"
-                  variant={pkg.featured ? "primary" : "secondary"}
+                  variant={pkg.featured ? "invert" : "secondary"}
                   className="mt-8 w-full"
                 >
                   Enquire Now

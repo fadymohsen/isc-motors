@@ -9,17 +9,26 @@ const stats: Stat[] = [
 
 export default function Stats() {
   return (
-    <section className="border-b border-stroke bg-dark2">
-      <div className="mx-auto grid max-w-container grid-cols-2 gap-px bg-stroke md:grid-cols-4">
-        {stats.map((stat) => (
+    <section
+      className="relative overflow-hidden border-b border-stroke bg-red"
+      style={{
+        clipPath: "polygon(0 12px, 100% 0, 100% 100%, 0 100%)",
+      }}
+    >
+      <div className="mx-auto grid max-w-container grid-cols-2 md:grid-cols-4">
+        {stats.map((stat, i) => (
           <div
             key={stat.label}
-            className="flex min-w-0 flex-col items-start gap-2 bg-dark2 px-6 py-10"
+            className={`flex min-w-0 flex-col items-start gap-2 px-6 py-10 ${
+              i % 2 === 1 ? "border-l border-white/20" : ""
+            } ${i >= 2 ? "border-t border-white/20 md:border-t-0" : ""} ${
+              i % 4 !== 0 ? "md:border-l md:border-white/20" : ""
+            }`}
           >
-            <span className="font-display text-5xl leading-none text-red md:text-6xl">
+            <span className="font-display text-5xl leading-none text-white md:text-6xl">
               {stat.value}
             </span>
-            <span className="font-mono text-xs text-white/70">
+            <span className="font-mono text-xs uppercase tracking-[0.1em] text-white/80">
               {stat.label}
             </span>
           </div>

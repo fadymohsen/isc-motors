@@ -32,7 +32,12 @@ export default function BlogPage() {
                   href={`/blog/${post.slug}`}
                   className="group flex flex-col border border-stroke bg-dark2"
                 >
-                  <div className="relative h-56 w-full overflow-hidden">
+                  <div
+                    className="relative h-56 w-full overflow-hidden"
+                    style={{
+                      clipPath: "polygon(0 0, 100% 0, 100% 100%, 6% 100%)",
+                    }}
+                  >
                     <Image
                       src={post.image}
                       alt={post.title}

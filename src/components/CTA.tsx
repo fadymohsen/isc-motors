@@ -5,6 +5,7 @@ export default function CTA() {
     <section
       id="register"
       className="relative overflow-hidden border-b border-stroke bg-red"
+      style={{ clipPath: "polygon(0 16px, 100% 0, 100% 100%, 0 100%)" }}
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/30 via-transparent to-black/40" />
 

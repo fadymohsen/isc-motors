@@ -26,7 +26,12 @@ export default function About() {
             title="The oldest automotive stage in the Kingdom of Saudi Arabia"
             titleMaxWidth="max-w-4xl"
           />
-          <div className="relative aspect-[4/3] w-full overflow-hidden border border-stroke">
+          <div
+            className="relative aspect-[4/3] w-full overflow-hidden"
+            style={{
+              clipPath: "polygon(5% 0, 100% 0, 100% 100%, 0 100%)",
+            }}
+          >
             <Image
               src="/images/photos/about-skyline.jpg"
               alt="Jeddah skyline near JCEE"

@@ -17,7 +17,12 @@ export default function Faq() {
         <div className="mt-12 grid gap-10 md:grid-cols-[320px_1fr]">
           <div className="hidden md:block">
             <div className="sticky top-24 flex flex-col gap-6">
-              <div className="relative aspect-[4/5] w-full overflow-hidden border border-stroke">
+              <div
+                className="relative aspect-[4/5] w-full overflow-hidden"
+                style={{
+                  clipPath: "polygon(0 0, 100% 0, 100% 95%, 90% 100%, 0 100%)",
+                }}
+              >
                 <Image
                   src="/images/photos/test-drive.jpg"
                   alt="JIMS exhibitor enquiry"

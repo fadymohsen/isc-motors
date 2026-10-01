@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 type ButtonProps = {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "invert";
   className?: string;
 };
 
@@ -19,7 +19,9 @@ export default function Button({
   const styles =
     variant === "primary"
       ? "bg-red text-white hover:bg-white hover:text-dark"
-      : "border border-white/30 text-white hover:border-red hover:text-red";
+      : variant === "invert"
+        ? "bg-white text-red hover:bg-dark hover:text-white"
+        : "border border-white/30 text-white hover:border-red hover:text-red";
 
   return (
     <Link href={href} className={`${base} ${styles} ${className}`}>
