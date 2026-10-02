@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import Logo from "./Logo";
-import Button from "./Button";
+import { ButtonLabel, buttonClasses } from "./Button";
 
 const links = [
   { label: "About", href: "/about" },
@@ -15,74 +16,169 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  // Tuck the bar away while scrolling down, bring it back on any upward scroll.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY;
+      if (y < 120 || delta < -6) setHidden(false);
+      else if (delta > 8) setHidden(true);
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-stroke bg-dark/90 backdrop-blur">
-      <div className="mx-auto flex max-w-container items-center justify-between px-6 py-5">
-        <Logo />
-
-        <nav className="hidden items-center gap-7 text-sm font-mono md:flex">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-white/80 transition-colors hover:text-red"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <Button href="/#register" className="hidden md:inline-flex">
-          Book Your Spot
-        </Button>
-
-        <button
-          type="button"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-        >
-          <span
-            className={`block h-[2px] w-6 bg-white transition-transform duration-200 ${
-              open ? "translate-y-[7px] rotate-45" : ""
-            }`}
-          />
-          <span
-            className={`block h-[2px] w-6 bg-white transition-opacity duration-200 ${
-              open ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`block h-[2px] w-6 bg-white transition-transform duration-200 ${
-              open ? "-translate-y-[7px] -rotate-45" : ""
-            }`}
-          />
-        </button>
-      </div>
-
-      <div
-        className={`overflow-hidden border-t border-stroke bg-dark transition-[max-height] duration-300 md:hidden ${
-          open ? "max-h-96" : "max-h-0 border-t-0"
+    <>
+      <header
+        className={`fixed inset-x-0 top-3 z-50 flex justify-center px-3 transition-transform duration-500 ease-out md:top-4 ${
+          hidden && !open ? "-translate-y-[160%]" : "translate-y-0"
         }`}
       >
-        <nav className="flex flex-col gap-1 px-6 py-4 font-mono text-sm">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-stroke py-3 text-white/80 last:border-b-0 hover:text-red"
+        <div className="grid h-[64px] w-full max-w-[880px] grid-cols-[1fr_auto_1fr] items-center bg-bar/90 px-5 backdrop-blur-md md:h-[72px] md:px-10">
+          <button
+            ref={toggleRef}
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="site-menu"
+            onClick={() => setOpen((v) => !v)}
+            className="-ml-3 flex h-11 w-11 flex-col items-start justify-center gap-[7px] pl-3"
+          >
+            <span
+              className={`block h-px w-6 bg-white transition-transform duration-300 ${
+                open ? "translate-y-[4px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`block h-px w-6 bg-white transition-transform duration-300 ${
+                open ? "-translate-y-[4px] -rotate-45" : ""
+              }`}
+            />
+          </button>
+
+          <Logo className="text-[34px] md:text-[40px]" />
+
+          <Link
+            href="/#register"
+            onClick={() => setOpen(false)}
+            className="justify-self-end font-display text-xl uppercase leading-none tracking-tightest2 transition-colors hover:text-red-text md:text-2xl"
+          >
+            Book now
+            <svg
+              aria-hidden
+              viewBox="0 0 16 16"
+              className="ml-2 inline h-4 w-4 align-[-1px]"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.4"
             >
-              {link.label}
-            </a>
-          ))}
-          <Button href="/#register" className="mt-4 w-full">
-            Book Your Spot
-          </Button>
-        </nav>
+              <path d="M4 12L12 4M5 4h7v7" />
+            </svg>
+          </Link>
+        </div>
+      </header>
+
+      <div
+        id="site-menu"
+        role="dialog"
+        aria-label="Site menu"
+        aria-hidden={!open}
+        className={`fixed inset-0 z-40 overflow-y-auto bg-dark transition-opacity duration-300 ${
+          open ? "opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        <div className="wrap flex min-h-full flex-col justify-between gap-12 pb-8 pt-32 md:pt-44">
+          <div className="grid gap-12 md:grid-cols-[1fr_380px] md:gap-24">
+            <nav aria-label="Main">
+              <ol>
+                {links.map((link, i) => (
+                  <li
+                    key={link.href}
+                    className={`transition-[opacity,transform] duration-500 ease-out ${
+                      open ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+                    }`}
+                    style={{ transitionDelay: open ? `${80 + i * 50}ms` : "0ms" }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      tabIndex={open ? 0 : -1}
+                      className="group/link flex items-baseline gap-4 border-b border-stroke py-2 text-white transition-colors md:gap-8 md:py-3 [nav:hover_&]:text-white/40 hover:!text-white"
+                    >
+                      <span className="label w-8 shrink-0 text-white/60 md:w-12">0{i + 1}</span>
+                      <span className="h-display text-[clamp(44px,min(8.4vw,11vh),140px)] leading-[0.95] transition-transform duration-300 group-hover/link:translate-x-3">
+                        {link.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+
+            <aside className="flex flex-col justify-between gap-10 md:pt-3">
+              <div>
+                <p className="label text-white/60">The 20th edition</p>
+                <p className="h-display mt-3 text-[clamp(36px,3.2vw,56px)] leading-[0.95]">
+                  November 4 to 7, 2026
+                  <br />
+                  JCEE, Jeddah
+                </p>
+                <Link
+                  href="/#register"
+                  onClick={() => setOpen(false)}
+                  tabIndex={open ? 0 : -1}
+                  className={buttonClasses("light", "mt-8")}
+                >
+                  <ButtonLabel>Book a stand</ButtonLabel>
+                </Link>
+              </div>
+              <div className="space-y-2 font-mono text-sm uppercase">
+                <p className="label text-white/60">Contact</p>
+                <a
+                  href="mailto:Info@isc-expo.net"
+                  tabIndex={open ? 0 : -1}
+                  className="block hover:text-white/70"
+                >
+                  Info@isc-expo.net
+                </a>
+                <a
+                  href="https://www.isc-expo.net"
+                  tabIndex={open ? 0 : -1}
+                  className="block hover:text-white/70"
+                >
+                  www.isc-expo.net
+                </a>
+              </div>
+            </aside>
+          </div>
+
+          <p className="label text-white/60">Saudi Arabia, Jeddah, Alsalama</p>
+        </div>
       </div>
-    </header>
+    </>
   );
 }

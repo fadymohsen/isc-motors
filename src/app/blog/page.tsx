@@ -17,30 +17,25 @@ export default function BlogPage() {
       <Header />
       <main>
         <PageBanner
-          eyebrow="News & Programme"
-          title="JIMS Blog"
-          image="/images/photos/thematic.jpg"
+          eyebrow="News & programme"
+          title="JIMS blog"
+          image="/images/booklet/tech-zone.jpg"
           objectPosition="center"
         />
 
         <section className="border-b border-stroke">
-          <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-            <div className="grid gap-8 md:grid-cols-2">
+          <div className="wrap py-20 md:py-28">
+            <div className="grid gap-px bg-stroke md:grid-cols-2">
               {posts.map((post) => (
                 <Link
                   key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group flex flex-col border border-stroke bg-dark2"
+                  className="group flex flex-col bg-dark"
                 >
-                  <div
-                    className="relative h-56 w-full overflow-hidden"
-                    style={{
-                      clipPath: "polygon(0 0, 100% 0, 100% 100%, 6% 100%)",
-                    }}
-                  >
+                  <div className="relative aspect-[16/9] w-full overflow-hidden">
                     <Image
                       src={post.image}
-                      alt={post.title}
+                      alt=""
                       fill
                       style={{
                         objectFit: "cover",
@@ -48,21 +43,17 @@ export default function BlogPage() {
                       }}
                       className="transition-transform duration-300 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark2 via-transparent to-transparent" />
                   </div>
                   <div className="flex flex-1 flex-col p-8">
-                    <span className="font-mono text-xs text-white/50">
+                    <span className="text-xs uppercase tracking-[0.15em] text-white/60">
                       {post.date}
                     </span>
-                    <h2 className="mt-3 font-display text-2xl tracking-tightest2 group-hover:text-red md:text-3xl">
+                    <h2 className="mt-3 font-display text-4xl leading-none tracking-tightest2 group-hover:text-red-text">
                       {post.title}
                     </h2>
-                    <p className="mt-3 font-mono text-sm leading-relaxed text-white/80">
+                    <p className="mt-4 text-sm leading-relaxed text-white/80">
                       {post.excerpt}
                     </p>
-                    <span className="mt-6 font-mono text-xs text-red">
-                      Read more &rarr;
-                    </span>
                   </div>
                 </Link>
               ))}

@@ -50,11 +50,11 @@ export default async function BlogPostPage({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark/30" />
           </div>
-          <div className="relative mx-auto max-w-container px-6 py-24 md:py-32">
-            <span className="font-mono text-xs font-medium tracking-wide text-red">
+          <div className="wrap relative pb-16 pt-40 md:pb-24 md:pt-56">
+            <span className="label font-medium text-white">
               {post.date}
             </span>
-            <h1 className="mt-4 max-w-3xl font-display text-4xl leading-[0.9] tracking-tightest2 md:text-6xl">
+            <h1 className="h-display mt-4 max-w-5xl text-[clamp(44px,7vw,130px)]">
               {post.title}
             </h1>
           </div>
@@ -62,7 +62,7 @@ export default async function BlogPostPage({
 
         <section className="border-b border-stroke">
           <div className="mx-auto max-w-3xl px-6 py-20 md:py-28">
-            <div className="space-y-6 font-mono text-sm leading-relaxed text-white/80 md:text-base">
+            <div className="space-y-6 text-sm leading-relaxed text-white/80 md:text-base">
               {post.body.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}

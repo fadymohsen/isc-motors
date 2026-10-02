@@ -5,9 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        black: "#000000",
         dark: "#1a1a1a",
         dark2: "#242424",
-        red: "#ff0f10",
+        bar: "#2b2b2b",
+        red: { DEFAULT: "#ff0f10", text: "#ff5c5d" },
         stroke: "rgba(255,255,255,0.14)",
       },
       fontFamily: {
@@ -18,7 +20,7 @@ const config: Config = {
         tightest2: "-0.03em",
       },
       maxWidth: {
-        container: "1200px",
+        container: "1800px",
       },
     },
   },

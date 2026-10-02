@@ -2,67 +2,84 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import SectionHeading from "./SectionHeading";
 import Button from "./Button";
+import SectionHeading from "./SectionHeading";
 import { faqs } from "@/lib/faq";
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 16 16"
+      className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.4"
+    >
+      <path d="M3 3l5 5 5-5M3 8l5 5 5-5" />
+    </svg>
+  );
+}
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="border-b border-stroke">
-      <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-        <SectionHeading tag="FAQ's" title="Frequently asked questions" />
+    <section className="bg-dark">
+      <div className="wrap py-24 md:py-40">
+        <SectionHeading tag="FAQ" title="Frequently asked questions" />
 
-        <div className="mt-12 grid gap-10 md:grid-cols-[320px_1fr]">
+        <div className="mt-14 grid gap-10 md:mt-24 md:grid-cols-[40%_1fr] md:gap-16">
           <div className="hidden md:block">
-            <div className="sticky top-24 flex flex-col gap-6">
-              <div
-                className="relative aspect-[4/5] w-full overflow-hidden"
-                style={{
-                  clipPath: "polygon(0 0, 100% 0, 100% 95%, 90% 100%, 0 100%)",
-                }}
-              >
+            <div className="sticky top-28 max-w-[350px]">
+              <div className="relative aspect-[1/1] w-full overflow-hidden bg-dark2">
                 <Image
-                  src="/images/photos/test-drive.jpg"
-                  alt="JIMS exhibitor enquiry"
+                  src="/images/booklet/red-car.jpg"
+                  alt=""
                   fill
-                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  sizes="350px"
+                  className="object-cover"
                 />
               </div>
-              <Button href="/contact">Ask a Question</Button>
+              <Button href="/contact" className="mt-4 w-full justify-between">
+                Ask a question
+              </Button>
             </div>
           </div>
 
-          <div className="divide-y divide-stroke border-t border-stroke">
+          <div className="flex flex-col gap-2">
             {faqs.map((item, i) => {
               const open = openIndex === i;
+              const panelId = `faq-panel-${i}`;
               return (
                 <div key={item.question}>
                   <button
                     type="button"
                     onClick={() => setOpenIndex(open ? null : i)}
                     aria-expanded={open}
-                    className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                    aria-controls={panelId}
+                    className="flex w-full items-center gap-4 bg-dark2 p-4 text-left md:gap-6 md:px-8 md:py-5"
                   >
-                    <span className="font-display text-xl tracking-tightest2 md:text-2xl">
+                    <span className="label shrink-0 text-white">[0{i + 1}]</span>
+                    <span className="h-display min-w-0 flex-1 text-[clamp(22px,2vw,36px)] leading-[0.95]">
                       {item.question}
                     </span>
                     <span
-                      className={`shrink-0 font-display text-2xl text-red transition-transform duration-200 ${
-                        open ? "rotate-45" : ""
-                      }`}
+                      aria-hidden
+                      className="flex h-11 w-11 shrink-0 items-center justify-center bg-white/10 text-white"
                     >
-                      +
+                      <Chevron open={open} />
                     </span>
                   </button>
                   <div
+                    id={panelId}
+                    role="region"
                     className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ${
-                      open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      open ? "mt-2 grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="pb-6 max-w-2xl font-mono text-sm leading-relaxed text-white/80">
+                      <p className="bg-dark2 p-4 font-mono text-sm uppercase leading-relaxed text-white/85 md:px-8 md:py-6">
                         {item.answer}
                       </p>
                     </div>

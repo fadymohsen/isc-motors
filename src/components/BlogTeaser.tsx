@@ -1,80 +1,124 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { CSSProperties } from "react";
+import Button, { ChevronsRight } from "./Button";
+import MaskLines from "./MaskLines";
+import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
-import Button from "./Button";
 import { posts } from "@/lib/blog";
 
+const FEATURED_SLUG = "thematic-spaces-2026";
+const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
+
 export default function BlogTeaser() {
-  const [featured, ...rest] = posts.slice(0, 3);
+  const featured = posts.find((p) => p.slug === FEATURED_SLUG) ?? posts[0];
+  const rest = posts.filter((p) => p.slug !== featured.slug).slice(0, 3);
 
   return (
-    <section className="border-b border-stroke">
-      <div className="mx-auto max-w-container px-6 py-20 md:py-28">
+    <section className="bg-dark">
+      <div className="wrap border-t border-stroke py-24 md:py-40">
         <SectionHeading
-          tag="Blog & News"
-          title="News and updates"
-          action={<Button href="/blog">More Blog</Button>}
+          layout="stacked"
+          tag="Blog & news"
+          title="News and updates."
+          action={<Button href="/blog">More blog</Button>}
         />
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <Link
-            href={`/blog/${featured.slug}`}
-            className="group relative flex min-h-[320px] flex-col justify-end overflow-hidden border border-stroke md:min-h-[480px]"
-          >
-            <Image
-              src={featured.image}
-              alt={featured.title}
-              fill
-              style={{
-                objectFit: "cover",
-                objectPosition: featured.imagePosition ?? "center",
-              }}
-              className="transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
-            <div className="relative p-8">
-              <span className="font-mono text-xs text-white/60">
-                {featured.date}
-              </span>
-              <h3 className="mt-3 font-display text-3xl tracking-tightest2 group-hover:text-red md:text-4xl">
-                {featured.title}
-              </h3>
-              <p className="mt-3 max-w-sm font-mono text-sm leading-relaxed text-white/80">
-                {featured.excerpt}
-              </p>
-            </div>
-          </Link>
-
-          <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-1">
-            {rest.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col border border-stroke bg-dark2"
-              >
-                <div className="relative h-36 w-full overflow-hidden">
+        <div className="mt-14 grid gap-6 md:mt-24 lg:grid-cols-12 lg:gap-6">
+          {/* Featured story: large image, cursor-following "Read" chip, title over the photo. */}
+          <div className="lg:col-span-7">
+            <Link
+              href={`/blog/${featured.slug}`}
+              data-spot
+              className="group relative isolate block aspect-[4/5] overflow-hidden bg-dark2 sm:aspect-[16/11] lg:aspect-auto lg:h-full lg:min-h-[640px]"
+            >
+              <div data-reveal="wipe" className="absolute inset-0 -z-10">
+                <div
+                  data-parallax="0.08"
+                  className="absolute -inset-y-[8%] inset-x-0"
+                  style={{ transform: "translate3d(0, var(--py, 0px), 0)" }}
+                >
                   <Image
-                    src={post.image}
-                    alt={post.title}
+                    src={featured.image}
+                    alt=""
                     fill
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: post.imagePosition ?? "center",
-                    }}
-                    className="transition-transform duration-300 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    style={{ objectPosition: featured.imagePosition ?? "center" }}
+                    className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
                   />
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <span className="font-mono text-xs text-white/50">
-                    {post.date}
+              </div>
+              <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/90 via-black/30 to-black/10" />
+
+              <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
+                <Reveal delay={500}>
+                  <span className="label inline-flex items-center gap-2 bg-white px-3 py-1.5 font-medium text-dark">
+                    {featured.tag}
                   </span>
-                  <h3 className="mt-3 font-display text-xl tracking-tightest2 group-hover:text-red">
-                    {post.title}
-                  </h3>
-                </div>
-              </Link>
-            ))}
+                </Reveal>
+                <h3 className="h-display mt-5 max-w-[14ch] text-[clamp(40px,4.6vw,88px)] leading-[0.9]">
+                  <MaskLines lines={[featured.title]} delay={600} />
+                </h3>
+                <Reveal delay={800}>
+                  <p className="mt-5 max-w-md font-mono text-sm uppercase leading-relaxed text-white/85">
+                    {featured.excerpt}
+                  </p>
+                  <p className="label mt-6 text-white/80">{featured.date}</p>
+                </Reveal>
+              </div>
+
+              <span
+                aria-hidden
+                className="pointer-events-none absolute z-20 hidden h-24 w-24 -translate-x-1/2 -translate-y-1/2 scale-50 items-center justify-center bg-white font-mono text-xs font-medium uppercase tracking-wide text-dark opacity-0 transition-[opacity,scale,left,top] duration-300 ease-out group-hover:scale-100 group-hover:opacity-100 [@media(hover:hover)]:flex"
+                style={{ left: "var(--mx, 50%)", top: "var(--my, 50%)" }}
+              >
+                Read
+              </span>
+            </Link>
           </div>
+
+          {/* Remaining stories as an index: thumbnail, tag, title, arrow. */}
+          <ul className="flex flex-col lg:col-span-5">
+            {rest.map((post, i) => (
+              <li
+                key={post.slug}
+                data-reveal="up"
+                style={d(i * 120)}
+                className="border-t border-stroke last:border-b lg:flex-1"
+              >
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group grid h-full grid-cols-[112px_1fr_auto] items-center gap-4 py-5 md:grid-cols-[170px_1fr_auto] md:gap-8 md:py-7"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-dark2">
+                    <Image
+                      src={post.image}
+                      alt=""
+                      fill
+                      sizes="170px"
+                      style={{ objectPosition: post.imagePosition ?? "center" }}
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    />
+                  </div>
+                  <div className="min-w-0 transition-transform duration-500 ease-out group-hover:translate-x-1">
+                    <p className="label text-white/70">
+                      [0{i + 2}] {post.tag}
+                    </p>
+                    <h3 className="h-display mt-2 text-[clamp(24px,2.2vw,40px)] leading-[0.95]">
+                      {post.title}
+                    </h3>
+                    <p className="label mt-3 text-white/70">{post.date}</p>
+                  </div>
+                  <span
+                    aria-hidden
+                    className="flex h-11 w-11 shrink-0 items-center justify-center bg-white/10 text-white transition-colors duration-300 group-hover:bg-white group-hover:text-dark"
+                  >
+                    <ChevronsRight />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

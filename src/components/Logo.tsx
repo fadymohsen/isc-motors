@@ -1,12 +1,13 @@
 import Link from "next/link";
 
-export default function Logo() {
+export default function Logo({ className = "text-4xl" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className="font-display normal-case text-3xl tracking-tightest2 leading-none"
+      aria-label="JIMS 2026, home"
+      className={`font-display uppercase leading-none tracking-tightest2 ${className}`}
     >
-      Ji<span className="text-red">M</span>S
+      <span className="text-red">Ji</span>MS
     </Link>
   );
 }

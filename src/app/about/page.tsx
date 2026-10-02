@@ -7,7 +7,7 @@ import PageBanner from "@/components/PageBanner";
 export const metadata: Metadata = {
   title: "About | JIMS 2026",
   description:
-    "About JIMS — the oldest automotive stage in the Kingdom of Saudi Arabia, organized by Integrated Solutions Co. for Events.",
+    "About JIMS, the oldest automotive stage in the Kingdom of Saudi Arabia, organized by Integrated Solutions Co. for Events.",
 };
 
 const sections = [
@@ -31,15 +31,15 @@ export default function AboutPage() {
       <Header />
       <main>
         <PageBanner
-          eyebrow="Jeddah · The Oldest Automotive Stage in the Kingdom"
+          eyebrow="Jeddah, the oldest automotive stage in the Kingdom"
           title="About JIMS 2026"
-          image="/images/photos/about-banner.jpg"
+          image="/images/booklet/dark-car.jpg"
           objectPosition="center"
         />
 
         <section className="border-b border-stroke">
-          <div className="mx-auto max-w-container px-6 py-20 md:py-28">
-            <p className="max-w-3xl font-mono text-sm leading-relaxed text-white/80 md:text-base">
+          <div className="wrap py-20 md:py-28">
+            <p className="max-w-3xl text-lg leading-relaxed text-white/90 md:text-2xl">
               Inspired by Saudi Arabia&rsquo;s passion for automotive
               excellence and the transformative goals, the Jeddah
               International Motor Show (JIMS) captivates the region with the
@@ -51,10 +51,10 @@ export default function AboutPage() {
               <div className="space-y-10">
                 {sections.map((section) => (
                   <div key={section.title} className="border-t border-stroke pt-6">
-                    <h2 className="font-display text-2xl tracking-tightest2 md:text-3xl">
+                    <h2 className="font-display text-3xl leading-none tracking-tightest2 md:text-4xl">
                       {section.title}
                     </h2>
-                    <p className="mt-3 font-mono text-sm leading-relaxed text-white/80">
+                    <p className="mt-3 text-sm leading-relaxed text-white/80 md:text-base">
                       {section.body}
                     </p>
                   </div>
@@ -62,7 +62,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[4/5] w-full overflow-hidden border border-stroke">
                 <Image
-                  src="/images/photos/visitor-days.jpg"
+                  src="/images/booklet/hall-bw.jpg"
                   alt="JIMS exhibition hall"
                   fill
                   style={{ objectFit: "cover", objectPosition: "center" }}

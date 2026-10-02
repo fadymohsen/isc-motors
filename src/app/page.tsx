@@ -1,9 +1,12 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
-import About from "@/components/About";
-import Schedule from "@/components/Schedule";
+import Partners from "@/components/Partners";
+import AboutIntro from "@/components/AboutIntro";
 import Packages from "@/components/Packages";
+import Programme from "@/components/Programme";
+import WhyExhibit from "@/components/WhyExhibit";
+import Spaces from "@/components/Spaces";
+import Highlights from "@/components/Highlights";
 import Faq from "@/components/Faq";
 import BlogTeaser from "@/components/BlogTeaser";
 import CTA from "@/components/CTA";
@@ -15,10 +18,13 @@ export default function Home() {
       <Header />
       <main className="w-full min-w-0">
         <Hero />
-        <Stats />
-        <About />
-        <Schedule />
+        <Partners />
+        <AboutIntro />
         <Packages />
+        <Programme />
+        <WhyExhibit />
+        <Spaces />
+        <Highlights />
         <Faq />
         <BlogTeaser />
         <CTA />

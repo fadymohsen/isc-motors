@@ -1,5 +1,6 @@
 export type BlogPost = {
   slug: string;
+  tag: string;
   title: string;
   date: string;
   excerpt: string;
@@ -11,11 +12,12 @@ export type BlogPost = {
 export const posts: BlogPost[] = [
   {
     slug: "press-day-2026",
+    tag: "Press Day",
     title: "Press Day: 100+ Journalists, One Morning",
-    date: "August 26, 2026",
+    date: "November 4, 2026",
     excerpt:
-      "A full morning in the spotlight in front of Arabian press — scheduled brand launches, pre-appointed interviews, and a dedicated media centre.",
-    image: "/images/photos/press-day.jpg",
+      "A full morning in the spotlight in front of Arabian press: scheduled brand launches, pre-appointed interviews, and a dedicated media centre.",
+    image: "/images/booklet/press.jpg",
     body: [
       "A full morning, in the spotlight in front of Arabian press. Press Day brings together 100+ journalists from 10+ countries, with 20% international press, across 10+ press conferences.",
       "Scheduled brand launches happen throughout press day to ensure that the media have access to the big news of the show.",
@@ -26,11 +28,12 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "vip-night-2026",
+    tag: "VIP Night",
     title: "Inside VIP Night: Industry Talks & Gala",
-    date: "August 26, 2026",
+    date: "November 4, 2026",
     excerpt:
-      "For those who want the privilege to be the first to see the show and connect with the industry — 1,000 pros & guests, 50+ key influencers.",
-    image: "/images/photos/vip-night.jpg",
+      "For those who want the privilege to be the first to see the show and connect with the industry. 1,000 pros & guests, 50+ key influencers.",
+    image: "/images/booklet/talk.jpg",
     body: [
       "For those who want the privilege to be the first to see the show and connect with the industry. VIP Night welcomes 1,000 pros & guests and 50+ key influencers across 10+ curated sessions and talks.",
       "Guests have an exclusive opportunity to experience all brand stands and zones before the experience opens to the public.",
@@ -41,11 +44,12 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "visitors-days-2026",
+    tag: "Visitors Days",
     title: "Visitors Days: 300,000 Reasons to Attend",
-    date: "August 27 – 29, 2026",
+    date: "November 5 to 7, 2026",
     excerpt:
-      "Three days for visitors to get closer to the exhibits and entertainment — 300,000 visitors, 60% Saudis, 40% from around the world.",
-    image: "/images/photos/visitor-days.jpg",
+      "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors, 60% Saudis, 40% from around the world.",
+    image: "/images/booklet/crowd.jpg",
     body: [
       "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
       "Visitors get an exclusive first look at global premieres, production-ready electric vehicles (EVs), and futuristic concept cars.",
@@ -56,15 +60,16 @@ export const posts: BlogPost[] = [
   },
   {
     slug: "thematic-spaces-2026",
+    tag: "Thematic Spaces",
     title: "New for 2026: Thematic Experience Zones",
-    date: "August 2026",
+    date: "November 2026",
     excerpt:
-      "Curated zones offering new high-profile opportunities for brands to participate and showcase vehicles or technologies — Tech & Gaming, Autonomous Tech Demo, Future Simulators.",
-    image: "/images/photos/thematic.jpg",
+      "Curated zones offering new high-profile opportunities for brands to participate and showcase vehicles or technologies: Tech & Gaming, Autonomous Tech Demo, Future Simulators.",
+    image: "/images/booklet/tech-zone.jpg",
     body: [
       "This year, JIMS is doing things a little differently. Step inside the exhibition hall to enter a world of cutting-edge technology, sleek designs, and mind-boggling innovation.",
       "The curated zones offer new high-profile opportunities for brands to participate and showcase vehicles or technologies: Auto Display Lens, Audience Activation Spaces, and Conversation Spaces.",
-      "Within these zones, exhibitors and visitors discover additional curated moments to inspire and connect — from the Tech & Gaming Zone to Autonomous Tech Demos and Future Motion Simulators.",
+      "Within these zones, exhibitors and visitors discover additional curated moments to inspire and connect, from the Tech & Gaming Zone to Autonomous Tech Demos and Future Motion Simulators.",
       "Bespoke packages are available upon request for brands who want a fully tailored thematic presence.",
     ],
   },

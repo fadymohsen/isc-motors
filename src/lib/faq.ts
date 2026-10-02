@@ -4,7 +4,7 @@ export const faqs: FaqItem[] = [
   {
     question: "When and where does JIMS 2026 take place?",
     answer:
-      "JIMS 2026 runs August 26 – 29, 2026 at JCEE — Jeddah Center for Exhibitions and Events, spanning over 16,000 square meters of indoor and outdoor space.",
+      "JIMS 2026 runs November 4 to 7, 2026 at JCEE, the Jeddah Center for Exhibitions and Events, spanning over 16,000 square meters of indoor and outdoor space.",
   },
   {
     question: "What's included in a Plug & Play Booth?",
@@ -19,16 +19,16 @@ export const faqs: FaqItem[] = [
   {
     question: "Who attends Press Day and VIP Night?",
     answer:
-      "Press Day (Aug 26 morning) brings 100+ journalists from 10+ countries. VIP Night (Aug 26 evening) welcomes 1,000 pros & guests and 50+ key influencers, ahead of the public opening.",
+      "Press Day (Nov 4 morning) brings 100+ journalists from 10+ countries. VIP Night (Nov 4 evening) welcomes 1,000 pros & guests and 50+ key influencers, ahead of the public opening.",
   },
   {
     question: "How many visitors does JIMS expect in 2026?",
     answer:
-      "300,000 visitors across the three Visitor Days (Aug 27 – 29), roughly 60% Saudi nationals and 40% from the rest of the world.",
+      "300,000 visitors across the three Visitor Days (Nov 5 to 7), roughly 60% Saudi nationals and 40% from the rest of the world.",
   },
   {
     question: "Can I get a bespoke exhibition space?",
     answer:
-      "Yes — Thematic Spaces (Tech & Gaming Zone, Autonomous Tech Demo, Future Simulators) are available as bespoke packages upon request.",
+      "Yes. Thematic Spaces (Tech & Gaming Zone, Autonomous Tech Demo, Future Simulators) are available as bespoke packages upon request.",
   },
 ];
