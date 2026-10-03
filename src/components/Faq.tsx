@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Button from "./Button";
 import SectionHeading from "./SectionHeading";
-import { faqs } from "@/lib/faq";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -21,13 +21,19 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-export default function Faq() {
+export default function Faq({
+  locale,
+  t,
+}: {
+  locale: string;
+  t: Dictionary["faq"];
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section className="bg-dark">
       <div className="wrap py-24 md:py-40">
-        <SectionHeading tag="FAQ" title="Frequently asked questions" />
+        <SectionHeading tag={t.tag} title={t.title} />
 
         <div className="mt-14 grid gap-10 md:mt-24 md:grid-cols-[40%_1fr] md:gap-16">
           <div className="hidden md:block">
@@ -41,24 +47,24 @@ export default function Faq() {
                   className="object-cover"
                 />
               </div>
-              <Button href="/contact" className="mt-4 w-full justify-between">
-                Ask a question
+              <Button href={`/${locale}/contact`} className="mt-4 w-full justify-between">
+                {t.askButton}
               </Button>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            {faqs.map((item, i) => {
+            {t.items.map((item, i) => {
               const open = openIndex === i;
               const panelId = `faq-panel-${i}`;
               return (
-                <div key={item.question}>
+                <div key={i}>
                   <button
                     type="button"
                     onClick={() => setOpenIndex(open ? null : i)}
                     aria-expanded={open}
                     aria-controls={panelId}
-                    className="flex w-full items-center gap-4 bg-dark2 p-4 text-left md:gap-6 md:px-8 md:py-5"
+                    className="flex w-full items-center gap-4 bg-dark2 p-4 text-start md:gap-6 md:px-8 md:py-5"
                   >
                     <span className="label shrink-0 text-white">[0{i + 1}]</span>
                     <span className="h-display min-w-0 flex-1 text-[clamp(22px,2vw,36px)] leading-[0.95]">

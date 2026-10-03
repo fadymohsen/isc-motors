@@ -1,45 +1,21 @@
 import GridLines from "./GridLines";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
-const days = [
-  {
-    n: "01",
-    title: "Press Day",
-    date: "November 4, 2026",
-    desc: "A full morning, in the spotlight in front of Arabian press.",
-    facts: "100+ journalists, 10+ press conferences, 20% of foreign journalists, 10+ countries",
-    offset: "md:mt-0",
-  },
-  {
-    n: "02",
-    title: "VIP Night",
-    date: "November 4, 2026",
-    desc: "For those who want the privilege to be the first to see the show and connect with the industry.",
-    facts: "1,000 pros & guests, 50+ key influencers, 10+ curated sessions/talks",
-    offset: "md:mt-28",
-  },
-  {
-    n: "03",
-    title: "Visitors Days",
-    date: "November 5 to 7, 2026",
-    desc: "Three days for visitors to get closer to the exhibits and entertainments.",
-    facts: "300,000 visitors, 60% Saudis, 40% World, 2.5 hours spent",
-    offset: "md:mt-56",
-  },
-];
+const offsets = ["md:mt-0", "md:mt-28", "md:mt-56"];
 
-export default function Programme() {
+export default function Programme({ t }: { t: Dictionary["programme"] }) {
   return (
     <section id="schedule" className="grain relative overflow-hidden bg-[#232323]">
       <div className="wrap relative z-10 py-24 md:py-40">
-        <SectionHeading tag="Programme" title="The JIMS dashboard: reach & impact" />
+        <SectionHeading tag={t.tag} title={t.title} />
 
         <div className="relative mt-16 md:mt-32 md:min-h-[560px]">
           <GridLines cols={[0, 33.33, 66.66, 100]} rows={[]} className="hidden md:block" />
           <ol className="grid gap-4 md:grid-cols-3 md:gap-0">
-            {days.map((day) => (
-              <li key={day.n} className={`md:px-[14px] ${day.offset}`}>
+            {t.days.map((day, i) => (
+              <li key={day.n} className={`md:px-[14px] ${offsets[i]}`}>
                 <Reveal>
                   <div className="border border-white/15 bg-black/20 p-6 md:p-8">
                     <div className="font-display text-[clamp(36px,3.2vw,60px)] uppercase leading-[0.95] tracking-tightest2">

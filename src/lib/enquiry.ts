@@ -13,10 +13,12 @@ export const enquiryOptions: EnquiryOption[] = [
   { value: "challenges-competitions", label: "Challenges & Competitions" },
 ];
 
-export const enquiryHref = (value: string) => `/contact?enquiry=${value}#enquiry`;
+export const enquiryHref = (value: string, locale: string = "en") =>
+  `/${locale}/contact?enquiry=${value}#enquiry`;
 
 // Every "Book now" / "Book a stand" button goes here.
-export const bookHref = enquiryHref("registration");
+export const bookHref = (locale: string = "en") =>
+  enquiryHref("registration", locale);
 
 export const isEnquiry = (value: string | undefined): value is string =>
   Boolean(value) && enquiryOptions.some((option) => option.value === value);

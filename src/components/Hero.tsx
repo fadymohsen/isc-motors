@@ -4,13 +4,19 @@ import Button from "./Button";
 import GridLines from "./GridLines";
 import { bookHref } from "@/lib/enquiry";
 import MaskLines from "./MaskLines";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
 
-export default function Hero() {
+export default function Hero({
+  locale,
+  t,
+}: {
+  locale: string;
+  t: Dictionary["hero"];
+}) {
   return (
     <section data-progress className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
-      {/* Scroll layer (parallax, driven by --x) wrapping the load-in zoom layer. */}
       <div
         className="absolute inset-x-0 -bottom-[8%] -top-[8%]"
         style={{
@@ -20,7 +26,7 @@ export default function Hero() {
         <div className="h-full w-full animate-[zoom-out_2.6s_cubic-bezier(0.16,1,0.3,1)_both]">
           <Image
             src="/images/booklet/hero.jpg"
-            alt="Concept car with a red light bar, rear three-quarter view"
+            alt={t.imageAlt}
             fill
             priority
             sizes="100vw"
@@ -28,7 +34,7 @@ export default function Hero() {
           />
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/35 to-dark/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/35 to-dark/10 rtl:bg-gradient-to-l" />
       <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-dark/90 to-transparent" />
       <GridLines cols={[11, 50, 89]} rows={[14, 38, 62]} className="hidden md:block" delay={300} />
 
@@ -39,22 +45,21 @@ export default function Hero() {
           opacity: "calc(1 - var(--x, 0) * 1.5)",
         }}
       >
-        <div className="mb-8 max-w-[360px] md:absolute md:right-[60px] md:top-[34%] md:mb-0 md:w-[26%] md:max-w-none">
+        <div className="mb-8 max-w-[360px] md:absolute md:end-[60px] md:top-[34%] md:mb-0 md:w-[26%] md:max-w-none">
           <p
             data-reveal="up"
             style={d(700)}
             className="font-mono text-sm uppercase leading-relaxed text-white/85 md:text-base"
           >
-            The 20th edition. November 4 to 7, 2026 at JCEE, Jeddah. Revealing the future of
-            mobility in the Kingdom.
+            {t.description}
           </p>
           <div data-reveal="up" style={d(850)} className="mt-8">
-            <Button href={bookHref}>Book a stand</Button>
+            <Button href={bookHref(locale)}>{t.bookAStand}</Button>
           </div>
         </div>
 
         <h1 className="h-display text-[clamp(52px,9.2vw,200px)]">
-          <MaskLines lines={["Jeddah International", "Motor Show"]} delay={250} step={140} />
+          <MaskLines lines={[t.line1, t.line2]} delay={250} step={140} />
         </h1>
       </div>
     </section>

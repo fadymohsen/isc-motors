@@ -3,37 +3,17 @@ import GridLines from "./GridLines";
 import MaskLines from "./MaskLines";
 import Reveal from "./Reveal";
 import Tag from "./Tag";
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
-// Statements are lifted from the Exhibitor Booklet programme copy, not customer quotes.
-const items = [
-  {
-    text: "Scheduled brand launches will happen throughout Press Day to ensure that the media have access to the big news of the show.",
-    source: "Press Day",
-    place: "md:col-span-5 md:col-start-1",
-  },
-  {
-    text: "Visitors get an exclusive first look at global premieres, production-ready electric vehicles (EVs), and futuristic concept cars.",
-    source: "Visitors Days",
-    place: "md:col-span-5 md:col-start-8",
-  },
-  {
-    text: "Guests will have an exclusive opportunity to experience all brand stands and zones before the experience opens to the public.",
-    source: "VIP Night",
-    place: "md:col-span-5 md:col-start-4",
-  },
-  {
-    text: "A dedicated media centre will provide studio space, technical support, and access to state-of-the-art broadcast facilities.",
-    source: "Press Day",
-    place: "md:col-span-5 md:col-start-1",
-  },
-  {
-    text: "Attendees can register to drive the newest models on closed tracks or local routes to test performance and comfort.",
-    source: "Visitors Days",
-    place: "md:col-span-5 md:col-start-8",
-  },
+const places = [
+  "md:col-span-5 md:col-start-1",
+  "md:col-span-5 md:col-start-8",
+  "md:col-span-5 md:col-start-4",
+  "md:col-span-5 md:col-start-1",
+  "md:col-span-5 md:col-start-8",
 ];
 
-export default function Highlights() {
+export default function Highlights({ t }: { t: Dictionary["highlights"] }) {
   return (
     <section className="relative overflow-hidden bg-dark">
       <div
@@ -56,15 +36,15 @@ export default function Highlights() {
 
       <div className="wrap relative py-24 md:py-40">
         <Reveal>
-          <Tag>On the programme</Tag>
+          <Tag>{t.tag}</Tag>
         </Reveal>
         <h2 className="h-display mt-6 text-[clamp(48px,7.4vw,140px)]">
-          <MaskLines lines={["What the show", "delivers"]} delay={120} />
+          <MaskLines lines={[...t.lines]} delay={120} />
         </h2>
 
         <ul className="mt-16 grid gap-16 md:mt-28 md:grid-cols-12 md:gap-x-6 md:gap-y-28">
-          {items.map((item, i) => (
-            <li key={item.text} className={item.place}>
+          {t.items.map((item, i) => (
+            <li key={i} className={places[i]}>
               <Reveal delay={(i % 2) * 120}>
                 <p className="h-display text-[clamp(28px,2.7vw,52px)] leading-[0.98]">
                   {item.text}

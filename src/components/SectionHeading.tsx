@@ -49,7 +49,7 @@ export default function SectionHeading({
       <Reveal>
         <Tag>{tag}</Tag>
       </Reveal>
-      <div>{heading}</div>
+      <div className="text-start">{heading}</div>
     </div>
   );
 }

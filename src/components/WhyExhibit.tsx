@@ -2,26 +2,7 @@ import type { CSSProperties } from "react";
 import MaskLines from "./MaskLines";
 import Reveal from "./Reveal";
 import Tag from "./Tag";
-
-// Booklet page 4: the four exhibitor benefits, word for word.
-const benefits = [
-  {
-    title: "Your brand showcase",
-    body: "An opportunity to create a branded experience for visitors to discover new products without sales pressure",
-  },
-  {
-    title: "Visitor + media impact",
-    body: "JIMS plug-and-play platform for simultaneously reaching visitors, Arabian media, and industry professionals in one.",
-  },
-  {
-    title: "All-in-one package",
-    body: "Unlike solus brand activations, there is no additional advertising or digital budget required for reach.",
-  },
-  {
-    title: "Flexible scale",
-    body: "JIMS offers multiple ways for exhibitors to engage, suited to all budgets and ambitions.",
-  },
-];
+import type { Dictionary } from "@/i18n/dictionaries/en";
 
 function Squares({ filled }: { filled: number }) {
   return (
@@ -37,25 +18,22 @@ function Squares({ filled }: { filled: number }) {
   );
 }
 
-export default function WhyExhibit() {
+export default function WhyExhibit({ t }: { t: Dictionary["whyExhibit"] }) {
   return (
     <section className="bg-dark">
       <div className="wrap py-24 md:py-40">
-        <div className="md:ml-[33%]">
+        <div className="md:ms-[33%]">
           <Reveal>
-            <Tag>Why exhibit</Tag>
+            <Tag>{t.tag}</Tag>
           </Reveal>
           <h2 className="h-display mt-6 text-[clamp(40px,5.6vw,108px)]">
-            <MaskLines
-              lines={["Why JIMS 2026 is the place", "to discover the future", "of automotive"]}
-              delay={120}
-            />
+            <MaskLines lines={[...t.lines]} delay={120} />
           </h2>
         </div>
 
         <ul className="mt-16 grid gap-4 sm:grid-cols-2 md:mt-28 xl:grid-cols-4 xl:gap-[22px]">
-          {benefits.map((item, i) => (
-            <li key={item.title}>
+          {t.benefits.map((item, i) => (
+            <li key={i}>
               <Reveal delay={i * 120} className="h-full">
                 <div className="flex min-h-[340px] flex-col justify-between bg-dark2 p-8 xl:aspect-[3/4] xl:min-h-0 xl:p-10">
                   {i % 2 === 1 ? (

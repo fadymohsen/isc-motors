@@ -1,21 +1,27 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { isLocale, locales } from "@/i18n/config";
+import { getDictionary } from "@/i18n/getDictionary";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { posts, getPostBySlug } from "@/lib/blog";
+import { posts as postMeta } from "@/lib/blog";
 
 export function generateStaticParams() {
-  return posts.map((post) => ({ slug: post.slug }));
+  return locales.flatMap((locale) =>
+    postMeta.map((post) => ({ locale, slug: post.slug })),
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) return {};
+  const t = await getDictionary(locale);
+  const post = t.blog.posts.find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: `${post.title} | JIMS 2026`,
@@ -26,26 +32,32 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
-  if (!post) notFound();
+  const { locale, slug } = await params;
+  if (!isLocale(locale)) notFound();
+  const t = await getDictionary(locale);
+  const post = t.blog.posts.find((p) => p.slug === slug);
+  const meta = postMeta.find((p) => p.slug === slug);
+  if (!post || !meta) notFound();
 
   return (
     <>
-      <Header />
+      <Header
+        locale={locale}
+        t={{ ...t.nav, ...t.header, ...t.logo, ...t.langSwitcher }}
+      />
       <main>
         <section className="relative overflow-hidden border-b border-stroke">
           <div className="absolute inset-0">
             <Image
-              src={post.image}
+              src={meta.image}
               alt={post.title}
               fill
               priority
               style={{
                 objectFit: "cover",
-                objectPosition: post.imagePosition ?? "center",
+                objectPosition: meta.imagePosition ?? "center",
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/70 to-dark/30" />
@@ -70,7 +82,7 @@ export default async function BlogPostPage({
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} t={{ ...t.footer, ...t.nav }} />
     </>
   );
 }
