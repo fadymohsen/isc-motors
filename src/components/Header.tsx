@@ -101,7 +101,7 @@ export default function Header({ locale, t }: HeaderProps) {
             <Link
               href={bookHref(locale)}
               onClick={() => setOpen(false)}
-              className="inline-flex items-center gap-2 bg-red px-4 py-2 font-mono text-xs uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] md:px-5 md:py-2.5 md:text-sm"
+              className="inline-flex items-center gap-1.5 whitespace-nowrap bg-red px-3 py-2 font-mono text-[11px] uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] md:gap-2 md:px-5 md:py-2.5 md:text-sm"
             >
               {t.bookNow}
               <svg
