@@ -15,6 +15,9 @@ export default function Hero({
   locale: string;
   t: Dictionary["hero"];
 }) {
+  const isRtl = locale === "ar";
+  const lines = t.line2 ? [t.line1, t.line2] : [t.line1];
+
   return (
     <section data-progress className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
       <div
@@ -45,21 +48,28 @@ export default function Hero({
           opacity: "calc(1 - var(--x, 0) * 1.5)",
         }}
       >
-        <div className="mb-8 max-w-[360px] md:absolute md:end-[60px] md:top-[34%] md:mb-0 md:w-[26%] md:max-w-none">
+        <div className={`mb-8 max-w-[360px] md:absolute md:top-[34%] md:mb-0 md:w-[26%] md:max-w-none ${isRtl ? "md:start-[60px]" : "md:end-[60px]"}`}>
           <p
             data-reveal="up"
-            style={d(700)}
-            className="font-mono text-sm uppercase leading-relaxed text-white/85 md:text-base"
+            style={d(600)}
+            className="font-display text-[clamp(20px,2.4vw,40px)] uppercase leading-[0.95] tracking-tightest2 text-red"
+          >
+            {t.edition}
+          </p>
+          <p
+            data-reveal="up"
+            style={d(750)}
+            className="mt-3 font-mono text-sm uppercase leading-relaxed text-white/85 md:text-base"
           >
             {t.description}
           </p>
-          <div data-reveal="up" style={d(850)} className="mt-8">
+          <div data-reveal="up" style={d(900)} className="mt-8">
             <Button href={bookHref(locale)}>{t.bookAStand}</Button>
           </div>
         </div>
 
         <h1 className="h-display text-[clamp(52px,9.2vw,200px)]">
-          <MaskLines lines={[t.line1, t.line2]} delay={250} step={140} />
+          <MaskLines lines={lines} delay={250} step={140} />
         </h1>
       </div>
     </section>

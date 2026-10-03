@@ -29,8 +29,9 @@ const en = {
 
   hero: {
     imageAlt: "Concept car with a red light bar, rear three-quarter view",
+    edition: "The 20th edition",
     description:
-      "The 20th edition. November 4 to 7, 2026 at JCEE, Jeddah. Revealing the future of mobility in the Kingdom.",
+      "November 4 to 7, 2026 at JCEE, Jeddah. Revealing the future of mobility in the Kingdom.",
     bookAStand: "Book a stand",
     line1: "Jeddah International",
     line2: "Motor Show",

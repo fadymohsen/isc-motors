@@ -68,7 +68,11 @@ export default function Header({ locale, t }: HeaderProps) {
           hidden && !open ? "-translate-y-[160%]" : "translate-y-0"
         }`}
       >
-        <div className="grid h-[64px] w-full max-w-[880px] grid-cols-[1fr_auto_1fr] items-center bg-bar/90 px-5 backdrop-blur-md md:h-[72px] md:px-10">
+        {/* dir="ltr" keeps the physical layout stable: hamburger left, logo center, actions right */}
+        <div
+          dir="ltr"
+          className="grid h-[64px] w-full max-w-[880px] grid-cols-[1fr_auto_1fr] items-center bg-bar/90 px-5 backdrop-blur-md md:h-[72px] md:px-10"
+        >
           <button
             ref={toggleRef}
             type="button"
@@ -97,13 +101,13 @@ export default function Header({ locale, t }: HeaderProps) {
             <Link
               href={bookHref(locale)}
               onClick={() => setOpen(false)}
-              className="font-display text-xl uppercase leading-none tracking-tightest2 transition-colors hover:text-red-text md:text-2xl"
+              className="hidden font-display text-xl uppercase leading-none tracking-tightest2 transition-colors hover:text-red-text sm:block md:text-2xl"
             >
               {t.bookNow}
               <svg
                 aria-hidden
                 viewBox="0 0 16 16"
-                className="ms-2 inline h-4 w-4 align-[-1px]"
+                className="ml-2 inline h-4 w-4 align-[-1px]"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.4"
