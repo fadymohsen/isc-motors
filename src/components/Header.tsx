@@ -97,7 +97,9 @@ export default function Header({ locale, t }: HeaderProps) {
           <Logo className="text-[34px] md:text-[40px]" locale={locale} ariaLabel={t.ariaLabel} />
 
           <div className="flex items-center gap-3 justify-self-end md:gap-4">
-            <LangSwitcher locale={locale} label={t.label} ariaLabel={t.ariaLabel} />
+            <span className="hidden md:flex">
+              <LangSwitcher locale={locale} label={t.label} ariaLabel={t.ariaLabel} />
+            </span>
             <Link
               href={bookHref(locale)}
               onClick={() => setOpen(false)}
@@ -190,6 +192,9 @@ export default function Header({ locale, t }: HeaderProps) {
                   www.isc-expo.net
                 </a>
                 <p className="pt-2 text-white/70">{t.location}</p>
+              </div>
+              <div className="md:hidden" onClick={() => setOpen(false)}>
+                <LangSwitcher locale={locale} label={t.label} ariaLabel={t.ariaLabel} />
               </div>
             </aside>
           </div>
