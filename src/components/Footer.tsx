@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MaskLines from "./MaskLines";
 import Tag from "./Tag";
+import { bookHref } from "@/lib/enquiry";
 import { ButtonLabel, buttonClasses } from "./Button";
 
 const pages = [
@@ -25,7 +26,7 @@ export default function Footer() {
                 step={130}
               />
             </p>
-            <Link href="/#register" className={buttonClasses("light", "mt-10")}>
+            <Link href={bookHref} className={buttonClasses("light", "mt-10")}>
               <ButtonLabel>Book a stand</ButtonLabel>
             </Link>
           </div>

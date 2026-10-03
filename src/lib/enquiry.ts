@@ -1,8 +1,10 @@
 export type EnquiryOption = { value: string; label: string };
 
-// What a visitor can enquire about. Labels follow the Exhibitor Booklet: the three
+// What a visitor can enquire about. "Stand registration" is the quick-registration path
+// used by every "Book" button; the rest follow the Exhibitor Booklet: the three
 // participation options, then the two marketing recommendations.
 export const enquiryOptions: EnquiryOption[] = [
+  { value: "registration", label: "Stand registration" },
   { value: "general", label: "General enquiry" },
   { value: "custom-stand", label: "Custom Stand" },
   { value: "plug-and-play", label: "Plug & Play Booth" },
@@ -12,6 +14,9 @@ export const enquiryOptions: EnquiryOption[] = [
 ];
 
 export const enquiryHref = (value: string) => `/contact?enquiry=${value}#enquiry`;
+
+// Every "Book now" / "Book a stand" button goes here.
+export const bookHref = enquiryHref("registration");
 
 export const isEnquiry = (value: string | undefined): value is string =>
   Boolean(value) && enquiryOptions.some((option) => option.value === value);

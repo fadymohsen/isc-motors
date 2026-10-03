@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import Button from "./Button";
 import GridLines from "./GridLines";
+import { bookHref } from "@/lib/enquiry";
 import MaskLines from "./MaskLines";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
@@ -48,7 +49,7 @@ export default function Hero() {
             mobility in the Kingdom.
           </p>
           <div data-reveal="up" style={d(850)} className="mt-8">
-            <Button href="#register">Book a stand</Button>
+            <Button href={bookHref}>Book a stand</Button>
           </div>
         </div>
 

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Logo from "./Logo";
 import { ButtonLabel, buttonClasses } from "./Button";
+import { bookHref } from "@/lib/enquiry";
 
 const links = [
   { label: "About", href: "/about" },
@@ -83,7 +84,7 @@ export default function Header() {
           <Logo className="text-[34px] md:text-[40px]" />
 
           <Link
-            href="/#register"
+            href={bookHref}
             onClick={() => setOpen(false)}
             className="justify-self-end font-display text-xl uppercase leading-none tracking-tightest2 transition-colors hover:text-red-text md:text-2xl"
           >
@@ -148,7 +149,7 @@ export default function Header() {
                   JCEE, Jeddah
                 </p>
                 <Link
-                  href="/#register"
+                  href={bookHref}
                   onClick={() => setOpen(false)}
                   tabIndex={open ? 0 : -1}
                   className={buttonClasses("light", "mt-8")}
