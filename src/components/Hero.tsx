@@ -48,22 +48,42 @@ export default function Hero({
           opacity: "calc(1 - var(--x, 0) * 1.5)",
         }}
       >
-        <div className={`mb-8 max-w-[360px] md:absolute md:top-[34%] md:mb-0 md:w-[26%] md:max-w-none ${isRtl ? "md:start-[60px]" : "md:end-[60px]"}`}>
+        <div className={`mb-8 max-w-[400px] md:absolute md:top-[30%] md:mb-0 md:w-[28%] md:max-w-none ${isRtl ? "md:start-[60px]" : "md:end-[60px]"}`}>
+          {/* Edition badge */}
+          <div data-reveal="up" style={d(500)}>
+            <span className="inline-block border border-red bg-red/10 px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-[0.15em] text-red backdrop-blur-sm">
+              {t.edition}
+            </span>
+          </div>
+
+          {/* Date — large display */}
           <p
             data-reveal="up"
-            style={d(600)}
-            className="font-display text-[clamp(20px,2.4vw,40px)] uppercase leading-[0.95] tracking-tightest2 text-red"
+            style={d(650)}
+            className="mt-5 font-display text-[clamp(26px,3vw,48px)] uppercase leading-[0.9] tracking-tightest2 text-white"
           >
-            {t.edition}
+            {t.date}
           </p>
+
+          {/* Venue — with red accent bar */}
+          <div data-reveal="up" style={d(750)} className="mt-3 flex items-center gap-3">
+            <span className="h-[2px] w-5 shrink-0 bg-red" />
+            <p className="font-mono text-sm uppercase tracking-wide text-white/70">
+              {t.venue}
+            </p>
+          </div>
+
+          {/* Tagline */}
           <p
             data-reveal="up"
-            style={d(750)}
-            className="mt-3 font-mono text-sm uppercase leading-relaxed text-white/85 md:text-base"
+            style={d(850)}
+            className="mt-5 font-mono text-sm uppercase leading-relaxed text-white/60"
           >
-            {t.description}
+            {t.tagline}
           </p>
-          <div data-reveal="up" style={d(900)} className="mt-8">
+
+          {/* CTA */}
+          <div data-reveal="up" style={d(950)} className="mt-7">
             <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
           </div>
         </div>
