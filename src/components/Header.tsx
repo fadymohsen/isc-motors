@@ -96,18 +96,18 @@ export default function Header({ locale, t }: HeaderProps) {
 
           <Logo className="text-[34px] md:text-[40px]" locale={locale} ariaLabel={t.ariaLabel} />
 
-          <div className="flex items-center gap-4 justify-self-end">
+          <div className="flex items-center gap-3 justify-self-end md:gap-4">
             <LangSwitcher locale={locale} label={t.label} ariaLabel={t.ariaLabel} />
             <Link
               href={bookHref(locale)}
               onClick={() => setOpen(false)}
-              className="hidden font-display text-xl uppercase leading-none tracking-tightest2 transition-colors hover:text-red-text sm:block md:text-2xl"
+              className="inline-flex items-center gap-2 bg-red px-4 py-2 font-mono text-xs uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] md:px-5 md:py-2.5 md:text-sm"
             >
               {t.bookNow}
               <svg
                 aria-hidden
                 viewBox="0 0 16 16"
-                className="ml-2 inline h-4 w-4 align-[-1px]"
+                className="h-3.5 w-3.5 md:h-4 md:w-4"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.4"

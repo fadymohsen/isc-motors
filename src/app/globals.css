@@ -16,9 +16,9 @@ body {
   color: #ffffff;
 }
 
-/* RTL support: flip chevrons in RTL */
-[dir="rtl"] .rtl\:flip {
-  transform: scaleX(-1);
+/* Arabic display font: override Bebas Neue with Cairo for RTL */
+[dir="rtl"] {
+  --font-bebas: var(--font-cairo);
 }
 
 /* RTL: ensure gradients reverse properly */

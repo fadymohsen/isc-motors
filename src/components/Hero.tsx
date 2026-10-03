@@ -64,7 +64,7 @@ export default function Hero({
             {t.description}
           </p>
           <div data-reveal="up" style={d(900)} className="mt-8">
-            <Button href={bookHref(locale)}>{t.bookAStand}</Button>
+            <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
           </div>
         </div>
 
