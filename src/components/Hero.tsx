@@ -15,7 +15,6 @@ export default function Hero({
   locale: string;
   t: Dictionary["hero"];
 }) {
-  const isRtl = locale === "ar";
   const lines = t.line2 ? [t.line1, t.line2] : [t.line1];
 
   return (
@@ -42,55 +41,50 @@ export default function Hero({
       <GridLines cols={[11, 50, 89]} rows={[14, 38, 62]} className="hidden md:block" delay={300} />
 
       <div
-        className="wrap relative flex h-full flex-col justify-end pb-8 md:pb-12"
+        className="wrap relative flex h-full flex-col items-center justify-center text-center"
         style={{
           transform: "translate3d(0, calc(var(--x, 0) * -70px), 0)",
           opacity: "calc(1 - var(--x, 0) * 1.5)",
         }}
       >
-        <div className={`mb-8 max-w-[400px] md:absolute md:top-[30%] md:mb-0 md:w-[28%] md:max-w-none ${isRtl ? "md:start-[60px]" : "md:end-[60px]"}`}>
-          {/* Edition badge */}
-          <div data-reveal="up" style={d(500)}>
-            <span className="inline-block border border-red bg-red/10 px-4 py-1.5 font-mono text-xs font-medium uppercase tracking-[0.15em] text-red backdrop-blur-sm">
-              {t.edition}
-            </span>
-          </div>
-
-          {/* Date — large display */}
-          <p
-            data-reveal="up"
-            style={d(650)}
-            className="mt-5 font-display text-[clamp(26px,3vw,48px)] uppercase leading-[0.9] tracking-tightest2 text-white"
-          >
-            {t.date}
-          </p>
-
-          {/* Venue — with red accent bar */}
-          <div data-reveal="up" style={d(750)} className="mt-3 flex items-center gap-3">
-            <span className="h-[2px] w-5 shrink-0 bg-red" />
-            <p className="font-mono text-sm uppercase tracking-wide text-white/70">
-              {t.venue}
-            </p>
-          </div>
-
-          {/* Tagline */}
-          <p
-            data-reveal="up"
-            style={d(850)}
-            className="mt-5 font-mono text-sm uppercase leading-relaxed text-white/60"
-          >
-            {t.tagline}
-          </p>
-
-          {/* CTA */}
-          <div data-reveal="up" style={d(950)} className="mt-7">
-            <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
-          </div>
+        {/* Edition badge */}
+        <div data-reveal="up" style={d(500)}>
+          <span className="inline-block border border-red bg-red/10 px-5 py-2 font-mono text-xs font-medium uppercase tracking-[0.15em] text-red backdrop-blur-sm md:text-sm">
+            {t.edition}
+          </span>
         </div>
 
-        <h1 className="h-display text-[clamp(52px,9.2vw,200px)]">
-          <MaskLines lines={lines} delay={250} step={140} />
-        </h1>
+        {/* Date */}
+        <p
+          data-reveal="up"
+          style={d(650)}
+          className="mt-6 font-display text-[clamp(40px,7vw,120px)] uppercase leading-[0.85] tracking-tightest2 text-white md:mt-8"
+        >
+          {t.date}
+        </p>
+
+        {/* Venue */}
+        <div data-reveal="up" style={d(800)} className="mt-4 flex items-center justify-center gap-4 md:mt-6">
+          <span className="hidden h-[1px] w-8 bg-red md:block" />
+          <p className="font-display text-[clamp(20px,3vw,44px)] uppercase leading-[0.9] tracking-tightest2 text-white/80">
+            {t.venue}
+          </p>
+          <span className="hidden h-[1px] w-8 bg-red md:block" />
+        </div>
+
+        {/* CTA */}
+        <div data-reveal="up" style={d(950)} className="mt-8 md:mt-10">
+          <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
+        </div>
+
+        {/* Title pinned at the bottom */}
+        <div className="absolute inset-x-0 bottom-8 md:bottom-12">
+          <div className="wrap">
+            <h1 className="h-display text-[clamp(52px,9.2vw,200px)]">
+              <MaskLines lines={lines} delay={250} step={140} />
+            </h1>
+          </div>
+        </div>
       </div>
     </section>
   );

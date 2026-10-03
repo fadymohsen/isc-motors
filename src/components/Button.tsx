@@ -8,7 +8,7 @@ export function buttonClasses(variant: Variant = "light", className = "") {
     "group inline-flex items-stretch gap-4 font-mono text-sm uppercase tracking-wide transition-colors duration-150";
   const styles =
     variant === "red"
-      ? "bg-red p-[6px] ps-6 text-white hover:bg-[#e00e0f]"
+      ? "bg-red p-2 ps-7 text-white text-base font-bold hover:bg-[#e00e0f] md:ps-8 md:text-lg"
       : variant === "light"
         ? "bg-white p-[6px] ps-6 text-dark"
         : "border border-white/30 p-[6px] ps-6 text-white hover:border-white";
@@ -48,7 +48,7 @@ export function ButtonLabel({
     <>
       <span className="self-center py-3">{children}</span>
       <span
-        className={`flex w-10 items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 ${iconBg}`}
+        className={`flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 ${variant === "red" ? "w-12" : "w-10"} ${iconBg}`}
       >
         <ChevronsRight />
       </span>
