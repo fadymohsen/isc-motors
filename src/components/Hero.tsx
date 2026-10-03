@@ -46,7 +46,7 @@ export default function Hero({
       >
         {/* Edition badge */}
         <div data-reveal="up" style={d(500)}>
-          <span className="inline-block border border-red bg-red/10 px-5 py-2 font-mono text-xs font-medium uppercase tracking-[0.15em] text-red backdrop-blur-sm md:text-sm">
+          <span className="inline-block border border-red bg-red/10 px-6 py-2.5 font-display text-base font-bold uppercase tracking-wide text-red backdrop-blur-sm md:text-xl">
             {t.edition}
           </span>
         </div>
@@ -63,7 +63,7 @@ export default function Hero({
         {/* Venue — prominent with accent lines */}
         <div data-reveal="up" style={d(800)} className="mt-4 flex items-center justify-center gap-4 md:mt-6">
           <span className="h-[1px] w-6 bg-red md:w-10" />
-          <p className="font-display text-[clamp(22px,3.4vw,52px)] uppercase leading-[0.9] tracking-tightest2 text-white/80">
+          <p className="font-display text-[clamp(22px,3.4vw,52px)] uppercase leading-[1.15] tracking-tightest2 text-white/80">
             {t.venue}
           </p>
           <span className="h-[1px] w-6 bg-red md:w-10" />
