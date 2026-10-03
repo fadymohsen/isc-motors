@@ -3,7 +3,6 @@ import type { CSSProperties } from "react";
 import Button from "./Button";
 import GridLines from "./GridLines";
 import { bookHref } from "@/lib/enquiry";
-import MaskLines from "./MaskLines";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;
@@ -15,8 +14,6 @@ export default function Hero({
   locale: string;
   t: Dictionary["hero"];
 }) {
-  const lines = t.line2 ? [t.line1, t.line2] : [t.line1];
-
   return (
     <section data-progress className="relative h-[100svh] min-h-[640px] overflow-hidden bg-dark">
       <div
@@ -54,22 +51,22 @@ export default function Hero({
           </span>
         </div>
 
-        {/* Date */}
+        {/* Date — hero-sized */}
         <p
           data-reveal="up"
           style={d(650)}
-          className="mt-6 font-display text-[clamp(40px,7vw,120px)] uppercase leading-[0.85] tracking-tightest2 text-white md:mt-8"
+          className="mt-6 font-display text-[clamp(44px,8vw,140px)] uppercase leading-[0.82] tracking-tightest2 text-white md:mt-8"
         >
           {t.date}
         </p>
 
-        {/* Venue */}
+        {/* Venue — prominent with accent lines */}
         <div data-reveal="up" style={d(800)} className="mt-4 flex items-center justify-center gap-4 md:mt-6">
-          <span className="hidden h-[1px] w-8 bg-red md:block" />
-          <p className="font-display text-[clamp(20px,3vw,44px)] uppercase leading-[0.9] tracking-tightest2 text-white/80">
+          <span className="h-[1px] w-6 bg-red md:w-10" />
+          <p className="font-display text-[clamp(22px,3.4vw,52px)] uppercase leading-[0.9] tracking-tightest2 text-white/80">
             {t.venue}
           </p>
-          <span className="hidden h-[1px] w-8 bg-red md:block" />
+          <span className="h-[1px] w-6 bg-red md:w-10" />
         </div>
 
         {/* CTA */}
@@ -77,12 +74,18 @@ export default function Hero({
           <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
         </div>
 
-        {/* Title pinned at the bottom */}
-        <div className="absolute inset-x-0 bottom-8 md:bottom-12">
-          <div className="wrap">
-            <h1 className="h-display text-[clamp(52px,9.2vw,200px)]">
-              <MaskLines lines={lines} delay={250} step={140} />
+        {/* Event name — smaller, single line, pinned at bottom */}
+        <div className="absolute inset-x-0 bottom-6 md:bottom-10">
+          <div className="wrap flex items-center justify-center gap-4 md:justify-start md:gap-6">
+            <span className="hidden h-[1px] flex-1 bg-white/15 md:block" />
+            <h1
+              data-reveal="up"
+              style={d(300)}
+              className="whitespace-nowrap font-display text-[clamp(18px,2.6vw,40px)] uppercase leading-none tracking-tightest2 text-white/50"
+            >
+              {t.line1}{t.line2 ? ` ${t.line2}` : ""}
             </h1>
+            <span className="hidden h-[1px] flex-1 bg-white/15 md:block" />
           </div>
         </div>
       </div>
