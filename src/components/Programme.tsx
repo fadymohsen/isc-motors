@@ -8,7 +8,7 @@ const days = [
     title: "Press Day",
     date: "November 4, 2026",
     desc: "A full morning, in the spotlight in front of Arabian press.",
-    facts: "10+ press conferences, 10+ countries, 20% foreign journalists",
+    facts: "100+ journalists, 10+ press conferences, 20% of foreign journalists, 10+ countries",
     offset: "md:mt-0",
   },
   {
@@ -16,7 +16,7 @@ const days = [
     title: "VIP Night",
     date: "November 4, 2026",
     desc: "For those who want the privilege to be the first to see the show and connect with the industry.",
-    facts: "50+ key influencers, 10+ curated sessions and talks",
+    facts: "1,000 pros & guests, 50+ key influencers, 10+ curated sessions/talks",
     offset: "md:mt-28",
   },
   {
@@ -24,7 +24,7 @@ const days = [
     title: "Visitors Days",
     date: "November 5 to 7, 2026",
     desc: "Three days for visitors to get closer to the exhibits and entertainments.",
-    facts: "2.5 hours spent on site, on average",
+    facts: "300,000 visitors, 60% Saudis, 40% World, 2.5 hours spent",
     offset: "md:mt-56",
   },
 ];
@@ -33,7 +33,7 @@ export default function Programme() {
   return (
     <section id="schedule" className="grain relative overflow-hidden bg-[#232323]">
       <div className="wrap relative z-10 py-24 md:py-40">
-        <SectionHeading tag="Programme" title="The show in three days" />
+        <SectionHeading tag="Programme" title="The JIMS dashboard: reach & impact" />
 
         <div className="relative mt-16 md:mt-32 md:min-h-[560px]">
           <GridLines cols={[0, 33.33, 66.66, 100]} rows={[]} className="hidden md:block" />

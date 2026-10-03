@@ -3,24 +3,23 @@ import MaskLines from "./MaskLines";
 import Reveal from "./Reveal";
 import Tag from "./Tag";
 
-const points = [
+// Booklet page 4: the four exhibitor benefits, word for word.
+const benefits = [
   {
-    title: "Vision 2030 alignment",
-    body: "Showcasing the Kingdom's direction toward a sustainable transportation future and localizing the electric vehicle (EV) industry.",
-    filled: 1,
-    titleAtBottom: false,
+    title: "Your brand showcase",
+    body: "An opportunity to create a branded experience for visitors to discover new products without sales pressure",
   },
   {
-    title: "The ultimate venue",
-    body: "Hosted under the official Jeddah Events Center, spanning over 16,000 square meters of indoor and outdoor space.",
-    filled: 2,
-    titleAtBottom: true,
+    title: "Visitor + media impact",
+    body: "JIMS plug-and-play platform for simultaneously reaching visitors, Arabian media, and industry professionals in one.",
   },
   {
-    title: "An unmatched audience",
-    body: "Connecting manufacturers directly with the region's active car buyers, investors, and a rapidly diversifying market.",
-    filled: 3,
-    titleAtBottom: false,
+    title: "All-in-one package",
+    body: "Unlike solus brand activations, there is no additional advertising or digital budget required for reach.",
+  },
+  {
+    title: "Flexible scale",
+    body: "JIMS offers multiple ways for exhibitors to engage, suited to all budgets and ambitions.",
   },
 ];
 
@@ -46,39 +45,42 @@ export default function WhyExhibit() {
           <Reveal>
             <Tag>Why exhibit</Tag>
           </Reveal>
-          <h2 className="h-display mt-6 text-[clamp(48px,7.4vw,140px)]">
-            <MaskLines lines={["One stage,", "the whole market"]} delay={120} />
+          <h2 className="h-display mt-6 text-[clamp(40px,5.6vw,108px)]">
+            <MaskLines
+              lines={["Why JIMS 2026 is the place", "to discover the future", "of automotive"]}
+              delay={120}
+            />
           </h2>
         </div>
 
-        <ul className="mt-16 grid gap-4 md:mt-28 md:grid-cols-3 md:gap-[22px]">
-          {points.map((point, i) => (
-            <li key={point.title}>
+        <ul className="mt-16 grid gap-4 sm:grid-cols-2 md:mt-28 xl:grid-cols-4 xl:gap-[22px]">
+          {benefits.map((item, i) => (
+            <li key={item.title}>
               <Reveal delay={i * 120} className="h-full">
-                <div className="flex min-h-[380px] flex-col justify-between bg-dark2 p-8 md:aspect-[4/5] md:min-h-0 md:p-[60px]">
-                  {point.titleAtBottom ? (
+                <div className="flex min-h-[340px] flex-col justify-between bg-dark2 p-8 xl:aspect-[3/4] xl:min-h-0 xl:p-10">
+                  {i % 2 === 1 ? (
                     <>
-                      <Squares filled={point.filled} />
+                      <Squares filled={i + 1} />
                       <div>
-                        <h3 className="h-display text-[clamp(36px,3.4vw,64px)] leading-[0.95]">
-                          {point.title}
+                        <h3 className="h-display text-[clamp(32px,2.8vw,52px)] leading-[0.95]">
+                          {item.title}
                         </h3>
-                        <p className="mt-6 max-w-sm font-mono text-sm uppercase leading-relaxed text-white/80">
-                          {point.body}
+                        <p className="mt-5 font-mono text-sm uppercase leading-relaxed text-white/80">
+                          {item.body}
                         </p>
                       </div>
                     </>
                   ) : (
                     <>
                       <div>
-                        <h3 className="h-display text-[clamp(36px,3.4vw,64px)] leading-[0.95]">
-                          {point.title}
+                        <h3 className="h-display text-[clamp(32px,2.8vw,52px)] leading-[0.95]">
+                          {item.title}
                         </h3>
-                        <p className="mt-6 max-w-sm font-mono text-sm uppercase leading-relaxed text-white/80">
-                          {point.body}
+                        <p className="mt-5 font-mono text-sm uppercase leading-relaxed text-white/80">
+                          {item.body}
                         </p>
                       </div>
-                      <Squares filled={point.filled} />
+                      <Squares filled={i + 1} />
                     </>
                   )}
                 </div>

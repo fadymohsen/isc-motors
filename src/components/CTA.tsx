@@ -30,7 +30,10 @@ export default function CTA() {
     <section id="register" className="grain relative overflow-hidden bg-[#232323]">
       <div className="wrap relative z-10 py-20 md:py-28">
         <div className="grid gap-10 md:grid-cols-[1fr_auto] md:items-center md:gap-20">
-          <h2 className="h-display text-[clamp(44px,5vw,96px)]">Book your stand for JIMS 2026</h2>
+          <div>
+            <h2 className="h-display text-[clamp(44px,5vw,96px)]">Book your spot now</h2>
+            <p className="label mt-4 text-white/70">For registration and information</p>
+          </div>
 
           <form onSubmit={onSubmit} noValidate className="w-full md:w-[640px]">
             <div className="flex flex-col gap-3 sm:flex-row">

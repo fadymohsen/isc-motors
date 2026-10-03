@@ -7,7 +7,7 @@ import Tag from "./Tag";
 // Statements are lifted from the Exhibitor Booklet programme copy, not customer quotes.
 const items = [
   {
-    text: "Scheduled brand launches happen throughout Press Day to ensure that the media have access to the big news of the show.",
+    text: "Scheduled brand launches will happen throughout Press Day to ensure that the media have access to the big news of the show.",
     source: "Press Day",
     place: "md:col-span-5 md:col-start-1",
   },
@@ -17,12 +17,12 @@ const items = [
     place: "md:col-span-5 md:col-start-8",
   },
   {
-    text: "Guests have an exclusive opportunity to experience all brand stands and zones before the experience opens to the public.",
+    text: "Guests will have an exclusive opportunity to experience all brand stands and zones before the experience opens to the public.",
     source: "VIP Night",
     place: "md:col-span-5 md:col-start-4",
   },
   {
-    text: "A dedicated media centre provides studio space, technical support, and access to state-of-the-art broadcast facilities.",
+    text: "A dedicated media centre will provide studio space, technical support, and access to state-of-the-art broadcast facilities.",
     source: "Press Day",
     place: "md:col-span-5 md:col-start-1",
   },

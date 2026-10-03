@@ -111,8 +111,8 @@ export default function Header() {
           open ? "opacity-100" : "invisible opacity-0"
         }`}
       >
-        <div className="wrap flex min-h-full flex-col justify-between gap-12 pb-8 pt-32 md:pt-44">
-          <div className="grid gap-12 md:grid-cols-[1fr_380px] md:gap-24">
+        <div className="wrap flex min-h-full flex-col gap-10 pb-6 pt-28 md:justify-center md:gap-0 md:pb-6 md:pt-[clamp(88px,13svh,150px)]">
+          <div className="grid gap-12 md:grid-cols-[1fr_380px] md:gap-24 md:gap-y-0">
             <nav aria-label="Main">
               <ol>
                 {links.map((link, i) => (
@@ -127,10 +127,10 @@ export default function Header() {
                       href={link.href}
                       onClick={() => setOpen(false)}
                       tabIndex={open ? 0 : -1}
-                      className="group/link flex items-baseline gap-4 border-b border-stroke py-2 text-white transition-colors md:gap-8 md:py-3 [nav:hover_&]:text-white/40 hover:!text-white"
+                      className="group/link flex items-baseline gap-4 border-b border-stroke py-2 text-white transition-colors md:gap-8 md:py-[0.7svh] [nav:hover_&]:text-white/40 hover:!text-white"
                     >
                       <span className="label w-8 shrink-0 text-white/60 md:w-12">0{i + 1}</span>
-                      <span className="h-display text-[clamp(44px,min(8.4vw,11vh),140px)] leading-[0.95] transition-transform duration-300 group-hover/link:translate-x-3">
+                      <span className="h-display text-[clamp(30px,min(8.4vw,calc((100svh-340px)/5.8)),140px)] leading-[0.95] transition-transform duration-300 group-hover/link:translate-x-3">
                         {link.label}
                       </span>
                     </Link>
@@ -172,11 +172,10 @@ export default function Header() {
                 >
                   www.isc-expo.net
                 </a>
+                <p className="pt-2 text-white/70">Saudi Arabia, Jeddah, Alsalama</p>
               </div>
             </aside>
           </div>
-
-          <p className="label text-white/60">Saudi Arabia, Jeddah, Alsalama</p>
         </div>
       </div>
     </>

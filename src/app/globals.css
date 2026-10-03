@@ -174,9 +174,68 @@ body {
   opacity: 0.22;
 }
 
+/*
+ * Pinned package slides. PackageSlides sets data-state ("active" | "idle") and data-active
+ * on each .pk-slide from the scroll position; everything else is time-based CSS, so a
+ * slide change is a soft crossfade no matter how fast or in what steps the page scrolls.
+ * The incoming slide fades in over the outgoing one (which stays opaque until covered),
+ * its photo settles from a slight zoom, and its content plays in after the fade.
+ */
+.js .pk-slide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0s linear 1.2s, visibility 0s linear 1.2s;
+}
+.js .pk-slide[data-state="active"] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1.1s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+}
+.js .pk-slide .pk-img {
+  scale: 1.1;
+  transition: scale 2.4s var(--ease);
+}
+.js .pk-slide[data-state="active"] .pk-img {
+  scale: 1;
+}
+.js .pk-slide [data-stage="up"] {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+.js .pk-slide[data-active="true"] [data-stage="up"] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s var(--ease), transform 1.1s var(--ease);
+  transition-delay: calc(var(--d, 0ms) + 550ms);
+}
+.js .pk-slide [data-stage="mask"] .mask-inner {
+  transform: translate3d(0, 108%, 0);
+  transition: transform 0.35s ease-out;
+}
+.js .pk-slide[data-active="true"] [data-stage="mask"] .mask-inner {
+  transform: none;
+  transition: transform 1.2s var(--ease);
+  transition-delay: calc(var(--d, 0ms) + 550ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .js .pk-slide {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .js .pk-slide .pk-img {
+    scale: 1 !important;
+  }
+  .js .pk-slide [data-stage="up"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .js .pk-slide [data-stage="mask"] .mask-inner {
+    transform: none !important;
   }
   *,
   *::before,

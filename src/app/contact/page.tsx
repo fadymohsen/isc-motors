@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageBanner from "@/components/PageBanner";
 import ContactForm from "@/components/ContactForm";
+import { isEnquiry } from "@/lib/enquiry";
 
 export const metadata: Metadata = {
   title: "Contact | JIMS 2026",
@@ -17,7 +18,15 @@ const details = [
   { label: "Venue", value: "JCEE, Jeddah Center for Exhibitions and Events" },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ enquiry?: string | string[] }>;
+}) {
+  const { enquiry } = await searchParams;
+  const requested = Array.isArray(enquiry) ? enquiry[0] : enquiry;
+  const defaultEnquiry = isEnquiry(requested) ? requested : "general";
+
   return (
     <>
       <Header />
@@ -36,8 +45,8 @@ export default function ContactPage() {
                 Let&rsquo;s talk exhibitor spaces
               </h2>
               <p className="mt-6 max-w-md text-sm leading-relaxed text-white/80 md:text-base">
-                Scan the QR code in the booklet or write to the organizer
-                directly for exhibitor and sponsorship enquiries.
+                Scan the QR code in the booklet, or write to the organizer, for
+                registration and information.
               </p>
 
               <dl className="mt-10 space-y-6">
@@ -60,7 +69,9 @@ export default function ContactPage() {
               </dl>
             </div>
 
-            <ContactForm />
+            <div id="enquiry" className="scroll-mt-28">
+              <ContactForm defaultEnquiry={defaultEnquiry} />
+            </div>
           </div>
         </section>
       </main>

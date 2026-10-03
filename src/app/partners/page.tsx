@@ -6,29 +6,36 @@ import PageBanner from "@/components/PageBanner";
 export const metadata: Metadata = {
   title: "Partners | JIMS 2026",
   description:
-    "The organizations behind JIMS 2026: Integrated Solutions Co. for Events, Jeddah Chamber, and the Saudi Automobile & Motorcycle Federation.",
+    "The organizations behind JIMS 2026: Integrated Solutions Co. for Events, Jeddah Chamber, the Saudi Automobile & Motorcycle Federation and JCEE.",
 };
 
+// Names and roles come from the Exhibitor Booklet: the partner logos on page 3, the
+// exhibition location on page 2 and the licence on page 1. No other claims are made.
 const partners = [
   {
     name: "Integrated Solutions Co. for Events",
-    role: "Official Organizer",
-    desc: "Delivers innovative concepts and flawless execution, bringing together elite local and international experts in strategic planning, experiential design, crowd management, and logistics.",
+    role: "Organizer",
+    desc: "Integrated Solutions for Events delivers innovative concepts and flawless execution. We measure success by passion, precision, and the power to turn bold visions into landmark realities.",
   },
   {
     name: "Jeddah Chamber",
-    role: "Supporting Partner",
-    desc: "Representing Jeddah's business community since 1946, supporting the Kingdom's commercial and industrial development.",
+    role: "Partner",
+    desc: "Established 1946.",
   },
   {
     name: "Saudi Automobile & Motorcycle Federation",
-    role: "Official Federation Partner",
-    desc: "The governing body for automobile and motorcycle sport in the Kingdom of Saudi Arabia.",
+    role: "Partner",
+    desc: "SAMF.",
   },
   {
     name: "JCEE, Jeddah Center for Exhibitions and Events",
-    role: "Official Venue",
-    desc: "Hosting JIMS 2026 under the official Jeddah Events Center, spanning over 16,000 square meters of indoor and outdoor space.",
+    role: "Exhibition location",
+    desc: "Hosted under the official Jeddah Events Center, spanning over 16,000 square meters of indoor and outdoor space.",
+  },
+  {
+    name: "Saudi Conventions & Exhibitions General Authority",
+    role: "Licence",
+    desc: "License number 26/3054.",
   },
 ];
 
@@ -38,7 +45,7 @@ export default function PartnersPage() {
       <Header />
       <main>
         <PageBanner
-          eyebrow="Backed by the Kingdom's automotive community"
+          eyebrow="Partners"
           title="Our partners"
           image="/images/booklet/stand-custom.jpg"
           objectPosition="center"

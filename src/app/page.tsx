@@ -6,6 +6,7 @@ import Packages from "@/components/Packages";
 import Programme from "@/components/Programme";
 import WhyExhibit from "@/components/WhyExhibit";
 import Spaces from "@/components/Spaces";
+import Recommendations from "@/components/Recommendations";
 import Highlights from "@/components/Highlights";
 import Faq from "@/components/Faq";
 import BlogTeaser from "@/components/BlogTeaser";
@@ -24,6 +25,7 @@ export default function Home() {
         <Programme />
         <WhyExhibit />
         <Spaces />
+        <Recommendations />
         <Highlights />
         <Faq />
         <BlogTeaser />

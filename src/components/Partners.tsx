@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 
+// Logos shown on booklet page 3, plus the venue named on page 2.
 const partners = [
   "Integrated Solutions Co. for Events",
   "Jeddah Chamber",
@@ -12,7 +13,7 @@ export default function Partners() {
     <section className="bg-black">
       <div className="wrap grid gap-8 py-14 md:grid-cols-[auto_1fr] md:items-center md:gap-20 md:py-20">
         <h2 data-reveal="up" className="label font-medium text-white">
-          Organized and supported by
+          Our partners
         </h2>
         <ul className="flex flex-wrap gap-x-12 gap-y-4 md:justify-between">
           {partners.map((name, i) => (
