@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import localFont from "next/font/local";
 import { GeistMono } from "geist/font/mono";
 import ScrollEffects from "@/components/ScrollEffects";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://isc-expo.net"),
+};
 
 const bebas = localFont({
   src: "./fonts/BebasNeue-Latin.woff2",
