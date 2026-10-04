@@ -118,7 +118,9 @@ export default function ProfileDeck({ locale }: { locale: string }) {
         {String(active + 1).padStart(2, "0")} / {String(SLIDE_COUNT).padStart(2, "0")}
       </div>
 
-      <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
+      <div
+        className="h-screen snap-y snap-mandatory overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {Array.from({ length: SLIDE_COUNT }).map((_, i) => {
           const n = i + 1;
           const isLast = n === SLIDE_COUNT;

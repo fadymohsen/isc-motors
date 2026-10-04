@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import localFont from "next/font/local";
-import { Noto_Kufi_Arabic } from "next/font/google";
+import { Changa } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import ScrollEffects from "@/components/ScrollEffects";
 import "./globals.css";
@@ -18,10 +18,10 @@ const bebas = localFont({
   fallback: ["Impact", "Arial Narrow", "sans-serif"],
 });
 
-const kufi = Noto_Kufi_Arabic({
+const arabicDisplay = Changa({
   subsets: ["arabic"],
   variable: "--font-cairo",
-  weight: ["400", "700", "900"],
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html
       suppressHydrationWarning
-      className={`${bebas.variable} ${GeistMono.variable} ${kufi.variable} h-full antialiased`}
+      className={`${bebas.variable} ${GeistMono.variable} ${arabicDisplay.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

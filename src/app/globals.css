@@ -11,14 +11,47 @@ body {
   color: #ffffff;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff0f10 #1a1a1a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0f10;
+  border-radius: 999px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5c5d;
+}
+
 ::selection {
   background: #ff0f10;
   color: #ffffff;
 }
 
-/* Arabic display font: override Bebas Neue with Cairo for RTL */
+/* Arabic display font: override Bebas Neue with Changa for RTL */
 [dir="rtl"] {
   --font-bebas: var(--font-cairo);
+}
+
+/* RTL: Bebas's near-zero line-height/tracking is tuned for all-caps Latin
+   glyphs with no descenders. Arabic script has ascenders/descenders and
+   diacritics that need room, or lines collide. */
+[dir="rtl"] .font-display:not([dir="ltr"]),
+[dir="rtl"] .h-display:not([dir="ltr"]) {
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
 }
 
 /* RTL: ensure gradients reverse properly */

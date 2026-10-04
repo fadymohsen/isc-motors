@@ -93,7 +93,11 @@ export default function Footer({ locale, t }: FooterProps) {
         className="pointer-events-none relative z-10 select-none overflow-hidden px-[2vw] pb-[2vw] pt-[3vw] text-center"
       >
         <span data-reveal="mask" className="block overflow-hidden pb-[0.04em]">
-          <span className="mask-inner font-display block whitespace-nowrap text-[27vw] uppercase leading-[0.78] tracking-tightest2 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.28)]">
+          <span
+            dir="ltr"
+            lang="en"
+            className="mask-inner font-display block whitespace-nowrap text-[27vw] uppercase leading-[0.78] tracking-tightest2 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.28)]"
+          >
             <span className="text-red [-webkit-text-stroke:0]">Ji</span>MS 2026
           </span>
         </span>

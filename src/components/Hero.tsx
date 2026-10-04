@@ -88,7 +88,7 @@ export default function Hero({
             <h1
               data-reveal="up"
               style={d(300)}
-              className="whitespace-nowrap font-display text-[clamp(18px,2.6vw,40px)] uppercase leading-none tracking-tightest2 text-white/50"
+              className="whitespace-nowrap font-display text-[clamp(18px,2.6vw,40px)] uppercase leading-none tracking-tightest2 text-white/50 rtl:whitespace-normal rtl:text-center"
             >
               {t.line1}{t.line2 ? ` ${t.line2}` : ""}
             </h1>

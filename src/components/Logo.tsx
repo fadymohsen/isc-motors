@@ -13,6 +13,8 @@ export default function Logo({
     <Link
       href={`/${locale}`}
       aria-label={ariaLabel}
+      dir="ltr"
+      lang="en"
       className={`font-display uppercase leading-none tracking-tightest2 ${className}`}
     >
       <span className="text-red">Ji</span>MS
