@@ -100,23 +100,6 @@ export default function Header({ locale, t }: HeaderProps) {
             <span className="hidden md:flex">
               <LangSwitcher locale={locale} label={t.label} ariaLabel={t.ariaLabel} />
             </span>
-            <Link
-              href={bookHref(locale)}
-              onClick={() => setOpen(false)}
-              className="inline-flex items-center gap-1.5 whitespace-nowrap bg-red px-3 py-2 font-mono text-[11px] uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] md:gap-2 md:px-5 md:py-2.5 md:text-sm"
-            >
-              {t.bookNow}
-              <svg
-                aria-hidden
-                viewBox="0 0 16 16"
-                className="h-3.5 w-3.5 md:h-4 md:w-4"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.4"
-              >
-                <path d="M4 12L12 4M5 4h7v7" />
-              </svg>
-            </Link>
           </div>
         </div>
       </header>
@@ -166,6 +149,7 @@ export default function Header({ locale, t }: HeaderProps) {
                   <br />
                   {t.venue}
                 </p>
+                <p className="label mt-3 text-white/60">{t.dateHijri}</p>
                 <Link
                   href={bookHref(locale)}
                   onClick={() => setOpen(false)}

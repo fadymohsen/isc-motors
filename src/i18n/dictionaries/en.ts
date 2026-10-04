@@ -15,12 +15,12 @@ const en = {
   },
 
   header: {
-    bookNow: "Book now",
     closeMenu: "Close menu",
     openMenu: "Open menu",
     siteMenu: "Site menu",
     the20thEdition: "The 20th edition",
     dateRange: "November 4 to 7, 2026",
+    dateHijri: "Jumada al-Ula 24 to 27, 1448 AH",
     venue: "JCEE, Jeddah",
     bookAStand: "Book a stand",
     contactLabel: "Contact",
@@ -31,6 +31,7 @@ const en = {
     imageAlt: "Concept car with a red light bar, rear three-quarter view",
     edition: "The 20th edition",
     date: "November 4–7, 2026",
+    dateHijri: "Jumada al-Ula 24–27, 1448 AH",
     venue: "JCEE, Jeddah",
     tagline: "Revealing the future of mobility in the Kingdom.",
     bookAStand: "Book a stand",
@@ -381,6 +382,7 @@ const en = {
   footer: {
     seeYou: "See you in Jeddah",
     dateRange: "November 4 to 7, 2026",
+    dateHijri: "Jumada al-Ula 24 to 27, 1448 AH",
     venue: "JCEE, Jeddah",
     bookAStand: "Book a stand",
     pagesLabel: "Pages",

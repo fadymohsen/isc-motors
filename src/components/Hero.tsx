@@ -59,6 +59,13 @@ export default function Hero({
         >
           {t.date}
         </p>
+        <p
+          data-reveal="up"
+          style={d(725)}
+          className="mt-3 font-display text-[clamp(18px,2.2vw,34px)] uppercase leading-[1.15] tracking-tightest2 text-white/60 md:mt-4"
+        >
+          {t.dateHijri}
+        </p>
 
         {/* Venue — prominent with accent lines */}
         <div data-reveal="up" style={d(800)} className="mt-4 flex items-center justify-center gap-4 md:mt-6">
