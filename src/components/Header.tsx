@@ -23,6 +23,7 @@ export default function Header({ locale, t }: HeaderProps) {
     { label: t.packages, href: `/${locale}#packages` },
     { label: t.partners, href: `/${locale}/partners` },
     { label: t.blog, href: `/${locale}/blog` },
+    { label: t.profile, href: `/${locale}/profile` },
     { label: t.contact, href: `/${locale}/contact` },
   ];
 

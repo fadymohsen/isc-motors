@@ -14,6 +14,7 @@ const ar: Dictionary = {
     partners: "الشركاء",
     blog: "المدونة",
     contact: "تواصل معنا",
+    profile: "الملف التعريفي",
   },
 
   header: {

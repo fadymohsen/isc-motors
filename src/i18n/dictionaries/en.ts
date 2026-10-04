@@ -12,6 +12,7 @@ const en = {
     partners: "Partners",
     blog: "Blog",
     contact: "Contact",
+    profile: "Company Profile",
   },
 
   header: {
