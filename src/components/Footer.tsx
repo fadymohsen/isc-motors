@@ -32,6 +32,7 @@ export default function Footer({ locale, t }: FooterProps) {
                 step={130}
               />
             </p>
+            <p className="label mt-4 text-white/60">{t.dateHijri}</p>
             <Link href={bookHref(locale)} className={buttonClasses("light", "mt-10")}>
               <ButtonLabel>{t.bookAStand}</ButtonLabel>
             </Link>
