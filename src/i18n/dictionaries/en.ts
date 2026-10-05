@@ -533,7 +533,7 @@ const en = {
       "Sponsorship",
       "General Enquiry",
     ],
-    submit: "Request a Callback",
+    submit: "Book Your Space NOW!",
     sent: "Thank you! Our team will reach out within 24 hours.",
     nameError: "Please enter your name.",
     emailError: "Please enter a valid email.",

@@ -74,7 +74,7 @@ export default function LandingPage({
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10">
         {/* Minimal header — logo only */}
-        <header className="py-6 md:py-8">
+        <header className="flex justify-center py-6 md:py-8">
           <Logo className="h-8 md:h-10" locale={locale} ariaLabel={logoAriaLabel} />
         </header>
 
