@@ -5,8 +5,6 @@ import { useState, type FormEvent } from "react";
 import Logo from "@/components/Logo";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
-const EMAIL = "Info@isc-expo.net";
-
 const inputClass =
   "w-full border border-white/20 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/40 focus:border-red focus:outline-none transition-colors";
 
@@ -25,15 +23,16 @@ export default function LandingPage({
 }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [interest, setInterest] = useState(t.interestOptions[0]);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const company = String(fd.get("company") ?? "").trim();
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
-    const interest = String(fd.get("interest") ?? "");
     const next: Record<string, string> = {};
     if (!company) next.company = t.companyError;
     if (!name) next.name = t.nameError;
@@ -42,18 +41,19 @@ export default function LandingPage({
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
-    const subject = encodeURIComponent(`JIMS 2026 Lead: ${company} — ${name}`);
-    const body = encodeURIComponent(
-      [
-        `Company: ${company}`,
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Phone: ${phone}`,
-        `Interest: ${interest}`,
-      ].join("\n"),
-    );
-    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    setSubmitting(true);
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ company, name, email, phone, interest, locale }),
+      });
+      setSent(true);
+    } catch {
+      setSent(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -73,29 +73,23 @@ export default function LandingPage({
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 md:px-10">
-        {/* Minimal header */}
-        <header className="flex items-center justify-between py-6 md:py-8">
+        {/* Minimal header — logo only */}
+        <header className="py-6 md:py-8">
           <Logo className="h-8 md:h-10" locale={locale} ariaLabel={logoAriaLabel} />
-          <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-white/50">
-            {t.venue}
-          </span>
         </header>
 
         {/* Main content */}
         <div className="grid gap-12 pb-16 pt-8 md:grid-cols-[1.1fr_1fr] md:gap-16 md:pb-24 md:pt-16 lg:gap-24">
           {/* Left: value proposition */}
           <div className="flex flex-col justify-center">
-            {/* Badge */}
             <span className="inline-block w-fit -rotate-1 bg-red px-4 py-1.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-[4px_4px_0_rgba(0,0,0,0.35)] md:text-base">
               {t.badge}
             </span>
 
-            {/* Headline */}
             <h1 className="mt-6 font-display text-[clamp(32px,5vw,64px)] uppercase leading-[0.92] tracking-tightest2 text-white md:mt-8">
               {t.headline}
             </h1>
 
-            {/* Date + venue */}
             <div className="mt-8 flex flex-col gap-1">
               <p className="font-display text-[clamp(22px,3vw,36px)] uppercase leading-tight tracking-tightest2 text-red">
                 {t.date}
@@ -108,7 +102,6 @@ export default function LandingPage({
               </p>
             </div>
 
-            {/* Stats */}
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 md:mt-12">
               {t.stats.map((stat, i) => (
                 <div key={i} className="border-t border-white/15 pt-4">
@@ -122,12 +115,13 @@ export default function LandingPage({
               ))}
             </div>
 
-            {/* Benefits */}
             <ul className="mt-10 space-y-3 md:mt-12">
               {t.benefits.map((b, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 bg-red" />
-                  <span className="font-mono text-sm leading-relaxed text-white/80">{b}</span>
+                  <span className="mt-2 block h-1.5 w-1.5 shrink-0 bg-red" />
+                  <span className="font-display text-base uppercase leading-relaxed tracking-tightest2 text-white/80 md:text-lg">
+                    {b}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -160,103 +154,72 @@ export default function LandingPage({
                 </div>
               ) : (
                 <form onSubmit={onSubmit} noValidate className="mt-6 space-y-4">
-                  {/* Company */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
                       {t.companyLabel}
                     </label>
-                    <input
-                      name="company"
-                      type="text"
-                      autoComplete="organization"
-                      className={inputClass}
-                      placeholder={t.companyPlaceholder}
-                    />
+                    <input name="company" type="text" autoComplete="organization" className={inputClass} placeholder={t.companyPlaceholder} />
                     {errors.company && <p className="mt-1 text-xs text-red">{errors.company}</p>}
                   </div>
 
-                  {/* Name */}
                   <div>
                     <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
                       {t.fullName}
                     </label>
-                    <input
-                      name="name"
-                      type="text"
-                      autoComplete="name"
-                      className={inputClass}
-                      placeholder={t.namePlaceholder}
-                    />
+                    <input name="name" type="text" autoComplete="name" className={inputClass} placeholder={t.namePlaceholder} />
                     {errors.name && <p className="mt-1 text-xs text-red">{errors.name}</p>}
                   </div>
 
-                  {/* Email + Phone */}
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
                         {t.email}
                       </label>
-                      <input
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        className={inputClass}
-                        placeholder={t.emailPlaceholder}
-                      />
+                      <input name="email" type="email" autoComplete="email" className={inputClass} placeholder={t.emailPlaceholder} />
                       {errors.email && <p className="mt-1 text-xs text-red">{errors.email}</p>}
                     </div>
                     <div>
                       <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
                         {t.phone}
                       </label>
-                      <input
-                        name="phone"
-                        type="tel"
-                        inputMode="tel"
-                        autoComplete="tel"
-                        className={inputClass}
-                        placeholder={t.phonePlaceholder}
-                      />
+                      <input name="phone" type="tel" inputMode="tel" autoComplete="tel" className={inputClass} placeholder={t.phonePlaceholder} />
                       {errors.phone && <p className="mt-1 text-xs text-red">{errors.phone}</p>}
                     </div>
                   </div>
 
-                  {/* Interest */}
+                  {/* Interest — branded radio pills */}
                   <div>
-                    <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
+                    <label className="mb-2.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
                       {t.interest}
                     </label>
-                    <div className="relative">
-                      <select
-                        name="interest"
-                        defaultValue={t.interestOptions[0]}
-                        className={`${inputClass} appearance-none pe-12`}
-                      >
-                        {t.interestOptions.map((opt) => (
-                          <option key={opt} value={opt} className="bg-dark text-white">
+                    <div className="flex flex-wrap gap-2">
+                      {t.interestOptions.map((opt) => {
+                        const active = interest === opt;
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => setInterest(opt)}
+                            className={`border px-4 py-2 font-mono text-xs uppercase tracking-wide transition-colors ${
+                              active
+                                ? "border-red bg-red/15 text-red"
+                                : "border-white/15 bg-white/5 text-white/60 hover:border-white/30 hover:text-white/80"
+                            }`}
+                          >
                             {opt}
-                          </option>
-                        ))}
-                      </select>
-                      <svg
-                        aria-hidden
-                        viewBox="0 0 16 16"
-                        className="pointer-events-none absolute end-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.4"
-                      >
-                        <path d="M3 6l5 5 5-5" />
-                      </svg>
+                          </button>
+                        );
+                      })}
                     </div>
+                    <input type="hidden" name="interest" value={interest} />
                   </div>
 
-                  {/* Submit */}
                   <button
                     type="submit"
-                    className="group flex w-full items-center justify-between bg-red p-2 ps-7 font-mono text-base font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] md:ps-8 md:text-lg"
+                    disabled={submitting}
+                    className="group flex w-full items-center justify-between bg-red p-2 ps-7 font-mono text-base font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f] disabled:opacity-60 md:ps-8 md:text-lg"
                   >
-                    <span className="py-3">{t.submit}</span>
+                    <span className="py-3">{submitting ? "..." : t.submit}</span>
                     <span className="flex h-full w-12 items-center justify-center bg-white/20">
                       <svg
                         aria-hidden
@@ -280,7 +243,6 @@ export default function LandingPage({
           </div>
         </div>
 
-        {/* Footer */}
         <footer className="border-t border-white/10 py-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">
             {t.poweredBy}

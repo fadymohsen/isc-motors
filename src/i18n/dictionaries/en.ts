@@ -23,7 +23,7 @@ const en = {
     dateRange: "November 4 to 7, 2026",
     dateHijri: "Jumada al-Ula 24 to 27, 1448 AH",
     venue: "JCEE, Jeddah",
-    bookAStand: "Book a stand",
+    bookAStand: "Book Your Space Now!",
     contactLabel: "Contact",
     location: "Saudi Arabia, Jeddah, Alsalama",
   },

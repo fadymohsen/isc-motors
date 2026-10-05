@@ -25,7 +25,7 @@ const ar: Dictionary = {
     dateRange: "4 إلى 7 نوفمبر 2026",
     dateHijri: "24 إلى 27 جمادى الأولى 1448 هـ",
     venue: "مركز جدة للمعارض والفعاليات",
-    bookAStand: "احجز جناحك",
+    bookAStand: "احجز مكانك الآن!",
     contactLabel: "تواصل معنا",
     location: "المملكة العربية السعودية، جدة، السلامة",
   },
