@@ -16,7 +16,8 @@ const BLOB_PATH = "leads/all.json";
 async function read(): Promise<Lead[]> {
   try {
     const meta = await head(BLOB_PATH);
-    const res = await fetch(meta.url, { cache: "no-store" });
+    const url = meta.downloadUrl ?? meta.url;
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return [];
     return res.json();
   } catch {
@@ -27,7 +28,7 @@ async function read(): Promise<Lead[]> {
 
 async function write(leads: Lead[]) {
   await put(BLOB_PATH, JSON.stringify(leads), {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
   });
