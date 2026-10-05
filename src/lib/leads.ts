@@ -1,5 +1,4 @@
-import { readFile, writeFile } from "fs/promises";
-import { join } from "path";
+import { put, list, del } from "@vercel/blob";
 
 export type Lead = {
   id: string;
@@ -12,19 +11,25 @@ export type Lead = {
   createdAt: string;
 };
 
-const FILE = join(process.cwd(), "data", "leads.json");
+const BLOB_PATH = "leads/all.json";
 
 async function read(): Promise<Lead[]> {
   try {
-    const raw = await readFile(FILE, "utf-8");
-    return JSON.parse(raw);
+    const { blobs } = await list({ prefix: "leads/" });
+    const match = blobs.find((b) => b.pathname === BLOB_PATH);
+    if (!match) return [];
+    const res = await fetch(match.downloadUrl);
+    return res.json();
   } catch {
     return [];
   }
 }
 
 async function write(leads: Lead[]) {
-  await writeFile(FILE, JSON.stringify(leads, null, 2), "utf-8");
+  await put(BLOB_PATH, JSON.stringify(leads), {
+    access: "public",
+    addRandomSuffix: false,
+  });
 }
 
 export async function addLead(
