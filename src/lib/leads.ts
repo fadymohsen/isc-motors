@@ -12,14 +12,17 @@ export type Lead = {
 };
 
 const BLOB_PATH = "leads/all.json";
+const token = process.env.BLOB_READ_WRITE_TOKEN!;
 
 async function read(): Promise<Lead[]> {
   try {
-    const { blobs } = await list({ prefix: "leads/all.json" });
+    const { blobs } = await list({ prefix: "leads/all.json", token });
     if (blobs.length === 0) return [];
-    const blob = blobs[0];
-    const url = blob.downloadUrl;
-    const res = await fetch(url, { cache: "no-store" });
+    const url = blobs[0].url;
+    const res = await fetch(url, {
+      cache: "no-store",
+      headers: { Authorization: `Bearer ${token}` },
+    });
     if (!res.ok) return [];
     return res.json();
   } catch (err) {
@@ -34,6 +37,7 @@ async function write(leads: Lead[]) {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
+    token,
   });
 }
 
