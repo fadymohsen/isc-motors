@@ -45,13 +45,13 @@ export const posts: BlogPost[] = [
   {
     slug: "visitors-days-2026",
     tag: "Visitors Days",
-    title: "Visitors Days: 300,000 Reasons to Attend",
+    title: "Visitors Days: 10,000+ Reasons to Attend",
     date: "November 5 to 7, 2026",
     excerpt:
-      "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors, 60% Saudis, 40% from around the world.",
+      "Three days for visitors to get closer to the exhibits and entertainment. 10,000+ visitors, 60% Saudis, 40% from around the world.",
     image: "/images/booklet/crowd.jpg",
     body: [
-      "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
+      "Three days for visitors to get closer to the exhibits and entertainment. 10,000+ visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
       "Visitors get an exclusive first look at global premieres, production-ready electric vehicles (EVs), and futuristic concept cars.",
       "Host outdoor entertainment such as carting demonstrations, stunt driving shows, and motorcycle displays.",
       "Interactive exhibits feature virtual reality simulators, intelligent driving systems, and family-friendly or educational zones for younger visitors.",

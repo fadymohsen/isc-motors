@@ -65,7 +65,7 @@ export default async function AboutPage({
               </div>
               <div className="relative aspect-[4/5] w-full overflow-hidden border border-stroke">
                 <Image
-                  src="/images/booklet/stand-plug.jpg"
+                  src="/images/booklet/handshake.jpg"
                   alt={t.aboutPage.imageAlt}
                   fill
                   style={{ objectFit: "cover", objectPosition: "center" }}
