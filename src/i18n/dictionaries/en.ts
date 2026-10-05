@@ -147,7 +147,7 @@ const en = {
         title: "Visitors Days",
         date: "November 5 to 7, 2026",
         desc: "Three days for visitors to get closer to the exhibits and entertainments.",
-        facts: "300,000 visitors, 60% Saudis, 40% World, 2.5 hours spent",
+        facts: "10,000+ visitors, 60% Saudis, 40% World, 2.5 hours spent",
       },
     ],
   },
@@ -265,7 +265,7 @@ const en = {
       {
         question: "How many visitors does JIMS expect in 2026?",
         answer:
-          "300,000 visitors across the three Visitors Days (Nov 5 to 7): 60% Saudis and 40% World, spending 2.5 hours on average.",
+          "10,000+ visitors across the three Visitors Days (Nov 5 to 7): 60% Saudis and 40% World, spending 2.5 hours on average.",
       },
       {
         question: "Can I get a bespoke exhibition space?",
@@ -317,12 +317,12 @@ const en = {
       {
         slug: "visitors-days-2026",
         tag: "Visitors Days",
-        title: "Visitors Days: 300,000 Reasons to Attend",
+        title: "Visitors Days: 10,000+ Reasons to Attend",
         date: "November 5 to 7, 2026",
         excerpt:
-          "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors, 60% Saudis, 40% from around the world.",
+          "Three days for visitors to get closer to the exhibits and entertainment. 10,000+ visitors, 60% Saudis, 40% from around the world.",
         body: [
-          "Three days for visitors to get closer to the exhibits and entertainment. 300,000 visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
+          "Three days for visitors to get closer to the exhibits and entertainment. 10,000+ visitors are expected, 60% Saudis and 40% from the rest of the world, spending an average of 2.5 hours on-site.",
           "Visitors get an exclusive first look at global premieres, production-ready electric vehicles (EVs), and futuristic concept cars.",
           "Host outdoor entertainment such as carting demonstrations, stunt driving shows, and motorcycle displays.",
           "Interactive exhibits feature virtual reality simulators, intelligent driving systems, and family-friendly or educational zones for younger visitors.",

@@ -9,7 +9,7 @@ import SectionHeading from "./SectionHeading";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
 const spaceMeta = [
-  { main: "/images/booklet/hall-bw.jpg", side: "/images/booklet/dark-car.jpg" },
+  { main: "/images/booklet/stand-plug.jpg", side: "/images/booklet/dark-car.jpg" },
   { main: "/images/booklet/biker.jpg", side: "/images/booklet/crowd.jpg" },
   { main: "/images/booklet/talk.jpg", side: "/images/booklet/press.jpg" },
 ];

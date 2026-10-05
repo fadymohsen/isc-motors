@@ -33,67 +33,54 @@ export default function Hero({
           />
         </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-r from-dark/90 via-dark/35 to-dark/10 rtl:bg-gradient-to-l" />
-      <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-dark/90 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-dark/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/40 to-transparent rtl:bg-gradient-to-l" />
       <GridLines cols={[11, 50, 89]} rows={[14, 38, 62]} className="hidden md:block" delay={300} />
 
-      <div
-        className="wrap relative flex h-full flex-col items-center justify-center text-center"
-        style={{
-          transform: "translate3d(0, calc(var(--x, 0) * -70px), 0)",
-          opacity: "calc(1 - var(--x, 0) * 1.5)",
-        }}
-      >
-        {/* Edition badge */}
-        <div data-reveal="up" style={d(500)}>
-          <span className="inline-block border border-red bg-red/10 px-6 py-2.5 font-display text-base font-bold uppercase tracking-wide text-red backdrop-blur-sm md:text-xl">
+      <div className="wrap relative flex h-full flex-col justify-end pb-14 md:pb-20">
+        {/* Event name: a small tracked label, not a giant pinned bottom bar */}
+        <p data-reveal="up" style={d(300)} className="label text-white/50">
+          {t.line1}
+          {t.line2 ? ` · ${t.line2}` : ""}
+        </p>
+
+        {/* Edition badge: a stamped tag, not a centered pill */}
+        <div data-reveal="up" style={d(500)} className="mt-5">
+          <span className="inline-block -rotate-1 bg-red px-4 py-1.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-[4px_4px_0_rgba(0,0,0,0.35)] md:text-base">
             {t.edition}
           </span>
         </div>
 
-        {/* Date — hero-sized */}
+        {/* Date — hero-sized, left-anchored */}
         <p
           data-reveal="up"
           style={d(650)}
-          className="mt-6 font-display text-[clamp(44px,8vw,140px)] uppercase leading-[0.82] tracking-tightest2 text-white md:mt-8"
+          className="mt-5 font-display text-[clamp(40px,8vw,128px)] uppercase leading-[0.85] tracking-tightest2 text-white"
         >
           {t.date}
         </p>
         <p
           data-reveal="up"
           style={d(725)}
-          className="mt-3 font-display text-[clamp(18px,2.2vw,34px)] uppercase leading-[1.15] tracking-tightest2 text-white/60 md:mt-4"
+          className="mt-3 font-mono text-sm uppercase tracking-[0.12em] text-white/50 md:text-base"
         >
           {t.dateHijri}
         </p>
 
-        {/* Venue — prominent with accent lines */}
-        <div data-reveal="up" style={d(800)} className="mt-4 flex items-center justify-center gap-4 md:mt-6">
-          <span className="h-[1px] w-6 bg-red md:w-10" />
-          <p className="font-display text-[clamp(22px,3.4vw,52px)] uppercase leading-[1.15] tracking-tightest2 text-white/80">
-            {t.venue}
-          </p>
-          <span className="h-[1px] w-6 bg-red md:w-10" />
-        </div>
+        {/* Venue */}
+        <p
+          data-reveal="up"
+          style={d(800)}
+          className="mt-6 font-display text-[clamp(20px,3vw,40px)] uppercase leading-snug tracking-tightest2 text-white/80"
+        >
+          {t.venue}
+        </p>
 
         {/* CTA */}
-        <div data-reveal="up" style={d(950)} className="mt-8 md:mt-10">
-          <Button href={bookHref(locale)} variant="red">{t.bookAStand}</Button>
-        </div>
-
-        {/* Event name — smaller, single line, pinned at bottom */}
-        <div className="absolute inset-x-0 bottom-6 md:bottom-10">
-          <div className="wrap flex items-center justify-center gap-4 md:justify-start md:gap-6">
-            <span className="hidden h-[1px] flex-1 bg-white/15 md:block" />
-            <h1
-              data-reveal="up"
-              style={d(300)}
-              className="whitespace-nowrap font-display text-[clamp(18px,2.6vw,40px)] uppercase leading-none tracking-tightest2 text-white/50 rtl:whitespace-normal rtl:text-center"
-            >
-              {t.line1}{t.line2 ? ` ${t.line2}` : ""}
-            </h1>
-            <span className="hidden h-[1px] flex-1 bg-white/15 md:block" />
-          </div>
+        <div data-reveal="up" style={d(950)} className="mt-8">
+          <Button href={bookHref(locale)} variant="red">
+            {t.bookAStand}
+          </Button>
         </div>
       </div>
     </section>

@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo({
-  className = "text-4xl",
+  className = "h-9",
   locale = "en",
   ariaLabel = "JIMS 2026, home",
 }: {
@@ -10,14 +11,15 @@ export default function Logo({
   ariaLabel?: string;
 }) {
   return (
-    <Link
-      href={`/${locale}`}
-      aria-label={ariaLabel}
-      dir="ltr"
-      lang="en"
-      className={`font-display uppercase leading-none tracking-tightest2 ${className}`}
-    >
-      <span className="text-red">Ji</span>MS
+    <Link href={`/${locale}`} aria-label={ariaLabel} className={`inline-block ${className}`}>
+      <Image
+        src="/images/logo.png"
+        alt=""
+        width={826}
+        height={203}
+        priority
+        className="h-full w-auto object-contain"
+      />
     </Link>
   );
 }

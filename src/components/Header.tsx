@@ -95,7 +95,7 @@ export default function Header({ locale, t }: HeaderProps) {
             />
           </button>
 
-          <Logo className="text-[34px] md:text-[40px]" locale={locale} ariaLabel={t.ariaLabel} />
+          <Logo className="h-8 md:h-10" locale={locale} ariaLabel={t.ariaLabel} />
 
           <div className="flex items-center gap-3 justify-self-end md:gap-4">
             <span className="hidden md:flex">

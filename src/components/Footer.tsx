@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import MaskLines from "./MaskLines";
 import Tag from "./Tag";
@@ -90,15 +91,24 @@ export default function Footer({ locale, t }: FooterProps) {
 
       <div
         aria-hidden
-        className="pointer-events-none relative z-10 select-none overflow-hidden px-[2vw] pb-[2vw] pt-[3vw] text-center"
+        dir="ltr"
+        className="pointer-events-none relative z-10 flex select-none items-center justify-center gap-[2vw] overflow-hidden px-[2vw] pb-[2vw] pt-[3vw]"
       >
         <span data-reveal="mask" className="block overflow-hidden pb-[0.04em]">
-          <span
-            dir="ltr"
-            lang="en"
-            className="mask-inner font-display block whitespace-nowrap text-[27vw] uppercase leading-[0.78] tracking-tightest2 text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.28)]"
-          >
-            <span className="text-red [-webkit-text-stroke:0]">Ji</span>MS 2026
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={826}
+            height={203}
+            className="mask-inner h-[13vw] w-auto object-contain"
+          />
+        </span>
+        <span
+          data-reveal="mask"
+          className="block overflow-hidden pb-[0.04em]"
+        >
+          <span className="mask-inner font-display block whitespace-nowrap text-[18vw] uppercase leading-[0.78] tracking-tightest2 text-red">
+            2026
           </span>
         </span>
       </div>
