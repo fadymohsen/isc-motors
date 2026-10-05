@@ -30,6 +30,7 @@ async function write(leads: Lead[]) {
   await put(BLOB_PATH, JSON.stringify(leads), {
     access: "private",
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: "application/json",
   });
 }
