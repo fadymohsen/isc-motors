@@ -40,9 +40,10 @@ body {
   color: #ffffff;
 }
 
-/* Arabic display font: override Bebas Neue with Changa for RTL */
+/* Arabic font: override both display and mono with Changa for RTL */
 [dir="rtl"] {
   --font-bebas: var(--font-cairo);
+  --font-geist-mono: var(--font-cairo);
 }
 
 /* RTL: Bebas's near-zero line-height/tracking is tuned for all-caps Latin
