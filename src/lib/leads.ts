@@ -1,4 +1,4 @@
-import { put, head } from "@vercel/blob";
+import { put, list } from "@vercel/blob";
 
 export type Lead = {
   id: string;
@@ -15,13 +15,15 @@ const BLOB_PATH = "leads/all.json";
 
 async function read(): Promise<Lead[]> {
   try {
-    const meta = await head(BLOB_PATH);
-    const url = meta.downloadUrl ?? meta.url;
+    const { blobs } = await list({ prefix: "leads/all.json" });
+    if (blobs.length === 0) return [];
+    const blob = blobs[0];
+    const url = blob.downloadUrl;
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) return [];
     return res.json();
-  } catch {
-    // Blob doesn't exist yet
+  } catch (err) {
+    console.error("Blob read error:", err);
     return [];
   }
 }
