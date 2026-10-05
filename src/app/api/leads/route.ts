@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addLead, getLeads, deleteLead } from "@/lib/leads";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -23,14 +25,26 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+  } catch (err) {
+    console.error("POST /api/leads error:", err);
+    return NextResponse.json(
+      { error: "Server error", detail: String(err) },
+      { status: 500 },
+    );
   }
 }
 
 export async function GET() {
-  const leads = await getLeads();
-  return NextResponse.json(leads);
+  try {
+    const leads = await getLeads();
+    return NextResponse.json(leads);
+  } catch (err) {
+    console.error("GET /api/leads error:", err);
+    return NextResponse.json(
+      { error: "Server error", detail: String(err) },
+      { status: 500 },
+    );
+  }
 }
 
 export async function DELETE(req: NextRequest) {
