@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Logo from "./Logo";
+
 
 const SLIDE_COUNT = 19;
 
@@ -69,10 +69,6 @@ export default function ProfileDeck({ locale }: { locale: string }) {
 
   return (
     <div className="relative bg-black">
-      <div className="fixed left-6 top-6 z-50">
-        <Logo locale={locale} />
-      </div>
-
       <div className="fixed left-0 top-0 z-50 h-0.5 w-full bg-white/10">
         <div
           className="h-full bg-red transition-[width] duration-500 ease-out"
