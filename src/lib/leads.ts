@@ -2,13 +2,18 @@ import { put, list } from "@vercel/blob";
 
 export type Lead = {
   id: string;
-  company: string;
+  type: "exhibitor" | "visitor";
   name: string;
   email: string;
   phone: string;
-  interest: string;
   locale: string;
   createdAt: string;
+  // Exhibitor fields
+  company?: string;
+  interest?: string;
+  // Visitor fields
+  referral?: string;
+  jobTitle?: string;
 };
 
 const BLOB_PATH = "leads/all.json";

@@ -46,7 +46,7 @@ export default function LandingPage({
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, name, email, phone, interest, locale }),
+        body: JSON.stringify({ type: "exhibitor", company, name, email, phone, interest, locale }),
       });
       setSent(true);
     } catch {

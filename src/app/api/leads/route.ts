@@ -6,24 +6,41 @@ export const dynamic = "force-dynamic";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { company, name, email, phone, interest, locale } = body;
+    const { type, name, email, phone, locale } = body;
 
-    if (!company || !name || !email || !phone) {
+    if (!name || !email || !phone) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
 
+    if (type === "visitor") {
+      const lead = await addLead({
+        type: "visitor",
+        name,
+        email,
+        phone,
+        referral: body.referral || "",
+        jobTitle: body.jobTitle || "",
+        locale: locale || "en",
+      });
+      return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
+    }
+
+    // Default: exhibitor
+    if (!body.company) {
+      return NextResponse.json({ error: "Missing company" }, { status: 400 });
+    }
     const lead = await addLead({
-      company,
+      type: "exhibitor",
       name,
       email,
       phone,
-      interest: interest || "",
+      company: body.company,
+      interest: body.interest || "",
       locale: locale || "en",
     });
-
     return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
   } catch (err) {
     console.error("POST /api/leads error:", err);
