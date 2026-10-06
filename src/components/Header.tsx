@@ -19,9 +19,6 @@ type HeaderProps = {
 export default function Header({ locale, t }: HeaderProps) {
   const links = [
     { label: t.about, href: `/${locale}/about` },
-    { label: t.schedule, href: `/${locale}#schedule` },
-    { label: t.packages, href: `/${locale}#packages` },
-    { label: t.partners, href: `/${locale}/partners` },
     { label: t.blog, href: `/${locale}/blog` },
     { label: t.profile, href: `/${locale}/profile` },
     { label: t.contact, href: `/${locale}/contact` },
