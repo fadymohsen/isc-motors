@@ -79,6 +79,22 @@ const ar: Dictionary = {
     ],
   },
 
+  figures: {
+    tag: "تحت رعاية",
+    people: [
+      {
+        name: "صاحب السمو الملكي الأمير خالد بن سلطان العبدالله الفيصل",
+        role: "رئيس الاتحاد السعودي للسيارات والدراجات النارية",
+        image: "/images/figures/prince-khalid.jpg",
+      },
+      {
+        name: "محمد يوسف ناغي",
+        role: "رئيس الغرفة التجارية الصناعية بجدة",
+        image: "/images/figures/naghi.jpg",
+      },
+    ],
+  },
+
   packages: {
     tag: "كيف يمكنك المشاركة؟",
     title: "تجربة علامة تجارية\nمنسّقة",

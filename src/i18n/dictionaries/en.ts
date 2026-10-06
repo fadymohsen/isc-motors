@@ -78,6 +78,22 @@ const en = {
     ],
   },
 
+  figures: {
+    tag: "Under the patronage of",
+    people: [
+      {
+        name: "HRH Prince Khalid bin Sultan Al Abdullah Al Faisal",
+        role: "President of the Saudi Automobile & Motorcycle Federation",
+        image: "/images/figures/prince-khalid.jpg",
+      },
+      {
+        name: "Mohammed Yousuf Naghi",
+        role: "President of the Jeddah Chamber of Commerce and Industry",
+        image: "/images/figures/naghi.jpg",
+      },
+    ],
+  },
+
   packages: {
     tag: "How can you participate?",
     title: "Curated brand\nexperience",
