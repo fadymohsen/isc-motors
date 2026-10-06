@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { ConfirmModal } from "@/components/Modal";
 
 type Lead = {
   id: string;
@@ -22,6 +23,7 @@ export default function AdminDashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("all");
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -49,7 +51,6 @@ export default function AdminDashboard() {
   const visitors = leads.filter((l) => (l.type ?? "exhibitor") === "visitor");
 
   async function handleDelete(id: string) {
-    if (!confirm("Delete this lead?")) return;
     await fetch(`/api/leads?id=${id}`, { method: "DELETE" });
     setLeads((prev) => prev.filter((l) => l.id !== id));
   }
@@ -251,7 +252,7 @@ export default function AdminDashboard() {
                     </td>
                     <td className="px-4 py-3.5">
                       <button
-                        onClick={() => handleDelete(lead.id)}
+                        onClick={() => setDeleteId(lead.id)}
                         className="font-mono text-[11px] uppercase text-white/30 transition-colors hover:text-red"
                         title="Delete"
                       >
@@ -265,6 +266,16 @@ export default function AdminDashboard() {
           )}
         </div>
       </div>
+
+      <ConfirmModal
+        open={deleteId !== null}
+        onClose={() => setDeleteId(null)}
+        onConfirm={() => { if (deleteId) handleDelete(deleteId); }}
+        title="Delete Lead"
+        message="This action cannot be undone. Are you sure?"
+        confirmLabel="Delete"
+        cancelLabel="Cancel"
+      />
     </div>
   );
 }

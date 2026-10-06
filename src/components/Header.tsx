@@ -21,6 +21,7 @@ export default function Header({ locale, t }: HeaderProps) {
     { label: t.about, href: `/${locale}/about` },
     { label: t.blog, href: `/${locale}/blog` },
     { label: t.profile, href: `/${locale}/profile` },
+    { label: t.visit, href: `/${locale}/visit` },
     { label: t.contact, href: `/${locale}/contact` },
   ];
 
@@ -130,7 +131,7 @@ export default function Header({ locale, t }: HeaderProps) {
                       className="group/link flex items-baseline gap-4 border-b border-stroke py-2 text-white transition-colors md:gap-8 md:py-[0.7svh] [nav:hover_&]:text-white/40 hover:!text-white"
                     >
                       <span className="label w-8 shrink-0 text-white/60 md:w-12">0{i + 1}</span>
-                      <span className="h-display text-[clamp(30px,min(8.4vw,calc((100svh-340px)/5.8)),140px)] leading-[0.95] transition-transform duration-300 group-hover/link:translate-x-3 rtl:group-hover/link:-translate-x-3">
+                      <span className="h-display text-[clamp(26px,min(6vw,calc((100svh-340px)/7)),100px)] leading-[0.95] transition-transform duration-300 group-hover/link:translate-x-3 rtl:group-hover/link:-translate-x-3">
                         {link.label}
                       </span>
                     </Link>

@@ -15,6 +15,7 @@ const ar: Dictionary = {
     blog: "المدونة",
     contact: "تواصل معنا",
     profile: "الملف التعريفي",
+    visit: "سجّل كزائر",
   },
 
   header: {
@@ -74,8 +75,7 @@ const ar: Dictionary = {
     stats: [
       { value: "+100", label: "صحفي" },
       { value: "1,000", label: "محترفون وضيوف" },
-      { value: "300 ألف", label: "زائر" },
-      { value: "60/40", label: "سعوديون / عالميون" },
+      { value: "+10,000", label: "زائر" },
     ],
   },
 
@@ -93,6 +93,13 @@ const ar: Dictionary = {
         image: "/images/figures/naghi.jpg",
       },
     ],
+  },
+
+  visitorCTA: {
+    tag: "الزوار",
+    title: "احضر معرض JIMS 2026",
+    subtitle: "سجّل الآن وكن جزءاً من التجربة",
+    button: "سجّل كزائر",
   },
 
   packages: {

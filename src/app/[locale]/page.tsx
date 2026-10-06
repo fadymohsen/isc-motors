@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
 import AboutIntro from "@/components/AboutIntro";
 import Figures from "@/components/Figures";
+import VisitorCTA from "@/components/VisitorCTA";
 import Packages from "@/components/Packages";
 import Programme from "@/components/Programme";
 import WhyExhibit from "@/components/WhyExhibit";
@@ -37,6 +38,7 @@ export default async function Home({
         <Partners t={t.partners} />
         <AboutIntro t={t.aboutIntro} />
         <Figures t={t.figures} />
+        <VisitorCTA locale={locale} tag={t.visitorCTA.tag} title={t.visitorCTA.title} subtitle={t.visitorCTA.subtitle} buttonText={t.visitorCTA.button} />
         <Packages locale={locale} t={t.packages} slideT={t.packageSlides} />
         <Programme t={t.programme} />
         <WhyExhibit t={t.whyExhibit} />

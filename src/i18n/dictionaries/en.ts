@@ -13,6 +13,7 @@ const en = {
     blog: "Blog",
     contact: "Contact",
     profile: "Company Profile",
+    visit: "Register as Visitor",
   },
 
   header: {
@@ -73,8 +74,7 @@ const en = {
     stats: [
       { value: "100+", label: "Journalists" },
       { value: "1,000", label: "Pros & guests" },
-      { value: "300K", label: "Visitors" },
-      { value: "60/40", label: "Saudis / World" },
+      { value: "10,000+", label: "Visitors" },
     ],
   },
 
@@ -92,6 +92,13 @@ const en = {
         image: "/images/figures/naghi.jpg",
       },
     ],
+  },
+
+  visitorCTA: {
+    tag: "Visitors",
+    title: "Attend JIMS 2026",
+    subtitle: "Register now and be part of the experience",
+    button: "Register as Visitor",
   },
 
   packages: {

@@ -13,8 +13,7 @@ type Stat = {
 const statCounts: (undefined | { to: number; suffix?: string; comma?: boolean })[] = [
   { to: 100, suffix: "+" },
   { to: 1000, comma: true },
-  { to: 300, suffix: "K" },
-  undefined,
+  { to: 10000, suffix: "+", comma: true },
 ];
 
 export default function AboutIntro({ t }: { t: Dictionary["aboutIntro"] }) {
@@ -55,7 +54,7 @@ export default function AboutIntro({ t }: { t: Dictionary["aboutIntro"] }) {
           ))}
         </ul>
 
-        <dl className="mt-24 grid grid-cols-2 gap-x-6 gap-y-12 md:mt-32 md:grid-cols-4">
+        <dl className="mt-24 grid grid-cols-3 gap-x-6 gap-y-12 md:mt-32">
           {t.stats.map((stat, i) => (
             <div
               key={i}
