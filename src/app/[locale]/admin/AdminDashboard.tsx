@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { ConfirmModal } from "@/components/Modal";
 
 type Lead = {
   id: string;
@@ -327,15 +326,24 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <ConfirmModal
-        open={deleteId !== null}
-        onClose={() => setDeleteId(null)}
-        onConfirm={() => { if (deleteId) handleDelete(deleteId); }}
-        title="Delete Lead"
-        message="This action cannot be undone. Are you sure?"
-        confirmLabel="Delete"
-        cancelLabel="Cancel"
-      />
+      {deleteId !== null && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm"
+          onClick={() => setDeleteId(null)}
+        >
+          <div
+            className="mx-4 w-full max-w-md border border-white/10 bg-dark2 p-8 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="font-display text-2xl uppercase tracking-tightest2 text-white">Delete Lead</h3>
+            <p className="mt-3 font-mono text-sm uppercase leading-relaxed text-white/60">This action cannot be undone. Are you sure?</p>
+            <div className="mt-8 flex gap-3">
+              <button onClick={() => setDeleteId(null)} className="flex-1 border border-white/20 py-3 font-mono text-xs uppercase tracking-wide text-white/70 hover:border-white/40 hover:text-white">Cancel</button>
+              <button onClick={() => { handleDelete(deleteId); setDeleteId(null); }} className="flex-1 bg-red py-3 font-mono text-xs uppercase tracking-wide text-white hover:bg-[#e00e0f]">Delete</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
