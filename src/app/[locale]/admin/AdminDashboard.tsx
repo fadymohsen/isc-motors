@@ -74,16 +74,6 @@ export default function AdminDashboard() {
   const [tab, setTab] = useState<Tab>("all");
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-    try {
-      if (sessionStorage.getItem(STORAGE_KEY) === "1") setAuthed(true);
-    } catch { /* SSR safety */ }
-  }, []);
-
-  if (!mounted) return <div className="min-h-[100svh] bg-dark" />;
-  if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
-
   const fetchLeads = useCallback(async () => {
     setLoading(true);
     try {
@@ -98,8 +88,18 @@ export default function AdminDashboard() {
   }, []);
 
   useEffect(() => {
-    fetchLeads();
-  }, [fetchLeads]);
+    setMounted(true);
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY) === "1") setAuthed(true);
+    } catch { /* SSR safety */ }
+  }, []);
+
+  useEffect(() => {
+    if (authed) fetchLeads();
+  }, [authed, fetchLeads]);
+
+  if (!mounted) return <div className="min-h-[100svh] bg-dark" />;
+  if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const filtered =
     tab === "all"
