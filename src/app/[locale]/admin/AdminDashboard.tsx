@@ -19,11 +19,66 @@ type Lead = {
 
 type Tab = "all" | "exhibitor" | "visitor";
 
+const ADMIN_PASS = "admin-isc-veliq-2026";
+const STORAGE_KEY = "jims-admin-auth";
+
+function LoginGate({ onAuth }: { onAuth: () => void }) {
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (pw === ADMIN_PASS) {
+      sessionStorage.setItem(STORAGE_KEY, "1");
+      onAuth();
+    } else {
+      setError(true);
+    }
+  }
+
+  return (
+    <div className="flex min-h-[100svh] items-center justify-center bg-dark p-5">
+      <form onSubmit={handleSubmit} className="w-full max-w-sm border border-white/10 bg-dark2 p-8">
+        <h1 className="font-display text-3xl uppercase tracking-tightest2 text-white">
+          Admin Access
+        </h1>
+        <p className="mt-2 font-mono text-xs uppercase tracking-wide text-white/50">
+          Enter password to continue
+        </p>
+        <input
+          type="password"
+          value={pw}
+          onChange={(e) => { setPw(e.target.value); setError(false); }}
+          placeholder="Password"
+          autoFocus
+          className="mt-6 w-full border border-white/20 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/40 focus:border-red focus:outline-none"
+        />
+        {error && (
+          <p className="mt-2 font-mono text-xs text-red">Incorrect password.</p>
+        )}
+        <button
+          type="submit"
+          className="mt-4 w-full bg-red py-3 font-mono text-sm uppercase tracking-wide text-white transition-colors hover:bg-[#e00e0f]"
+        >
+          Enter
+        </button>
+      </form>
+    </div>
+  );
+}
+
 export default function AdminDashboard() {
+  const [authed, setAuthed] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("all");
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (sessionStorage.getItem(STORAGE_KEY) === "1") setAuthed(true);
+  }, []);
+
+  if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
