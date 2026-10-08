@@ -26,7 +26,7 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
   const [pw, setPw] = useState("");
   const [error, setError] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (pw === ADMIN_PASS) {
       sessionStorage.setItem(STORAGE_KEY, "1");
@@ -68,6 +68,7 @@ function LoginGate({ onAuth }: { onAuth: () => void }) {
 }
 
 export default function AdminDashboard() {
+  const [mounted, setMounted] = useState(false);
   const [authed, setAuthed] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
@@ -75,9 +76,13 @@ export default function AdminDashboard() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (sessionStorage.getItem(STORAGE_KEY) === "1") setAuthed(true);
+    setMounted(true);
+    try {
+      if (sessionStorage.getItem(STORAGE_KEY) === "1") setAuthed(true);
+    } catch { /* SSR safety */ }
   }, []);
 
+  if (!mounted) return <div className="min-h-[100svh] bg-dark" />;
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
   const fetchLeads = useCallback(async () => {
