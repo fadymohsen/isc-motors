@@ -8,9 +8,27 @@ import ScrollEffects from "@/components/ScrollEffects";
 import "./globals.css";
 
 const META_PIXEL_ID = "1807034447303526";
+const GA_ID = "G-XXXXXXXXXX"; // TODO: replace with your GA4 Measurement ID
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://isc-expo.net"),
+  openGraph: {
+    type: "website",
+    siteName: "JIMS 2026 | Jeddah International Motor Show",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "JIMS 2026 | Jeddah International Motor Show",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@JIMS2026",
+    images: ["/opengraph-image.png"],
+  },
 };
 
 const bebas = localFont({
@@ -47,6 +65,17 @@ export default function RootLayout({
       </head>
       <body id="top" className="min-h-full overflow-x-hidden bg-dark font-mono text-white">
         <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="ga4"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
+          }}
+        />
+        <Script
           id="meta-pixel"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -71,6 +100,24 @@ fbq('track', 'PageView');`,
             alt=""
           />
         </noscript>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Integrated Solutions Co. for Events",
+              url: "https://isc-expo.net",
+              logo: "https://isc-expo.net/images/logo.png",
+              email: "Info@isc-expo.net",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Jeddah",
+                addressCountry: "SA",
+              },
+            }),
+          }}
+        />
         {children}
         <ScrollEffects />
       </body>

@@ -1,6 +1,8 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { getAlternates } from "@/lib/seo";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
@@ -18,6 +20,21 @@ import BlogTeaser from "@/components/BlogTeaser";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+  const t = await getDictionary(locale);
+  return {
+    title: t.meta.title,
+    description: t.meta.description,
+    alternates: getAlternates(locale),
+  };
+}
+
 export default async function Home({
   params,
 }: {
@@ -32,6 +49,54 @@ export default async function Home({
       <Header
         locale={locale}
         t={{ ...t.nav, ...t.header, ...t.logo, ...t.langSwitcher }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Event",
+              name: "Jeddah International Motor Show 2026",
+              description: t.meta.description,
+              startDate: "2026-11-04",
+              endDate: "2026-11-07",
+              eventStatus: "https://schema.org/EventScheduled",
+              eventAttendanceMode:
+                "https://schema.org/OfflineEventAttendanceMode",
+              location: {
+                "@type": "Place",
+                name: "Jeddah Center for Exhibitions and Events (JCEE)",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "Alsalama",
+                  addressLocality: "Jeddah",
+                  addressCountry: "SA",
+                },
+              },
+              organizer: {
+                "@type": "Organization",
+                name: "Integrated Solutions Co. for Events",
+                url: "https://isc-expo.net",
+              },
+              url: `https://isc-expo.net/${locale}`,
+              image: "https://isc-expo.net/images/booklet/hero.jpg",
+              inLanguage: locale === "ar" ? "ar" : "en",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: t.faq.items.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            },
+          ]),
+        }}
       />
       <main className="w-full min-w-0">
         <Hero locale={locale} t={t.hero} />
