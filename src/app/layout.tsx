@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "JIMS 2026 | Jeddah International Motor Show",
     images: [
       {
-        url: "/opengraph-image.png",
+        url: "/images/booklet/hero.jpg",
         width: 1200,
         height: 630,
         alt: "JIMS 2026 | Jeddah International Motor Show",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@JIMS2026",
-    images: ["/opengraph-image.png"],
+    images: ["/images/booklet/hero.jpg"],
   },
 };
 
