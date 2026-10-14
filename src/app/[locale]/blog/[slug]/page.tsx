@@ -24,6 +24,7 @@ export async function generateMetadata({
   const t = await getDictionary(locale);
   const post = t.blog.posts.find((p) => p.slug === slug);
   if (!post) return {};
+  const meta = postMeta.find((p) => p.slug === slug);
   return {
     title: `${post.title} | JIMS 2026`,
     description: post.excerpt,
