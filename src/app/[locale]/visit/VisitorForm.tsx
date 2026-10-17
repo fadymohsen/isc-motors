@@ -31,6 +31,7 @@ export default function VisitorForm({
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
+    const gender = String(fd.get("gender") ?? "").trim();
     const referral = String(fd.get("referral") ?? "").trim();
     const jobTitle = String(fd.get("jobTitle") ?? "").trim();
 
@@ -38,6 +39,7 @@ export default function VisitorForm({
     if (!name) next.name = t.nameError;
     if (!/^\S+@\S+\.\S+$/.test(email)) next.email = t.emailError;
     if (!validPhone(phone)) next.phone = t.phoneError;
+    if (!gender) next.gender = t.genderError;
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
@@ -51,6 +53,7 @@ export default function VisitorForm({
           name,
           email,
           phone,
+          gender,
           referral,
           jobTitle,
           locale,
@@ -204,6 +207,25 @@ export default function VisitorForm({
                       <p className="mt-1 text-xs text-red">{errors.phone}</p>
                     )}
                   </div>
+                </div>
+
+                {/* Gender */}
+                <div>
+                  <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
+                    {t.gender}
+                  </label>
+                  <select
+                    name="gender"
+                    defaultValue=""
+                    className={`${inputClass} appearance-none`}
+                  >
+                    <option value="" disabled />
+                    <option value="male">{t.genderMale}</option>
+                    <option value="female">{t.genderFemale}</option>
+                  </select>
+                  {errors.gender && (
+                    <p className="mt-1 text-xs text-red">{errors.gender}</p>
+                  )}
                 </div>
 
                 {/* Job Title */}

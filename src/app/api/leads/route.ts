@@ -25,6 +25,28 @@ export async function POST(req: NextRequest) {
         jobTitle: body.jobTitle || "",
         locale: locale || "en",
       });
+
+      // Register with event.sa
+      const eventSaToken =
+        process.env.EVENT_SA_TOKEN ||
+        "7|6kOmttJlQIFuiAmSYN9SFrnRMMCPzqHXGbuP2SHn2bc66d5f";
+      fetch("https://event.sa/api/v1/registrations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${eventSaToken}`,
+        },
+        body: JSON.stringify({
+          registration_team_id: 433,
+          name,
+          email,
+          phone,
+          gender: body.gender || "male",
+          organization_name: body.referral || "",
+          position: body.jobTitle || "",
+        }),
+      }).catch((err) => console.error("event.sa registration error:", err));
+
       return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
     }
 
