@@ -454,6 +454,7 @@ const ar: Dictionary = {
     copyright:
       "\u00A9 2026 شركة الحلول المتكاملة للفعاليات. ترخيص 26/3054.",
     backToTop: "العودة للأعلى",
+    followUs: "تابعنا على",
   },
 
   logo: {

@@ -452,6 +452,7 @@ const en = {
     copyright:
       "\u00A9 2026 Integrated Solutions Co. for Events. License 26/3054.",
     backToTop: "Back to top",
+    followUs: "Follow us on",
   },
 
   logo: {
