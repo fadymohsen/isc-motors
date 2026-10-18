@@ -143,7 +143,7 @@ export default function VisitorForm({
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
-    const phone = `${selectedCountry.dial}${phoneLocal}`;
+    const phone = `${selectedCountry.dial}${phoneLocal.replace(/\D/g, "")}`;
 
     setSubmitting(true);
     try {

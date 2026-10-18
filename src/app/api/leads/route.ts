@@ -36,6 +36,16 @@ export async function POST(req: NextRequest) {
       // Register with event.sa (best-effort — does not fail the response)
       const eventSaToken = process.env.EVENT_SA_TOKEN;
       if (eventSaToken) {
+        const eventSaPayload = {
+          registration_team_id: 433,
+          name,
+          email,
+          phone,
+          gender,
+          organization_name: referral,
+          position: jobTitle,
+        };
+        console.log("[event.sa] sending payload:", JSON.stringify(eventSaPayload));
         try {
           const extRes = await fetch("https://event.sa/api/v1/registrations", {
             method: "POST",
@@ -43,25 +53,19 @@ export async function POST(req: NextRequest) {
               "Content-Type": "application/json",
               Authorization: `Bearer ${eventSaToken}`,
             },
-            body: JSON.stringify({
-              registration_team_id: 433,
-              name,
-              email,
-              phone,
-              gender,
-              organization_name: referral,
-              position: jobTitle,
-            }),
+            body: JSON.stringify(eventSaPayload),
           });
-          if (!extRes.ok) {
-            const detail = await extRes.text().catch(() => "");
-            console.error(`event.sa error ${extRes.status}: ${detail}`);
+          const responseBody = await extRes.text().catch(() => "");
+          if (extRes.ok) {
+            console.log(`[event.sa] success ${extRes.status}:`, responseBody);
+          } else {
+            console.error(`[event.sa] error ${extRes.status}:`, responseBody);
           }
         } catch (err) {
-          console.error("event.sa fetch error:", err);
+          console.error("[event.sa] fetch error:", err);
         }
       } else {
-        console.warn("EVENT_SA_TOKEN not set — skipping event.sa registration");
+        console.warn("[event.sa] EVENT_SA_TOKEN not set — skipping registration");
       }
 
       return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
