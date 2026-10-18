@@ -28,6 +28,7 @@ export default function VisitorForm({
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    const visitorType = String(fd.get("visitorType") ?? "").trim();
     const name = String(fd.get("name") ?? "").trim();
     const email = String(fd.get("email") ?? "").trim();
     const phone = String(fd.get("phone") ?? "").trim();
@@ -36,10 +37,13 @@ export default function VisitorForm({
     const jobTitle = String(fd.get("jobTitle") ?? "").trim();
 
     const next: Record<string, string> = {};
+    if (!visitorType) next.visitorType = t.visitorTypeError;
     if (!name) next.name = t.nameError;
     if (!/^\S+@\S+\.\S+$/.test(email)) next.email = t.emailError;
     if (!validPhone(phone)) next.phone = t.phoneError;
     if (!gender) next.gender = t.genderError;
+    if (!jobTitle) next.jobTitle = t.jobTitleError;
+    if (!referral) next.referral = t.referralError;
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
@@ -50,6 +54,7 @@ export default function VisitorForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "visitor",
+          visitorType,
           name,
           email,
           phone,
@@ -157,6 +162,27 @@ export default function VisitorForm({
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate className="mt-6 space-y-4">
+                {/* Visitor Type */}
+                <div>
+                  <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
+                    {t.visitorType}
+                  </label>
+                  <select
+                    name="visitorType"
+                    defaultValue=""
+                    className={`${inputClass} appearance-none`}
+                  >
+                    <option value="" disabled>{t.visitorTypePlaceholder}</option>
+                    <option value="visitor">{t.visitorTypeVisitor}</option>
+                    <option value="ambassador">{t.visitorTypeAmbassador}</option>
+                    <option value="media">{t.visitorTypeMedia}</option>
+                    <option value="exhibitor">{t.visitorTypeExhibitor}</option>
+                  </select>
+                  {errors.visitorType && (
+                    <p className="mt-1 text-xs text-red">{errors.visitorType}</p>
+                  )}
+                </div>
+
                 {/* Full Name */}
                 <div>
                   <label className="mb-1.5 block font-mono text-[11px] uppercase tracking-[0.15em] text-white/60">
@@ -240,6 +266,9 @@ export default function VisitorForm({
                     className={inputClass}
                     placeholder={t.jobTitlePlaceholder}
                   />
+                  {errors.jobTitle && (
+                    <p className="mt-1 text-xs text-red">{errors.jobTitle}</p>
+                  )}
                 </div>
 
                 {/* Referral */}
@@ -253,6 +282,9 @@ export default function VisitorForm({
                     className={inputClass}
                     placeholder={t.referralPlaceholder}
                   />
+                  {errors.referral && (
+                    <p className="mt-1 text-xs text-red">{errors.referral}</p>
+                  )}
                 </div>
 
                 {/* Submit */}
