@@ -12,6 +12,8 @@ export type Lead = {
   company?: string;
   interest?: string;
   // Visitor fields
+  visitorType?: string;
+  gender?: string;
   referral?: string;
   jobTitle?: string;
 };

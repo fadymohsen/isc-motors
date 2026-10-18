@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { type, name, email, phone, locale } = body;
 
-    if (!name || !email || !phone) {
+    if (!name || !email || !phone || !type) {
       return NextResponse.json({ error: "Missing fields" }, { status: 400 });
     }
     if (!/^\S+@\S+\.\S+$/.test(email)) {
@@ -16,36 +16,53 @@ export async function POST(req: NextRequest) {
     }
 
     if (type === "visitor") {
+      const gender = String(body.gender || "").trim();
+      const visitorType = String(body.visitorType || "").trim();
+      const referral = String(body.referral || "").trim();
+      const jobTitle = String(body.jobTitle || "").trim();
+
       const lead = await addLead({
         type: "visitor",
         name,
         email,
         phone,
-        referral: body.referral || "",
-        jobTitle: body.jobTitle || "",
+        gender,
+        visitorType,
+        referral,
+        jobTitle,
         locale: locale || "en",
       });
 
-      // Register with event.sa
-      const eventSaToken =
-        process.env.EVENT_SA_TOKEN ||
-        "7|6kOmttJlQIFuiAmSYN9SFrnRMMCPzqHXGbuP2SHn2bc66d5f";
-      fetch("https://event.sa/api/v1/registrations", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${eventSaToken}`,
-        },
-        body: JSON.stringify({
-          registration_team_id: 433,
-          name,
-          email,
-          phone,
-          gender: body.gender || "male",
-          organization_name: body.referral || "",
-          position: body.jobTitle || "",
-        }),
-      }).catch((err) => console.error("event.sa registration error:", err));
+      // Register with event.sa (best-effort — does not fail the response)
+      const eventSaToken = process.env.EVENT_SA_TOKEN;
+      if (eventSaToken) {
+        try {
+          const extRes = await fetch("https://event.sa/api/v1/registrations", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${eventSaToken}`,
+            },
+            body: JSON.stringify({
+              registration_team_id: 433,
+              name,
+              email,
+              phone,
+              gender,
+              organization_name: referral,
+              position: jobTitle,
+            }),
+          });
+          if (!extRes.ok) {
+            const detail = await extRes.text().catch(() => "");
+            console.error(`event.sa error ${extRes.status}: ${detail}`);
+          }
+        } catch (err) {
+          console.error("event.sa fetch error:", err);
+        }
+      } else {
+        console.warn("EVENT_SA_TOKEN not set — skipping event.sa registration");
+      }
 
       return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
     }
