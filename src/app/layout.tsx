@@ -120,6 +120,11 @@ fbq('track', 'PageView');`,
         />
         {children}
         <ScrollEffects />
+        <Script
+          src="https://embed.crewforce.ai/embed/guide.js"
+          data-tenant="jims"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
