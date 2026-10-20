@@ -42,7 +42,7 @@ const bebas = localFont({
 const arabicDisplay = Changa({
   subsets: ["arabic"],
   variable: "--font-cairo",
-  weight: ["600", "700", "800"],
+  weight: "variable",
   display: "swap",
 });
 
