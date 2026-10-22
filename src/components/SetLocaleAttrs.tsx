@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Script from "next/script";
 
 export default function SetLocaleAttrs({ locale }: { locale: string }) {
   useEffect(() => {
@@ -9,7 +10,9 @@ export default function SetLocaleAttrs({ locale }: { locale: string }) {
   }, [locale]);
 
   return (
-    <script
+    <Script
+      id="set-locale-attrs"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{
         __html: `document.documentElement.lang="${locale}";document.documentElement.dir="${locale === "ar" ? "rtl" : "ltr"}"`,
       }}

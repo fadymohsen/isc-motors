@@ -73,6 +73,28 @@ export const posts: BlogPost[] = [
       "Bespoke packages upon request: Auto Display Lens, Audience Activation Spaces, Conversation Spaces.",
     ],
   },
+  {
+    slug: "exhibition-booth-design-leads",
+    tag: "Booth Design",
+    title: "More Than a Booth: How Smart Exhibition Design Turns Footfall into Leads",
+    date: "October 9, 2026",
+    excerpt:
+      "Booth size doesn't generate leads — design does. See how ISCOM plans stand layout, flow and staffing to turn exhibition footfall into qualified leads.",
+    image: "/images/booklet/stand-plug.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "exhibition-logistics-behind-the-scenes",
+    tag: "Behind the Scenes",
+    title: "Behind Every Successful Show: The Logistics No One Sees",
+    date: "October 13, 2026",
+    excerpt:
+      "Visitors never see the planning that makes a show feel effortless. See how ISCOM plans build, live operations and teardown for major exhibitions.",
+    image: "/images/booklet/stand-custom.jpg",
+    imagePosition: "center",
+    body: [],
+  },
 ];
 
 export function getPostBySlug(slug: string) {

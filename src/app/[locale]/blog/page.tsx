@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { getAlternates } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageBanner from "@/components/PageBanner";
@@ -20,6 +21,7 @@ export async function generateMetadata({
   return {
     title: t.blogPage.metaTitle,
     description: t.blogPage.metaDescription,
+    alternates: getAlternates(locale, "/blog"),
   };
 }
 
@@ -61,7 +63,7 @@ export default async function BlogPage({
                     <div className="relative aspect-[16/9] w-full overflow-hidden">
                       <Image
                         src={meta?.image ?? ""}
-                        alt=""
+                        alt={post.title}
                         fill
                         style={{
                           objectFit: "cover",

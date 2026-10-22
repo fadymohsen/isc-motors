@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { getAlternates } from "@/lib/seo";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { posts as postMeta } from "@/lib/blog";
@@ -23,9 +24,25 @@ export async function generateMetadata({
   const t = await getDictionary(locale);
   const post = t.blog.posts.find((p) => p.slug === slug);
   if (!post) return {};
+  const meta = postMeta.find((p) => p.slug === slug);
   return {
     title: `${post.title} | JIMS 2026`,
     description: post.excerpt,
+    alternates: getAlternates(locale, `/blog/${slug}`),
+    openGraph: {
+      title: `${post.title} | JIMS 2026`,
+      description: post.excerpt,
+      type: "article",
+      images: meta?.image
+        ? [{ url: meta.image, width: 1200, height: 630, alt: post.title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | JIMS 2026`,
+      description: post.excerpt,
+      images: meta?.image ? [meta.image] : undefined,
+    },
   };
 }
 

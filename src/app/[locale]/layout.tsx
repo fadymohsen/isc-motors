@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, locales } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import SetLocaleAttrs from "@/components/SetLocaleAttrs";
+import { getAlternates } from "@/lib/seo";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -20,6 +21,11 @@ export async function generateMetadata({
   return {
     title: t.meta.title,
     description: t.meta.description,
+    alternates: getAlternates(locale),
+    openGraph: {
+      locale: locale === "ar" ? "ar_SA" : "en_US",
+      alternateLocale: locale === "ar" ? "en_US" : "ar_SA",
+    },
   };
 }
 

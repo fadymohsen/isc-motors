@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
+import { getAlternates } from "@/lib/seo";
 import LandingPage from "./LandingPage";
 
 export async function generateMetadata({
@@ -15,6 +16,7 @@ export async function generateMetadata({
   return {
     title: t.landing.metaTitle,
     description: t.landing.metaDescription,
+    alternates: getAlternates(locale, "/register"),
   };
 }
 
