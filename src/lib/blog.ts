@@ -11,6 +11,94 @@ export type BlogPost = {
 
 export const posts: BlogPost[] = [
   {
+    slug: "why-attend-jims-2026",
+    tag: "Fundamentals",
+    title: "Why You Should Attend JIMS 2026: What You'll See, Try and Experience",
+    date: "October 16, 2026",
+    excerpt:
+      "From new car unveilings to live test drives, discover everything waiting for you at the Jeddah International Motor Show, 4–7 November 2026 at JCEE.",
+    image: "/images/booklet/crowd.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "five-reasons-jims-2026",
+    tag: "Fundamentals",
+    title: "More Than a Car Show: 5 Reasons JIMS 2026 Is Worth the Trip",
+    date: "October 16, 2026",
+    excerpt:
+      "JIMS 2026 is a family outing, an entertainment stage, and an industry showcase rolled into one free visit. Here are five reasons it's worth clearing your calendar for 4–7 November.",
+    image: "/images/booklet/hero.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "national-importance-jims-2026",
+    tag: "Authority",
+    title: "Why JIMS 2026 Matters for Saudi Arabia's Automotive Future",
+    date: "October 16, 2026",
+    excerpt:
+      "JIMS 2026 is more than a four-day event — it's where Vision 2030's EV localization push, institutional partners, and the region's active car buyers meet on one show floor.",
+    image: "/images/booklet/tech-zone.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "twenty-editions-jims-2026",
+    tag: "Brand & Authority",
+    title: "Celebrating 20 Editions: What JIMS Means for Jeddah and the Kingdom",
+    date: "October 16, 2026",
+    excerpt:
+      "JIMS 2026 marks its 20th edition as organizers describe it: the Kingdom's longest-running automotive stage, honoring 19 editions of history while leading the industry's next chapter.",
+    image: "/images/booklet/talk.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "300000-buyers-jims-2026",
+    tag: "B2B",
+    title: "Why Showcasing Your Car at JIMS 2026 Puts You in Front of 300,000 Potential Buyers",
+    date: "October 16, 2026",
+    excerpt:
+      "Up to 300,000 visitors, 60% Saudi and 40% international, over four days. Here's what that reach actually means for a brand deciding whether to exhibit at JIMS 2026.",
+    image: "/images/booklet/stand-plug.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "brand-value-jims-2026",
+    tag: "B2B",
+    title: "Beyond the Sale: The Brand Value of Exhibiting at JIMS 2026",
+    date: "October 16, 2026",
+    excerpt:
+      "Press coverage, influencer reach, and institutional credibility don't show up on a showroom sales report — but they're a real part of what exhibiting at JIMS 2026 is worth.",
+    image: "/images/booklet/press.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "visit-checklist-jims-2026",
+    tag: "Fundamentals",
+    title: "Your JIMS 2026 Visit Checklist: How to Prepare Before You Go",
+    date: "October 16, 2026",
+    excerpt:
+      "A practical, step-by-step checklist for visiting JIMS 2026 — registration, timing, parking, and how to plan your day at the Jeddah Center for Exhibitions and Events.",
+    image: "/images/booklet/crowd.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
+    slug: "crowd-magnets-jims-2026",
+    tag: "Experience",
+    title: "What Actually Draws the Crowds? Inside JIMS 2026's Biggest Visitor Magnets",
+    date: "October 16, 2026",
+    excerpt:
+      "With up to 300,000 visitors expected, JIMS 2026 isn't pulling crowds on car displays alone. Here's a breakdown of what actually drives attendance at the show.",
+    image: "/images/booklet/hero.jpg",
+    imagePosition: "center",
+    body: [],
+  },
+  {
     slug: "press-day-2026",
     tag: "Press Day",
     title: "Press Day: 100+ Journalists, One Morning",
