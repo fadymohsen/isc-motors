@@ -26,10 +26,10 @@ export async function generateMetadata({
 
 const contactHrefs: Record<string, string | undefined> = {
   Email: "mailto:Info@isc-expo.net",
-  Website: "https://www.isc-expo.net",
+  Phone: "tel:0539995381",
   // AR labels
   "\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a": "mailto:Info@isc-expo.net",
-  "\u0627\u0644\u0645\u0648\u0642\u0639 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a": "https://www.isc-expo.net",
+  "\u0631\u0642\u0645 \u0627\u0644\u062c\u0648\u0627\u0644": "tel:0539995381",
 };
 
 export default async function ContactPage({

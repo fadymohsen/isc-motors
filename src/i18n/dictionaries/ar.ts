@@ -15,7 +15,7 @@ const ar: Dictionary = {
     blog: "المدونة",
     contact: "تواصل معنا",
     profile: "الملف التعريفي",
-    visit: "سجّل كزائر",
+    visit: "سجّل في المعرض",
   },
 
   header: {
@@ -99,7 +99,7 @@ const ar: Dictionary = {
     tag: "الزوار",
     title: "احضر معرض JIMS 2026",
     subtitle: "سجّل الآن وكن جزءاً من التجربة",
-    button: "سجّل كزائر",
+    button: "سجّل في المعرض",
   },
 
   packages: {
@@ -508,8 +508,8 @@ const ar: Dictionary = {
         value: "Info@isc-expo.net",
       },
       {
-        label: "الموقع الإلكتروني",
-        value: "www.isc-expo.net",
+        label: "رقم الجوال",
+        value: "0539995381",
       },
       {
         label: "الموقع",
@@ -607,9 +607,9 @@ const ar: Dictionary = {
 
   visitorReg: {
     metaTitle: "تسجيل الزوار | JIMS 2026",
-    metaDescription: "سجّل كزائر في النسخة العشرين من معرض جدة الدولي للسيارات. 4–7 نوفمبر 2026.",
+    metaDescription: "سجّل في المعرض في النسخة العشرين من معرض جدة الدولي للسيارات. 4–7 نوفمبر 2026.",
     badge: "النسخة العشرون",
-    headline: "سجّل كزائر",
+    headline: "سجّل في المعرض",
     subheadline: "كن جزءاً من أبرز حدث للسيارات في المملكة",
     date: "4–7 نوفمبر 2026",
     venue: "مركز جدة للمعارض والفعاليات",
@@ -622,11 +622,11 @@ const ar: Dictionary = {
     formTitle: "تسجيل الزوار",
     formSubtitle: "أدخل بياناتك لتأكيد دعوتك.",
     visitorType: "نوع الزائر",
-    visitorTypePlaceholder: "اختر نوعك",
+    visitorTypePlaceholder: "اختر الخدمة",
     visitorTypeVisitor: "زائر",
     visitorTypeAmbassador: "سفير للمعرض",
     visitorTypeMedia: "إعلامي",
-    visitorTypeExhibitor: "عارض",
+    visitorTypeVolunteer: "متطوع",
     visitorTypeError: "يرجى تحديد نوع الزيارة.",
     fullName: "الاسم الكامل",
     namePlaceholder: "اسمك الكامل",

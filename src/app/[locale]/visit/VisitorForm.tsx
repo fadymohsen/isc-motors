@@ -275,7 +275,7 @@ export default function VisitorForm({
                     <option value="visitor">{t.visitorTypeVisitor}</option>
                     <option value="ambassador">{t.visitorTypeAmbassador}</option>
                     <option value="media">{t.visitorTypeMedia}</option>
-                    <option value="exhibitor">{t.visitorTypeExhibitor}</option>
+                    <option value="volunteer">{t.visitorTypeVolunteer}</option>
                   </select>
                   {errors.visitorType && (
                     <p className="mt-1 text-xs text-red">{errors.visitorType}</p>

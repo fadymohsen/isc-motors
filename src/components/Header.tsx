@@ -168,11 +168,11 @@ export default function Header({ locale, t }: HeaderProps) {
                   Info@isc-expo.net
                 </a>
                 <a
-                  href="https://www.isc-expo.net"
+                  href="tel:0539995381"
                   tabIndex={open ? 0 : -1}
                   className="block hover:text-white/70"
                 >
-                  www.isc-expo.net
+                  0539995381
                 </a>
                 <p className="pt-2 text-white/70">{t.location}</p>
               </div>

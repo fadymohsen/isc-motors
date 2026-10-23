@@ -64,8 +64,8 @@ export default function Footer({ locale, t }: FooterProps) {
                 </a>
               </li>
               <li>
-                <a href="https://www.isc-expo.net" className="hover:text-white/70">
-                  www.isc-expo.net
+                <a href="tel:0539995381" className="hover:text-white/70">
+                  0539995381
                 </a>
               </li>
               <li className="leading-relaxed text-white/80">
