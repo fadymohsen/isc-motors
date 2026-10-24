@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import Logo from "@/components/Logo";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
@@ -89,10 +89,13 @@ export default function VisitorForm({
   locale,
   t,
   logoAriaLabel,
+  children,
 }: {
   locale: string;
   t: Dictionary["visitorReg"];
   logoAriaLabel: string;
+  /** Extra sections (e.g. the visitor FAQ) rendered between the form and the footer. */
+  children?: ReactNode;
 }) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
@@ -454,7 +457,11 @@ export default function VisitorForm({
             )}
           </div>
         </div>
+      </div>
 
+      {children && <div className="relative z-10">{children}</div>}
+
+      <div className="relative z-10 mx-auto max-w-[1200px] px-5 md:px-10">
         {/* Footer */}
         <footer className="border-t border-white/10 py-6">
           <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-white/40">

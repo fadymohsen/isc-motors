@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { getAlternates } from "@/lib/seo";
+import Faq from "@/components/Faq";
 import VisitorForm from "./VisitorForm";
 
 export async function generateMetadata({
@@ -29,5 +30,26 @@ export default async function VisitPage({
   if (!isLocale(locale)) notFound();
   const t = await getDictionary(locale);
 
-  return <VisitorForm locale={locale} t={t.visitorReg} logoAriaLabel={t.logo.ariaLabel} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            inLanguage: locale,
+            mainEntity: t.visitorFaq.items.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          }),
+        }}
+      />
+      <VisitorForm locale={locale} t={t.visitorReg} logoAriaLabel={t.logo.ariaLabel}>
+        <Faq locale={locale} t={t.visitorFaq} />
+      </VisitorForm>
+    </>
+  );
 }

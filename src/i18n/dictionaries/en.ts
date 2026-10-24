@@ -765,6 +765,59 @@ const en = {
     privacy: "By submitting you agree to be contacted about JIMS 2026.",
   },
 
+  visitorFaq: {
+    tag: "Visitor FAQ",
+    title: "Visiting JIMS 2026",
+    askButton: "Ask a question",
+    items: [
+      {
+        question: "When and where is the Jeddah International Motor Show 2026?",
+        answer:
+          "JIMS 2026 runs November 4 to 7, 2026 at JCEE, the Jeddah Center for Exhibitions and Events in Alsalama, Jeddah. November 4 is Press Day and VIP Night; November 5 to 7 are the Visitors Days.",
+      },
+      {
+        question: "Is entry free?",
+        answer:
+          "Yes. Entry to JIMS 2026 is free. Register on this page to get your invitation; entry works with a QR code and there is no waiting list.",
+      },
+      {
+        question: "How do I register?",
+        answer:
+          "Fill in the form on this page: choose your registration type, then enter your name, email, mobile number, job title and how you heard about the show. It takes about a minute.",
+      },
+      {
+        question: "Can I register my family with one mobile number?",
+        answer:
+          "Each person needs their own registration with their own mobile number. A number that is already registered can't be used again.",
+      },
+      {
+        question: "Who can register?",
+        answer:
+          "Everyone attending: visitors, show ambassadors, media and volunteers. Choose the option that fits you in the form. Brands that want to exhibit can book a stand from the exhibitor page.",
+      },
+      {
+        question: "What are the opening hours?",
+        answer:
+          "Doors are open from 10:00 to 22:00, and the live stage programme runs from 16:00 to 22:00 each day with launches, shows and talks.",
+      },
+      {
+        question: "Is there parking?",
+        answer:
+          "Yes. JCEE offers daily parking for up to 20,000 vehicles, plus a dedicated shuttle service.",
+      },
+      {
+        question: "Is the show suitable for families and children?",
+        answer:
+          "Yes. Alongside the cars there are family and educational areas, VR simulators and smart-driving demos, a photo zone, heritage displays and a café and food area.",
+      },
+      {
+        question: "What can I see and do?",
+        answer:
+          "New model launches and concept cars, test drives on closed tracks, live stage shows, VR simulators and technology zones, heritage cars, and a hackathon and VR competition.",
+      },
+    ],
+  },
+
   visitorReg: {
     metaTitle: "Register for JIMS 2026 | Free Entry – Jeddah Motor Show",
     metaDescription: "Register free for the 20th Jeddah International Motor Show, November 4–7, 2026 at JCEE. Open to visitors, media, show ambassadors and volunteers.",
