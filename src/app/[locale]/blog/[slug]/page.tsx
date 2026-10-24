@@ -25,12 +25,14 @@ export async function generateMetadata({
   const post = t.blog.posts.find((p) => p.slug === slug);
   if (!post) return {};
   const meta = postMeta.find((p) => p.slug === slug);
+  // Long post titles already name the show; adding the suffix only gets them truncated in results.
+  const title = post.title.length > 45 ? post.title : `${post.title} | JIMS 2026`;
   return {
-    title: `${post.title} | JIMS 2026`,
+    title,
     description: post.excerpt,
     alternates: getAlternates(locale, `/blog/${slug}`),
     openGraph: {
-      title: `${post.title} | JIMS 2026`,
+      title,
       description: post.excerpt,
       type: "article",
       images: meta?.image
@@ -39,7 +41,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | JIMS 2026`,
+      title,
       description: post.excerpt,
       images: meta?.image ? [meta.image] : undefined,
     },

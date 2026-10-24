@@ -3,6 +3,7 @@ import Link from "next/link";
 import MaskLines from "./MaskLines";
 import Tag from "./Tag";
 import { bookHref } from "@/lib/enquiry";
+import { ORGANIZER_URL } from "@/lib/site";
 import { ButtonLabel, buttonClasses } from "./Button";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
@@ -68,8 +69,15 @@ export default function Footer({ locale, t }: FooterProps) {
                   0539995381
                 </a>
               </li>
-              <li className="leading-relaxed text-white/80">
-                {t.location}
+              <li>
+                <a
+                  href={ORGANIZER_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white/70"
+                >
+                  {ORGANIZER_URL.replace("https://", "www.")}
+                </a>
               </li>
             </ul>
             <p className="mt-10 max-w-[260px] font-mono text-xs uppercase leading-relaxed text-white/70">

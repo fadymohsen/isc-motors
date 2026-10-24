@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { getAlternates } from "@/lib/seo";
+import { ORGANIZER_URL, SITE_URL } from "@/lib/site";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
@@ -57,13 +58,25 @@ export default async function Home({
             {
               "@context": "https://schema.org",
               "@type": "Event",
-              name: "Jeddah International Motor Show 2026",
+              name:
+                locale === "ar"
+                  ? "معرض جدة الدولي للسيارات 2026"
+                  : "Jeddah International Motor Show 2026",
+              alternateName: "JIMS 2026",
               description: t.meta.description,
               startDate: "2026-11-04",
               endDate: "2026-11-07",
               eventStatus: "https://schema.org/EventScheduled",
               eventAttendanceMode:
                 "https://schema.org/OfflineEventAttendanceMode",
+              isAccessibleForFree: true,
+              offers: {
+                "@type": "Offer",
+                price: 0,
+                priceCurrency: "SAR",
+                availability: "https://schema.org/InStock",
+                url: `${SITE_URL}/${locale}/visit`,
+              },
               location: {
                 "@type": "Place",
                 name: "Jeddah Center for Exhibitions and Events (JCEE)",
@@ -77,10 +90,10 @@ export default async function Home({
               organizer: {
                 "@type": "Organization",
                 name: "Integrated Solutions Co. for Events",
-                url: "https://isc-expo.net",
+                url: ORGANIZER_URL,
               },
-              url: `https://isc-expo.net/${locale}`,
-              image: "https://isc-expo.net/images/booklet/hero.jpg",
+              url: `${SITE_URL}/${locale}`,
+              image: [`${SITE_URL}/images/booklet/hero.jpg`],
               inLanguage: locale === "ar" ? "ar" : "en",
             },
             {

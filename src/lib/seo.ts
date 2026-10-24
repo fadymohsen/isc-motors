@@ -1,4 +1,4 @@
-const BASE = "https://isc-expo.net";
+import { SITE_URL as BASE } from "./site";
 
 /**
  * Returns canonical + hreflang alternates for a given locale + path.
