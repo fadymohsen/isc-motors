@@ -1,8 +1,8 @@
 const en = {
   meta: {
-    title: "JIMS 2026 | Jeddah International Motor Show",
+    title: "Jeddah International Motor Show 2026 | JIMS, Nov 4–7",
     description:
-      "Revealing the future of mobility in the Kingdom. JIMS 2026 Exhibitor Booklet. JCEE, Jeddah Center for Exhibitions and Events.",
+      "The 20th Jeddah International Motor Show, November 4–7, 2026 at JCEE. Free entry: new car launches, test drives, VR zones and family activities.",
   },
 
   nav: {
@@ -622,7 +622,7 @@ const en = {
   },
 
   aboutPage: {
-    metaTitle: "About | JIMS 2026",
+    metaTitle: "About the Jeddah International Motor Show | JIMS 2026",
     metaDescription:
       "About JIMS, the oldest automotive stage in the Kingdom of Saudi Arabia, organized by Integrated Solutions Co. for Events.",
     eyebrow: "Jeddah, the oldest automotive stage in the Kingdom",
@@ -647,8 +647,8 @@ const en = {
   },
 
   blogPage: {
-    metaTitle: "Blog | JIMS 2026",
-    metaDescription: "News and programme highlights from JIMS 2026.",
+    metaTitle: "News & Blog | Jeddah International Motor Show 2026",
+    metaDescription: "News, guides and programme highlights from the Jeddah International Motor Show 2026, November 4–7 at JCEE.",
     eyebrow: "News & programme",
     title: "JIMS blog",
   },
@@ -718,8 +718,8 @@ const en = {
   },
 
   landing: {
-    metaTitle: "Register | JIMS 2026 — Jeddah International Motor Show",
-    metaDescription: "Secure your spot at the 20th Jeddah International Motor Show. November 4–7, 2026 at JCEE.",
+    metaTitle: "Exhibit at JIMS 2026 | Book a Stand at the Jeddah Motor Show",
+    metaDescription: "Book a stand at the 20th Jeddah International Motor Show, November 4–7, 2026 at JCEE. Plug & Play booths and custom stands for automotive brands.",
     badge: "Limited Exhibitor Spots",
     headline: "Showcase Your Brand at the Kingdom's Premier Motor Show",
     date: "November 4–7, 2026",
@@ -766,8 +766,8 @@ const en = {
   },
 
   visitorReg: {
-    metaTitle: "Registration | JIMS 2026",
-    metaDescription: "Register for the 20th Jeddah International Motor Show. November 4–7, 2026.",
+    metaTitle: "Register for JIMS 2026 | Free Entry – Jeddah Motor Show",
+    metaDescription: "Register free for the 20th Jeddah International Motor Show, November 4–7, 2026 at JCEE. Open to visitors, media, show ambassadors and volunteers.",
     badge: "The 20th Edition",
     headline: "Register for the Show",
     subheadline: "Be part of the Kingdom's premier automotive event",

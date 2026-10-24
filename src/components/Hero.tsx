@@ -39,10 +39,10 @@ export default function Hero({
 
       <div className="wrap relative flex h-full flex-col justify-end pb-14 md:pb-20">
         {/* Event name: a small tracked label, not a giant pinned bottom bar */}
-        <p data-reveal="up" style={d(300)} className="label text-white/50">
+        <h1 data-reveal="up" style={d(300)} className="label text-white/50">
           {t.line1}
           {t.line2 ? ` · ${t.line2}` : ""}
-        </p>
+        </h1>
 
         {/* Edition badge: a stamped tag, not a centered pill */}
         <div data-reveal="up" style={d(500)} className="mt-5">
