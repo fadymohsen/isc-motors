@@ -768,8 +768,8 @@ const ar: Dictionary = {
   },
 
   visitorReg: {
-    metaTitle: "تسجيل الزوار | JIMS 2026",
-    metaDescription: "سجّل في المعرض في النسخة العشرين من معرض جدة الدولي للسيارات. 4–7 نوفمبر 2026.",
+    metaTitle: "التسجيل في المعرض | JIMS 2026",
+    metaDescription: "سجّل في النسخة العشرين من معرض جدة الدولي للسيارات. 4–7 نوفمبر 2026.",
     badge: "النسخة العشرون",
     headline: "سجّل في المعرض",
     subheadline: "كن جزءاً من أبرز حدث للسيارات في المملكة",
@@ -781,7 +781,7 @@ const ar: Dictionary = {
       "محاكيات واقع افتراضي ومناطق تقنية",
       "ترفيه حي وعروض مباشرة",
     ],
-    formTitle: "تسجيل الزوار",
+    formTitle: "التسجيل في المعرض",
     formSubtitle: "أدخل بياناتك لتأكيد دعوتك.",
     visitorType: "نوع الزائر",
     visitorTypePlaceholder: "اختر الخدمة",

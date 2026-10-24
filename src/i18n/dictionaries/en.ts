@@ -13,7 +13,7 @@ const en = {
     blog: "Blog",
     contact: "Contact",
     profile: "Company Profile",
-    visit: "Register as Visitor",
+    visit: "Register for the Show",
   },
 
   header: {
@@ -98,7 +98,7 @@ const en = {
     tag: "Visitors",
     title: "Attend JIMS 2026",
     subtitle: "Register now and be part of the experience",
-    button: "Register as Visitor",
+    button: "Register for the Show",
   },
 
   packages: {
@@ -766,10 +766,10 @@ const en = {
   },
 
   visitorReg: {
-    metaTitle: "Visitor Registration | JIMS 2026",
-    metaDescription: "Register as a visitor for the 20th Jeddah International Motor Show. November 4–7, 2026.",
+    metaTitle: "Registration | JIMS 2026",
+    metaDescription: "Register for the 20th Jeddah International Motor Show. November 4–7, 2026.",
     badge: "The 20th Edition",
-    headline: "Register as a Visitor",
+    headline: "Register for the Show",
     subheadline: "Be part of the Kingdom's premier automotive event",
     date: "November 4–7, 2026",
     venue: "JCEE, Jeddah",
@@ -779,7 +779,7 @@ const en = {
       "VR simulators & tech zones",
       "Live entertainment & shows",
     ],
-    formTitle: "Visitor Registration",
+    formTitle: "Show Registration",
     formSubtitle: "Fill in your details to secure your invitation.",
     visitorType: "Visitor Type",
     visitorTypePlaceholder: "Select service",
