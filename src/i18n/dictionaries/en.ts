@@ -26,7 +26,7 @@ const en = {
     venue: "JCEE, Jeddah",
     bookAStand: "Book Your Space Now!",
     contactLabel: "Contact",
-    location: "Saudi Arabia, Jeddah, Alsalama",
+    location: "Saudi Arabia, Jeddah",
   },
 
   hero: {
@@ -609,7 +609,7 @@ const en = {
     bookAStand: "Book a stand",
     pagesLabel: "Pages",
     contactLabel: "Contact",
-    location: "Saudi Arabia, Jeddah, Alsalama",
+    location: "Saudi Arabia, Jeddah",
     organizedBy: "Organized by Integrated Solutions Co. for Events.",
     copyright:
       "\u00A9 2026 Integrated Solutions Co. for Events. License 26/3054.",
@@ -673,7 +673,7 @@ const en = {
       },
       {
         label: "Location",
-        value: "Saudi Arabia, Jeddah, Alsalama",
+        value: "Saudi Arabia, Jeddah",
       },
       {
         label: "Venue",

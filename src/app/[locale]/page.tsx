@@ -82,7 +82,7 @@ export default async function Home({
                 name: "Jeddah Center for Exhibitions and Events (JCEE)",
                 address: {
                   "@type": "PostalAddress",
-                  streetAddress: "Alsalama",
+                  streetAddress: "",
                   addressLocality: "Jeddah",
                   addressCountry: "SA",
                 },
