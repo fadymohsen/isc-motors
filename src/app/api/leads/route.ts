@@ -26,19 +26,9 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Invalid visitor type" }, { status: 400 });
       }
 
-      const lead = await addLead({
-        type: "visitor",
-        name,
-        email,
-        phone,
-        gender,
-        visitorType,
-        referral,
-        jobTitle,
-        locale: locale || "en",
-      });
-
-      // Register with event.sa (best-effort — does not fail the response)
+      // Register with event.sa first. A rejection caused by the visitor's data (duplicate,
+      // validation) is reported back; our own problems (auth, 5xx, network) are not held
+      // against the visitor — the lead is still saved below.
       const eventSaToken = process.env.EVENT_SA_TOKEN;
       if (eventSaToken) {
         const eventSaPayload = {
@@ -65,6 +55,12 @@ export async function POST(req: NextRequest) {
             console.log(`[event.sa] success ${extRes.status}:`, responseBody);
           } else {
             console.error(`[event.sa] error ${extRes.status}:`, responseBody);
+            if (extRes.status === 409) {
+              return NextResponse.json({ error: "Already registered", reason: "duplicate" }, { status: 409 });
+            }
+            if (extRes.status >= 400 && extRes.status < 500 && ![401, 403, 429].includes(extRes.status)) {
+              return NextResponse.json({ error: "Registration rejected", reason: "rejected" }, { status: 422 });
+            }
           }
         } catch (err) {
           console.error("[event.sa] fetch error:", err);
@@ -72,6 +68,18 @@ export async function POST(req: NextRequest) {
       } else {
         console.warn("[event.sa] EVENT_SA_TOKEN not set — skipping registration");
       }
+
+      const lead = await addLead({
+        type: "visitor",
+        name,
+        email,
+        phone,
+        gender,
+        visitorType,
+        referral,
+        jobTitle,
+        locale: locale || "en",
+      });
 
       return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
     }

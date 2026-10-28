@@ -6,7 +6,7 @@ import Logo from "@/components/Logo";
 import type { Dictionary } from "@/i18n/dictionaries/en";
 
 const inputClass =
-  "w-full border border-white/20 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/40 focus:border-red focus:outline-none transition-colors";
+  "w-full border border-white/20 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-white/40 focus:border-red focus:outline-none transition-colors [color-scheme:dark]";
 
 type CountryCode = {
   flag: string;
@@ -15,6 +15,8 @@ type CountryCode = {
   min: number;
   max: number;
 };
+
+const optionClass = "bg-[#232323] text-white";
 
 const COUNTRY_CODES: CountryCode[] = [
   { flag: "🇸🇦", name: "Saudi Arabia",  dial: "+966", min: 9,  max: 9  },
@@ -97,6 +99,7 @@ export default function VisitorForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [selectedCountry, setSelectedCountry] = useState<CountryCode>(COUNTRY_CODES[0]);
 
   function clearError(field: string) {
@@ -146,8 +149,9 @@ export default function VisitorForm({
     const phone = `${selectedCountry.dial}${phoneLocal.replace(/\D/g, "")}`;
 
     setSubmitting(true);
+    setSubmitError("");
     try {
-      await fetch("/api/leads", {
+      const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -162,9 +166,14 @@ export default function VisitorForm({
           locale,
         }),
       });
-      setSent(true);
+      if (res.ok) {
+        setSent(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setSubmitError(data.reason === "duplicate" ? t.duplicateError : t.submitError);
+      }
     } catch {
-      setSent(true);
+      setSubmitError(t.submitError);
     } finally {
       setSubmitting(false);
     }
@@ -271,11 +280,11 @@ export default function VisitorForm({
                     className={`${inputClass} appearance-none`}
                     onChange={(e) => validateOnBlur("visitorType", e.target.value)}
                   >
-                    <option value="" disabled>{t.visitorTypePlaceholder}</option>
-                    <option value="visitor">{t.visitorTypeVisitor}</option>
-                    <option value="ambassador">{t.visitorTypeAmbassador}</option>
-                    <option value="media">{t.visitorTypeMedia}</option>
-                    <option value="volunteer">{t.visitorTypeVolunteer}</option>
+                    <option value="" disabled className={optionClass}>{t.visitorTypePlaceholder}</option>
+                    <option value="visitor" className={optionClass}>{t.visitorTypeVisitor}</option>
+                    <option value="ambassador" className={optionClass}>{t.visitorTypeAmbassador}</option>
+                    <option value="media" className={optionClass}>{t.visitorTypeMedia}</option>
+                    <option value="volunteer" className={optionClass}>{t.visitorTypeVolunteer}</option>
                   </select>
                   {errors.visitorType && (
                     <p className="mt-1 text-xs text-red">{errors.visitorType}</p>
@@ -340,11 +349,11 @@ export default function VisitorForm({
                           );
                           if (found) setSelectedCountry(found);
                         }}
-                        className="shrink-0 appearance-none border-r border-white/20 bg-transparent py-3.5 pl-3 pr-2 text-sm text-white focus:outline-none"
+                        className="shrink-0 appearance-none border-r border-white/20 bg-transparent py-3.5 pl-3 pr-2 text-sm text-white focus:outline-none [color-scheme:dark]"
                         aria-label="Country code"
                       >
                         {COUNTRY_CODES.map((c) => (
-                          <option key={c.dial + c.name} value={c.dial}>
+                          <option key={c.dial + c.name} value={c.dial} className={optionClass}>
                             {c.flag} {c.dial}
                           </option>
                         ))}
@@ -378,9 +387,9 @@ export default function VisitorForm({
                     className={`${inputClass} appearance-none`}
                     onChange={(e) => validateOnBlur("gender", e.target.value)}
                   >
-                    <option value="" disabled />
-                    <option value="male">{t.genderMale}</option>
-                    <option value="female">{t.genderFemale}</option>
+                    <option value="" disabled className={optionClass} />
+                    <option value="male" className={optionClass}>{t.genderMale}</option>
+                    <option value="female" className={optionClass}>{t.genderFemale}</option>
                   </select>
                   {errors.gender && (
                     <p className="mt-1 text-xs text-red">{errors.gender}</p>
@@ -423,6 +432,12 @@ export default function VisitorForm({
                     <p className="mt-1 text-xs text-red">{errors.referral}</p>
                   )}
                 </div>
+
+                {submitError && (
+                  <p role="alert" className="border border-red/40 bg-red/10 p-3 text-sm text-red">
+                    {submitError}
+                  </p>
+                )}
 
                 {/* Submit */}
                 <button

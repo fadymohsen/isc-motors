@@ -806,6 +806,8 @@ const en = {
     jobTitleError: "Please enter your job title.",
     submit: "Register Now",
     sent: "You're registered! We'll send your confirmation details shortly.",
+    duplicateError: "This email is already registered. Please use a different email or contact us.",
+    submitError: "Something went wrong with your registration. Please check your details and try again.",
     nameError: "Please enter your first and last name (min 2 words).",
     emailError: "Please enter a valid email address.",
     phoneError: "Please enter a valid phone number for the selected country.",
