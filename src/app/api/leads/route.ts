@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addLead, getLeads, deleteLead } from "@/lib/leads";
+import { isVisitorType, registrationTeams } from "@/lib/registrationTeams";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,10 @@ export async function POST(req: NextRequest) {
       const referral = String(body.referral || "").trim();
       const jobTitle = String(body.jobTitle || "").trim();
 
+      if (!isVisitorType(visitorType)) {
+        return NextResponse.json({ error: "Invalid visitor type" }, { status: 400 });
+      }
+
       const lead = await addLead({
         type: "visitor",
         name,
@@ -37,7 +42,7 @@ export async function POST(req: NextRequest) {
       const eventSaToken = process.env.EVENT_SA_TOKEN;
       if (eventSaToken) {
         const eventSaPayload = {
-          registration_team_id: 433,
+          registration_team_id: registrationTeams[visitorType],
           name,
           email,
           phone,
