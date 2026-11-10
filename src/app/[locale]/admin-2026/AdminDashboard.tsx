@@ -117,8 +117,10 @@ export default function AdminDashboard() {
       : leads.filter((l) => (l.type ?? "exhibitor") === tab);
 
   const filtered =
-    tab === "visitor" && visitorTypeFilter !== "all"
-      ? byTab.filter((l) => (l.visitorType || "visitor") === visitorTypeFilter)
+    tab !== "exhibitor" && visitorTypeFilter !== "all"
+      ? byTab.filter(
+          (l) => (l.type ?? "exhibitor") === "visitor" && (l.visitorType || "visitor") === visitorTypeFilter
+        )
       : byTab;
 
   const exhibitors = leads.filter((l) => (l.type ?? "exhibitor") === "exhibitor");
@@ -240,7 +242,7 @@ export default function AdminDashboard() {
             ))}
           </div>
 
-          {tab === "visitor" && (
+          {tab !== "exhibitor" && (
             <select
               value={visitorTypeFilter}
               onChange={(e) => setVisitorTypeFilter(e.target.value as VisitorTypeFilter)}
@@ -311,7 +313,9 @@ export default function AdminDashboard() {
                             ? "bg-purple-900/40 text-purple-400"
                             : "bg-amber-900/40 text-amber-400"
                         }`}>
-                          {lead.type ?? "exhibitor"}
+                          {(lead.type ?? "exhibitor") === "visitor"
+                            ? VISITOR_TYPE_LABELS[lead.visitorType || "visitor"] ?? lead.visitorType ?? "Visitor"
+                            : "Exhibitor"}
                         </span>
                       </td>
                     )}
