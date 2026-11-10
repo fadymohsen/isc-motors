@@ -14,9 +14,18 @@ type Lead = {
   interest?: string;
   referral?: string;
   jobTitle?: string;
+  visitorType?: string;
 };
 
 type Tab = "all" | "exhibitor" | "visitor";
+type VisitorTypeFilter = "all" | "visitor" | "ambassador" | "media" | "volunteer";
+
+const VISITOR_TYPE_LABELS: Record<string, string> = {
+  visitor: "Visitor",
+  ambassador: "Show Ambassador",
+  media: "Media",
+  volunteer: "Volunteer",
+};
 
 const ADMIN_PASS = "admin-isc-veliq-2026";
 const STORAGE_KEY = "jims-admin-auth";
@@ -72,6 +81,7 @@ export default function AdminDashboard() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("all");
+  const [visitorTypeFilter, setVisitorTypeFilter] = useState<VisitorTypeFilter>("all");
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchLeads = useCallback(async () => {
@@ -101,10 +111,15 @@ export default function AdminDashboard() {
   if (!mounted) return <div className="min-h-[100svh] bg-dark" />;
   if (!authed) return <LoginGate onAuth={() => setAuthed(true)} />;
 
-  const filtered =
+  const byTab =
     tab === "all"
       ? leads
       : leads.filter((l) => (l.type ?? "exhibitor") === tab);
+
+  const filtered =
+    tab === "visitor" && visitorTypeFilter !== "all"
+      ? byTab.filter((l) => (l.visitorType || "visitor") === visitorTypeFilter)
+      : byTab;
 
   const exhibitors = leads.filter((l) => (l.type ?? "exhibitor") === "exhibitor");
   const visitors = leads.filter((l) => (l.type ?? "exhibitor") === "visitor");
@@ -118,13 +133,22 @@ export default function AdminDashboard() {
     if (filtered.length === 0) return;
     const isVisitor = tab === "visitor";
     const headers = isVisitor
-      ? ["Date", "Name", "Email", "Phone", "Job Title", "Referral", "Locale"]
+      ? ["Date", "Type", "Name", "Email", "Phone", "Job Title", "Referral", "Locale"]
       : tab === "exhibitor"
         ? ["Date", "Company", "Name", "Email", "Phone", "Interest", "Locale"]
         : ["Date", "Type", "Name", "Email", "Phone", "Company/Referral", "Interest/Job Title", "Locale"];
     const rows = filtered.map((l) => {
       if (tab === "visitor")
-        return [fmtDate(l.createdAt), l.name, l.email, l.phone, l.jobTitle ?? "", l.referral ?? "", l.locale];
+        return [
+          fmtDate(l.createdAt),
+          VISITOR_TYPE_LABELS[l.visitorType || "visitor"] ?? l.visitorType ?? "Visitor",
+          l.name,
+          l.email,
+          l.phone,
+          l.jobTitle ?? "",
+          l.referral ?? "",
+          l.locale,
+        ];
       if (tab === "exhibitor")
         return [fmtDate(l.createdAt), l.company ?? "", l.name, l.email, l.phone, l.interest ?? "", l.locale];
       return [
@@ -195,24 +219,40 @@ export default function AdminDashboard() {
         </div>
 
         {/* Tabs */}
-        <div className="mt-8 flex gap-1">
-          {([
-            { key: "all" as Tab, label: `All (${leads.length})` },
-            { key: "exhibitor" as Tab, label: `Exhibitors (${exhibitors.length})` },
-            { key: "visitor" as Tab, label: `Visitors (${visitors.length})` },
-          ]).map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className={`px-5 py-2.5 font-mono text-xs uppercase tracking-wide transition-colors ${
-                tab === t.key
-                  ? "bg-red text-white"
-                  : "bg-dark2 text-white/50 hover:text-white/80"
-              }`}
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
+          <div className="flex gap-1">
+            {([
+              { key: "all" as Tab, label: `All (${leads.length})` },
+              { key: "exhibitor" as Tab, label: `Exhibitors (${exhibitors.length})` },
+              { key: "visitor" as Tab, label: `Visitors (${visitors.length})` },
+            ]).map((t) => (
+              <button
+                key={t.key}
+                onClick={() => { setTab(t.key); setVisitorTypeFilter("all"); }}
+                className={`px-5 py-2.5 font-mono text-xs uppercase tracking-wide transition-colors ${
+                  tab === t.key
+                    ? "bg-red text-white"
+                    : "bg-dark2 text-white/50 hover:text-white/80"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+
+          {tab === "visitor" && (
+            <select
+              value={visitorTypeFilter}
+              onChange={(e) => setVisitorTypeFilter(e.target.value as VisitorTypeFilter)}
+              className="appearance-none border border-white/20 bg-dark2 px-4 py-2.5 font-mono text-xs uppercase tracking-wide text-white/70 focus:border-red focus:outline-none"
+              aria-label="Filter by type"
             >
-              {t.label}
-            </button>
-          ))}
+              <option value="all">All Types</option>
+              {Object.entries(VISITOR_TYPE_LABELS).map(([value, label]) => (
+                <option key={value} value={value}>{label}</option>
+              ))}
+            </select>
+          )}
         </div>
 
         {/* Table */}
@@ -231,7 +271,7 @@ export default function AdminDashboard() {
               <thead>
                 <tr className="border-b border-white/15">
                   {tab === "visitor"
-                    ? ["Date", "Name", "Email", "Phone", "Job Title", "Referral", "Lang", ""].map((h) => (
+                    ? ["Date", "Type", "Name", "Email", "Phone", "Job Title", "Referral", "Lang", ""].map((h) => (
                         <th key={h} className="px-4 py-3 text-start font-mono text-[11px] uppercase tracking-[0.15em] text-white/50">{h}</th>
                       ))
                     : tab === "exhibitor"
@@ -255,6 +295,14 @@ export default function AdminDashboard() {
                         {new Date(lead.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                       </span>
                     </td>
+
+                    {tab === "visitor" && (
+                      <td className="px-4 py-3.5">
+                        <span className="inline-block px-2.5 py-1 font-mono text-[10px] uppercase bg-purple-900/40 text-purple-400">
+                          {VISITOR_TYPE_LABELS[lead.visitorType || "visitor"] ?? lead.visitorType ?? "Visitor"}
+                        </span>
+                      </td>
+                    )}
 
                     {tab === "all" && (
                       <td className="px-4 py-3.5">
